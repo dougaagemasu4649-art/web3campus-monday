@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="noindex,nofollow,noarchive,nosnippet">
+<meta name="referrer" content="no-referrer">
+<title>🐕🍞 月曜フォローアップ アーカイブ — Web3Campus</title>
+<style>
+:root {
+  --bg-base: oklch(96% 0.025 85);
+  --bg-elev: oklch(99% 0.005 85);
+  --bg-soft: oklch(93% 0.045 75);
+  --text-primary: oklch(12% 0 0);
+  --text-secondary: oklch(32% 0.01 60);
+  --text-muted: oklch(50% 0.015 60);
+  --accent-coral: oklch(58% 0.16 55);
+  --accent-amber: oklch(78% 0.16 85);
+  --accent-magenta: oklch(58% 0.20 25);
+  --border: oklch(86% 0.025 75);
+  --shadow-sm: 0 2px 8px oklch(50% 0.08 60 / 0.12);
+  --shadow-md: 0 4px 16px oklch(50% 0.08 60 / 0.14);
+  --font-sans: 'Hiragino Maru Gothic ProN', 'Hiragino Sans', 'Yu Gothic', system-ui, sans-serif;
+  --radius: 16px;
+  --radius-sm: 10px;
+}
+* { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body {
+  background: var(--bg-base);
+  background-image:
+    radial-gradient(at 18% 0%, oklch(94% 0.06 80 / 0.7), transparent 50%),
+    radial-gradient(at 88% 8%, oklch(92% 0.07 60 / 0.55), transparent 50%);
+  background-attachment: fixed;
+  color: var(--text-primary);
+  font-family: var(--font-sans);
+  font-size: 17px; line-height: 1.75;
+  -webkit-font-smoothing: antialiased;
+}
+.container { max-width: 860px; margin: 0 auto; padding: 0 1.5rem; }
+
+/* Header */
+.site-header {
+  background: oklch(100% 0 0 / 0.92);
+  backdrop-filter: blur(14px);
+  border-bottom: 1px solid var(--border);
+  box-shadow: 0 2px 8px oklch(70% 0.05 260 / 0.06);
+  position: sticky; top: 0; z-index: 100;
+}
+.header-inner {
+  max-width: 860px; margin: 0 auto; padding: 0.7rem 1.5rem;
+  display: flex; align-items: center; justify-content: space-between; gap: 1rem;
+}
+.brand {
+  display: flex; flex-direction: column; line-height: 1.2;
+}
+.brand-main {
+  font-weight: 800; font-size: 0.95rem;
+  background: linear-gradient(120deg, var(--accent-coral), var(--accent-magenta));
+  -webkit-background-clip: text; background-clip: text; color: transparent;
+}
+.brand-sub { font-size: 0.72rem; color: var(--text-secondary); font-weight: 500; }
+
+/* Hero */
+.hero {
+  padding: 3rem 0 2rem;
+  text-align: center;
+}
+.hero .eyebrow {
+  display: inline-block; font-size: 0.75rem; letter-spacing: 0.14em;
+  color: var(--accent-coral); font-weight: 700; text-transform: uppercase;
+  padding: 0.3rem 0.9rem; background: var(--bg-soft); border-radius: 999px;
+  margin-bottom: 1rem;
+}
+.hero h1 {
+  font-size: clamp(1.7rem, 1.3rem + 2vw, 2.6rem);
+  font-weight: 800; line-height: 1.3; letter-spacing: -0.01em;
+  margin-bottom: 1rem;
+}
+.hero h1 .accent {
+  background: linear-gradient(120deg, var(--accent-coral), var(--accent-magenta));
+  -webkit-background-clip: text; background-clip: text; color: transparent;
+}
+.hero-desc {
+  font-size: 1rem; color: var(--text-secondary);
+  max-width: 520px; margin: 0 auto;
+}
+
+/* Session list */
+.section-title {
+  font-size: 1rem; font-weight: 700; letter-spacing: 0.06em;
+  color: var(--text-muted); text-transform: uppercase;
+  margin: 2.5rem 0 1rem;
+  padding-bottom: 0.5rem;
+  border-bottom: 1px solid var(--border);
+}
+.session-list {
+  display: grid; gap: 0.85rem;
+  list-style: none;
+}
+.session-card {
+  display: flex; align-items: center; gap: 1.2rem;
+  background: var(--bg-elev);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 1.1rem 1.4rem;
+  text-decoration: none; color: inherit;
+  box-shadow: var(--shadow-sm);
+  transition: transform 0.18s, box-shadow 0.18s;
+}
+.session-card:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-md);
+  border-color: var(--accent-coral);
+}
+.session-date {
+  flex-shrink: 0;
+  text-align: center;
+  background: linear-gradient(135deg, var(--accent-coral), var(--accent-magenta));
+  color: white;
+  border-radius: var(--radius-sm);
+  padding: 0.5rem 0.8rem;
+  line-height: 1.2;
+  min-width: 64px;
+}
+.session-date .year { font-size: 0.65rem; font-weight: 600; opacity: 0.85; }
+.session-date .day  { font-size: 1.05rem; font-weight: 800; }
+.session-info { flex: 1; min-width: 0; }
+.session-title {
+  font-size: 0.97rem; font-weight: 700;
+  color: var(--text-primary);
+  white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
+}
+.session-meta {
+  font-size: 0.8rem; color: var(--text-secondary);
+  margin-top: 0.2rem;
+}
+.session-arrow {
+  flex-shrink: 0;
+  font-size: 1.1rem; color: var(--accent-coral);
+  opacity: 0.6;
+  transition: opacity 0.18s, transform 0.18s;
+}
+.session-card:hover .session-arrow { opacity: 1; transform: translateX(3px); }
+
+/* Footer */
+footer {
+  border-top: 1px solid var(--border);
+  margin-top: 4rem; padding: 2rem 0;
+  font-size: 0.82rem; color: var(--text-muted);
+  text-align: center;
+}
+footer a { color: var(--accent-coral); text-decoration: none; font-weight: 600; }
+</style>
+</head>
+<body>
+
+<header class="site-header">
+  <div class="header-inner">
+    <div class="brand">
+      <span class="brand-main">🐕🍞 Web3Campus</span>
+      <span class="brand-sub">月曜フォローアップセミナー</span>
+    </div>
+  </div>
+</header>
+
+<div class="container">
+  <div class="hero">
+    <div class="eyebrow">Monday Follow-up Archive</div>
+    <h1>月曜フォローアップ<br><span class="accent">アーカイブ一覧</span></h1>
+    <p class="hero-desc">毎週月曜日に開催している Zoom フォローアップセミナーのアーカイブです。</p>
+  </div>
+
+  <div class="section-title">配信一覧</div>
+  <ul class="session-list">
+
+    <li>
+      <a href="/2026-05-11/" class="session-card">
+        <div class="session-date">
+          <div class="year">2026</div>
+          <div class="day">05.11</div>
+        </div>
+        <div class="session-info">
+          <div class="session-title">220_フォローアップ — BTC 81K回復・CMEギャップ目前＆BitMart特別講演</div>
+          <div class="session-meta">約78分 · ニュース4件 · 注目銘柄5件</div>
+        </div>
+        <div class="session-arrow">▶</div>
+      </a>
+    </li>
+
+    <li>
+      <a href="/2026-05-04/" class="session-card">
+        <div class="session-date">
+          <div class="year">2026</div>
+          <div class="day">05.04</div>
+        </div>
+        <div class="session-info">
+          <div class="session-title">219_フォローアップ — アーカイブ</div>
+          <div class="session-meta">2026年5月4日(月)</div>
+        </div>
+        <div class="session-arrow">▶</div>
+      </a>
+    </li>
+
+  </ul>
+</div>
+
+<footer>
+  <div>🐕🍞 Web3Campus · 月曜フォローアップセミナー アーカイブ</div>
+  <div style="margin-top: 0.5rem; font-size: 0.75rem; opacity: 0.7;">made with 🍞 by a corgi 🐕</div>
+</footer>
+
+</body>
+</html>
