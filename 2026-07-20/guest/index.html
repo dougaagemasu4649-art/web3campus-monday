@@ -1,0 +1,634 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="noindex,nofollow,noarchive,nosnippet">
+<meta name="referrer" content="no-referrer">
+<title>AI×投資フリートーク — 特別ゲスト・西田氏との対話 | 月曜アーカイブ 2026-07-20</title>
+<style>
+:root {
+  --bg-base: oklch(96% 0.025 85);
+  --bg-elev: oklch(99% 0.005 85);
+  --bg-soft: oklch(93% 0.045 75);
+  --bg-mint: oklch(91% 0.05 70);
+  --bg-sky:  oklch(94% 0.04 50);
+  --text-primary: oklch(12% 0 0);
+  --text-secondary: oklch(32% 0.01 60);
+  --text-muted: oklch(50% 0.015 60);
+  --accent-coral: oklch(58% 0.16 55);
+  --accent-amber: oklch(78% 0.16 85);
+  --accent-mint:  oklch(48% 0.12 50);
+  --accent-sky:   oklch(68% 0.13 65);
+  --accent-magenta: oklch(58% 0.20 25);
+  --border: oklch(86% 0.025 75);
+  --border-hi: oklch(75% 0.04 65);
+  --shadow-sm: 0 2px 8px oklch(50% 0.08 60 / 0.12);
+  --shadow-md: 0 4px 16px oklch(50% 0.08 60 / 0.14);
+  --shadow-lg: 0 12px 32px oklch(50% 0.08 60 / 0.18);
+  --font-sans: 'Hiragino Maru Gothic ProN', 'Hiragino Sans', 'Yu Gothic', system-ui, sans-serif;
+  --font-mono: 'SF Mono', 'Menlo', 'Consolas', monospace;
+  --space-section: clamp(2.5rem, 1.8rem + 3.5vw, 5rem);
+  --radius: 16px;
+  --radius-sm: 10px;
+}
+* { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body {
+  background: var(--bg-base);
+  background-image:
+    radial-gradient(at 20% 0%, oklch(93% 0.07 60 / 0.6), transparent 50%),
+    radial-gradient(at 85% 10%, oklch(92% 0.06 40 / 0.5), transparent 50%);
+  background-attachment: fixed;
+  color: var(--text-primary);
+  font-family: var(--font-sans);
+  font-size: 17px; line-height: 1.75;
+  -webkit-font-smoothing: antialiased;
+}
+::selection { background: var(--accent-magenta); color: white; }
+.container { max-width: 980px; margin: 0 auto; padding: 0 1.5rem; }
+
+.header-stack {
+  position: sticky; top: 0; z-index: 100;
+  background: oklch(100% 0 0 / 0.92);
+  backdrop-filter: blur(14px);
+  border-bottom: 1px solid var(--border);
+  box-shadow: 0 2px 8px oklch(70% 0.05 260 / 0.06);
+}
+.navbar-inner {
+  max-width: 980px; margin: 0 auto; padding: 0.5rem 1.5rem;
+  display: flex; justify-content: space-between; align-items: center;
+  gap: 1rem; flex-wrap: wrap;
+}
+.brand { display: flex; flex-direction: column; line-height: 1.15; min-width: 0; }
+.brand-main {
+  font-weight: 700; font-size: 0.9rem;
+  background: linear-gradient(120deg, var(--accent-magenta), var(--accent-coral));
+  -webkit-background-clip: text; background-clip: text; color: transparent;
+  white-space: nowrap;
+}
+.brand-sub {
+  font-size: 0.68rem; color: var(--text-secondary); font-weight: 500;
+  margin-top: 0.1rem; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
+}
+.nav-links { display: flex; gap: 0.2rem; flex-wrap: wrap; font-size: 0.78rem; }
+.nav-links a {
+  color: var(--text-secondary); text-decoration: none;
+  padding: 0.18rem 0.55rem; border-radius: 999px; transition: all 0.18s;
+}
+.nav-links a:hover { color: var(--accent-magenta); background: var(--bg-soft); }
+.ai-strip {
+  background: oklch(91% 0.07 75 / 0.95);
+  border-top: 1px solid oklch(80% 0.08 65);
+  padding: 0.28rem 1rem; font-size: 0.7rem;
+  color: var(--text-primary); text-align: center; line-height: 1.3;
+}
+.ai-strip strong { color: var(--accent-coral); font-weight: 700; }
+.ai-strip a { color: var(--accent-coral); font-weight: 600; text-decoration: underline; }
+
+/* Back link */
+.back-link {
+  display: inline-flex; align-items: center; gap: 0.4rem;
+  margin: 1.5rem 0 0;
+  font-size: 0.85rem; color: var(--text-secondary);
+  text-decoration: none; padding: 0.4rem 1rem;
+  background: var(--bg-elev); border: 1px solid var(--border);
+  border-radius: 999px; box-shadow: var(--shadow-sm);
+  transition: all 0.18s;
+}
+.back-link:hover { color: var(--accent-coral); border-color: var(--accent-coral); }
+
+.ai-disclaimer {
+  margin: 1.2rem 0 0;
+  padding: 1rem 1.2rem;
+  background: linear-gradient(120deg, oklch(96% 0.06 75), oklch(96% 0.06 30));
+  border: 1px solid oklch(85% 0.08 50);
+  border-radius: var(--radius); font-size: 0.88rem;
+  display: flex; gap: 0.8rem; align-items: flex-start;
+}
+.ai-disclaimer strong { color: var(--accent-coral); }
+
+/* Hero */
+.hero { padding: 2rem 0 1.5rem; }
+.eyebrow {
+  display: inline-block; font-size: 0.75rem; letter-spacing: 0.16em;
+  color: var(--accent-magenta); font-weight: 700; text-transform: uppercase;
+  margin-bottom: 0.7rem;
+  padding: 0.3rem 0.8rem; background: var(--bg-soft); border-radius: 999px;
+}
+.hero h1 {
+  font-size: clamp(1.6rem, 1.3rem + 1.6vw, 2.3rem);
+  line-height: 1.35; font-weight: 800; letter-spacing: -0.005em;
+  margin-bottom: 0.8rem;
+}
+.hero h1 .accent {
+  background: linear-gradient(120deg, var(--accent-magenta), var(--accent-coral));
+  -webkit-background-clip: text; background-clip: text; color: transparent;
+}
+.hero-meta {
+  display: flex; gap: 0.6rem; flex-wrap: wrap;
+  font-size: 0.85rem; color: var(--text-secondary); margin-top: 1.2rem;
+}
+.hero-meta span {
+  display: inline-flex; align-items: center; gap: 0.4rem;
+  background: var(--bg-elev); padding: 0.4rem 0.9rem;
+  border-radius: 999px; box-shadow: var(--shadow-sm);
+}
+.hero-meta strong { color: var(--text-primary); font-weight: 700; }
+
+/* Guest card */
+.guest-card {
+  margin: 1.5rem 0;
+  padding: 1.4rem 1.6rem;
+  background: var(--bg-elev);
+  border: 1px solid var(--border-hi);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow-md);
+  position: relative; overflow: hidden;
+}
+.guest-card::before {
+  content: '';
+  position: absolute; top: 0; left: 0; right: 0; height: 4px;
+  background: linear-gradient(90deg, var(--accent-magenta), var(--accent-coral), var(--accent-amber));
+}
+.guest-card h3 { font-size: 1rem; font-weight: 700; margin-bottom: 0.8rem; color: var(--accent-magenta); }
+.guest-info-grid {
+  display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  gap: 0.6rem; font-size: 0.88rem;
+}
+.guest-info-item { display: flex; gap: 0.5rem; align-items: flex-start; }
+.guest-info-item .label { font-weight: 700; color: var(--text-secondary); white-space: nowrap; font-size: 0.8rem; }
+
+/* Vimeo */
+.vimeo-host { position: relative; margin: 1.2rem 0 0.5rem; aspect-ratio: 16 / 9; }
+.vimeo-wrap {
+  position: relative; width: 100%; height: 100%;
+  background: var(--bg-elev); border-radius: var(--radius);
+  overflow: hidden; box-shadow: var(--shadow-md); border: 1px solid var(--border);
+  transition: all 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+}
+.vimeo-wrap iframe { position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: 0; }
+.vimeo-wrap.pip {
+  position: fixed; bottom: 1.2rem; right: 1.2rem;
+  width: clamp(280px, 28vw, 400px); height: auto; aspect-ratio: 16 / 9;
+  z-index: 200; border-radius: var(--radius-sm);
+  box-shadow: var(--shadow-lg), 0 0 0 1px var(--accent-magenta); cursor: grab;
+}
+.vimeo-wrap.pip.minimized {
+  width: 56px; aspect-ratio: 1 / 1; bottom: 1.2rem; right: 1.2rem;
+  background: var(--accent-magenta); border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  box-shadow: var(--shadow-lg); font-size: 1.4rem; color: white;
+}
+.vimeo-wrap.pip.minimized iframe { display: none; }
+.vimeo-wrap.pip.minimized::before { content: '▶'; font-size: 1.4rem; color: white; }
+.pip-controls {
+  position: absolute; top: 0.4rem; right: 0.4rem; display: none; gap: 0.3rem; z-index: 10;
+}
+.vimeo-wrap.pip:not(.minimized) .pip-controls { display: flex; }
+.pip-controls button {
+  width: 28px; height: 28px; border: 0; border-radius: 50%;
+  background: oklch(0% 0 0 / 0.55); color: white; font-size: 0.85rem;
+  cursor: pointer; transition: background 0.15s;
+  display: flex; align-items: center; justify-content: center; backdrop-filter: blur(6px);
+}
+.pip-controls button:hover { background: var(--accent-magenta); }
+.vimeo-cap { font-size: 0.85rem; color: var(--text-muted); text-align: right; padding: 0.5rem 0.2rem; }
+.vimeo-cap a { color: var(--accent-magenta); text-decoration: none; font-weight: 600; }
+
+/* Sections */
+section { padding: var(--space-section) 0 0; }
+.section-header { display: flex; align-items: center; gap: 0.7rem; flex-wrap: wrap; margin-bottom: 0.4rem; }
+.section-header h2 {
+  font-size: clamp(1.3rem, 1.05rem + 1vw, 1.65rem);
+  font-weight: 800; letter-spacing: -0.005em;
+  display: flex; align-items: center; gap: 0.5rem;
+}
+.section-header h2 .num {
+  display: inline-flex; justify-content: center; align-items: center;
+  width: 1.9rem; height: 1.9rem; border-radius: 50%;
+  background: linear-gradient(120deg, var(--accent-magenta), var(--accent-coral));
+  color: white; font-size: 0.85rem; font-weight: 800; box-shadow: var(--shadow-sm);
+}
+.timestamp-chip {
+  display: inline-flex; align-items: center; gap: 0.3rem;
+  padding: 0.25rem 0.7rem; background: var(--bg-elev); border: 1px solid var(--border);
+  border-radius: 999px; font-size: 0.78rem; font-weight: 600;
+  color: var(--accent-magenta); font-family: var(--font-mono); box-shadow: var(--shadow-sm);
+}
+.timestamp-chip::before { content: '📍'; }
+section .lead { color: var(--text-secondary); font-size: 0.95rem; margin-bottom: 1.3rem; }
+
+/* QA list */
+.qa-list { display: grid; gap: 1.2rem; }
+.qa-item {
+  background: var(--bg-elev); border: 1px solid var(--border);
+  border-radius: var(--radius); padding: 1.3rem 1.5rem;
+  box-shadow: var(--shadow-sm); transition: transform 0.18s;
+}
+.qa-item:hover { transform: translateY(-2px); }
+.qa-q-head { display: flex; gap: 0.6rem; align-items: flex-start; flex-wrap: wrap; margin-bottom: 0.7rem; }
+.qa-q-badge {
+  display: inline-flex; align-items: center; justify-content: center;
+  min-width: 2rem; height: 2rem; border-radius: 50%;
+  background: linear-gradient(120deg, var(--accent-magenta), var(--accent-coral));
+  color: white; font-size: 0.78rem; font-weight: 800;
+  flex-shrink: 0; box-shadow: var(--shadow-sm);
+}
+.qa-q { font-weight: 700; color: var(--text-primary); font-size: 1rem; line-height: 1.4; }
+.qa-a { font-size: 0.93rem; color: var(--text-secondary); margin-top: 0.4rem; line-height: 1.75; }
+.qa-a .highlight {
+  display: inline-block; margin-top: 0.6rem;
+  padding: 0.7rem 1rem;
+  background: linear-gradient(120deg, var(--bg-soft), var(--bg-mint));
+  border-left: 3px solid var(--accent-magenta);
+  border-radius: 0 var(--radius-sm) var(--radius-sm) 0;
+  font-size: 0.9rem; color: var(--text-primary); font-weight: 500;
+  width: 100%;
+}
+
+/* Insights grid */
+.insights-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 1rem; }
+.insight-card {
+  background: var(--bg-elev); border: 1px solid var(--border);
+  border-radius: var(--radius-sm); padding: 1.1rem 1.3rem;
+  box-shadow: var(--shadow-sm); transition: transform 0.18s;
+}
+.insight-card:hover { transform: translateY(-2px); }
+.insight-card .tag {
+  font-size: 0.7rem; font-weight: 700; letter-spacing: 0.08em;
+  color: var(--accent-magenta); text-transform: uppercase; margin-bottom: 0.5rem;
+}
+.insight-card h4 { font-size: 0.95rem; font-weight: 700; margin-bottom: 0.4rem; }
+.insight-card p { font-size: 0.87rem; color: var(--text-secondary); }
+
+/* Next session */
+.next-box {
+  margin-top: 1.5rem;
+  padding: 1.4rem 1.6rem;
+  background: linear-gradient(120deg, var(--bg-mint), var(--bg-sky));
+  border: 1px solid var(--border-hi); border-radius: var(--radius);
+  box-shadow: var(--shadow-md);
+}
+.next-box h3 { font-size: 1rem; font-weight: 700; margin-bottom: 0.6rem; color: var(--accent-mint); }
+.next-box p { font-size: 0.92rem; color: var(--text-secondary); }
+.next-box .theme { font-size: 1.05rem; font-weight: 700; color: var(--text-primary); margin: 0.5rem 0; }
+
+/* PS */
+.ps-block {
+  margin-top: 2rem; padding: 1.3rem 1.5rem;
+  background: linear-gradient(120deg, var(--bg-soft), var(--bg-elev));
+  border: 1px dashed var(--border-hi); border-radius: var(--radius);
+  font-size: 0.9rem; color: var(--text-secondary); line-height: 1.8;
+}
+.ps-block strong { color: var(--accent-magenta); }
+
+/* Footer */
+footer {
+  border-top: 1px solid var(--border); margin-top: 3rem; padding: 2rem 0;
+  font-size: 0.82rem; color: var(--text-muted); text-align: center;
+}
+footer a { color: var(--accent-magenta); text-decoration: none; font-weight: 600; }
+
+@media (max-width: 640px) {
+  body { font-size: 16px; }
+  .hero h1 { font-size: 1.5rem; }
+  .insights-grid { grid-template-columns: 1fr; }
+}
+</style>
+</head>
+<body>
+
+<div class="header-stack">
+  <nav>
+    <div class="navbar-inner">
+      <div class="brand">
+        <span class="brand-main">🐕🍞 月曜フォローアップ · ゲスト特集</span>
+        <span class="brand-sub">AI×投資フリートーク — 特別ゲスト・西田氏との対話</span>
+      </div>
+      <div class="nav-links">
+        <a href="#video">動画</a>
+        <a href="#guest">ゲスト紹介</a>
+        <a href="#qa">対話録</a>
+        <a href="#insights">キー洞察</a>
+        <a href="/2026-07-20/">← 本編へ</a>
+      </div>
+    </div>
+  </nav>
+  <div class="ai-strip">
+    🐕 <strong>AIによる自動文字起こしです</strong> — 誤字や数値ズレの可能性あり、正確な情報は <a href="#video">動画本編</a> でご確認ください 🍞
+  </div>
+</div>
+
+<div class="container">
+
+  <a href="/2026-07-20/" class="back-link">← 2026-07-20 本編サマリへ戻る</a>
+
+  <div class="ai-disclaimer">
+    <span style="font-size:1.4rem;flex-shrink:0;">⚠️</span>
+    <div>
+      <strong>AI による文字起こし・要約レポートです</strong><br>
+      この記事は配信動画を AI で自動文字起こし・整理して作成しています。固有名詞や数値などに誤りが含まれる可能性があります。<strong>正確な情報は必ず動画本編をご確認ください。</strong>
+    </div>
+  </div>
+
+  <header class="hero">
+    <div class="eyebrow">🎙️ Special Guest Session · 2026-07-20</div>
+    <h1>
+      <span class="accent">AI × 投資フリートーク</span><br>特別ゲスト・西田氏との対話録
+    </h1>
+    <div class="hero-meta">
+      <span>📅 配信日: <strong>2026年7月20日(月)</strong></span>
+      <span>⏱ 長さ: <strong>約38分</strong></span>
+      <span>🎙️ ゲスト: <strong>西田氏（株式会社Kaizen代表）</strong></span>
+    </div>
+  </header>
+
+  <!-- GUEST PROFILE -->
+  <div class="guest-card">
+    <h3>🎙️ ゲスト紹介</h3>
+    <div class="guest-info-grid">
+      <div class="guest-info-item">
+        <span class="label">お名前</span>
+        <span>西田氏（株式会社Kaizen 代表取締役）</span>
+      </div>
+      <div class="guest-info-item">
+        <span class="label">専門</span>
+        <span>マーケティング・メンタルコーチング</span>
+      </div>
+      <div class="guest-info-item">
+        <span class="label">スクール</span>
+        <span>University of Money（金融オンラインスクール）運営</span>
+      </div>
+      <div class="guest-info-item">
+        <span class="label">代表講師</span>
+        <span>宮城ガイ氏（現役ファンドトレーダー・投資歴15年）</span>
+      </div>
+      <div class="guest-info-item">
+        <span class="label">出会いの経緯</span>
+        <span>宮城ガイ氏のファンドにメンタルコーチとして参加→意気投合して一般向けスクール開設</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- VIDEO -->
+  <section id="video" style="padding-top: 1rem;">
+    <div class="section-header">
+      <h2><span class="num">▶</span>アーカイブ動画（抜粋版）</h2>
+      <span class="timestamp-chip" style="color: var(--accent-magenta);">スクロール時は右下に常時表示</span>
+    </div>
+    <div class="vimeo-host" id="vimeoHost">
+      <div class="vimeo-wrap" id="vimeoWrap">
+        <div class="pip-controls">
+          <button type="button" id="btnMinimize" title="最小化">－</button>
+          <button type="button" id="btnRestore" title="元のサイズに戻す">↺</button>
+        </div>
+        <iframe
+          id="vimeoFrame"
+          src="https://player.vimeo.com/video/1211386897?h=d49a2d019b"
+          allow="autoplay; fullscreen; picture-in-picture"
+          allowfullscreen
+          title="AI×投資フリートーク — 特別ゲスト・西田氏"></iframe>
+      </div>
+    </div>
+    <div class="vimeo-cap">
+      🔗 <a href="https://vimeo.com/1211386897/d49a2d019b" target="_blank" rel="noopener">Vimeo で開く</a>
+      　|　<a href="/2026-07-20/">本編フル動画はこちら</a>
+    </div>
+  </section>
+
+  <!-- GUEST INTRO SECTION -->
+  <section id="guest">
+    <div class="section-header">
+      <h2><span class="num">1</span>このセッションについて</h2>
+      <span class="timestamp-chip">0:00〜</span>
+    </div>
+    <p class="lead">
+      合計3回の登壇企画・第1回目。Shinさんが「AIを使って受講生自身が銘柄を発掘できるようになってほしい」という意図のもと、AI活用の最前線を走る西田氏をゲストに招いた約38分のフリートーク。ファンド運営の実態から、一般投資家向けの実践的AI活用術まで幅広く語り合いました。
+    </p>
+    <div style="padding: 1rem 1.3rem; background: linear-gradient(120deg, var(--bg-mint), var(--bg-sky)); border-left: 4px solid var(--accent-mint); border-radius: var(--radius-sm); font-size: 0.92rem;">
+      <strong>🎯 招待の背景：</strong> 暗号資産の金商法組み込みが決定し、「私が何を買った・売った」というスタイルが来年から難しくなる見通し。そこで「AIを使って受講生自身が銘柄を見つけられる」方向へのピボットを模索する中で、ファンドでAIを実際に活用している西田氏に白羽の矢が立った。
+    </div>
+  </section>
+
+  <!-- Q&A SECTION -->
+  <section id="qa">
+    <div class="section-header">
+      <h2><span class="num">2</span>フリートーク 対話録</h2>
+      <span class="timestamp-chip">3:00〜</span>
+    </div>
+    <p class="lead">Shinさんが事前に用意した質問リストに沿って、フリートーク形式で進行。</p>
+
+    <div class="qa-list">
+
+      <div class="qa-item">
+        <div class="qa-q-head">
+          <span class="qa-q-badge">Q1</span>
+          <span class="qa-q">AI が出てきて投資のやり方は変わりましたか？</span>
+          <span class="timestamp-chip">7:00〜</span>
+        </div>
+        <div class="qa-a">
+          投資の仕事は「準備が9割以上」。情報収集と分析に大半の時間を割き、実際に売買するのは一瞬（Shinさんは年2回程度）。その「準備」の部分が劇的に変わった。
+          <div class="highlight">
+            📊 <strong>ビフォーアフター：</strong> 以前は専門のデータ分析官（大学の研究者のようなイメージ）に検証を依頼すると、数週間〜数ヶ月かかっていた。AIが登場してからは自社完結で、分析の粒度が上がりながらも数時間で完結するようになった。
+          </div>
+          また「エッジ（優位性のある売買ポイント）」の有効期間が以前の5〜10年から短縮されており、仮説検証のPDCAサイクルを高速で回し続けることが必須になった。そのスピードアップにAIをフル活用している。
+        </div>
+      </div>
+
+      <div class="qa-item">
+        <div class="qa-q-head">
+          <span class="qa-q-badge">Q2</span>
+          <span class="qa-q">逆に全く変わらなかった部分は？</span>
+          <span class="timestamp-chip">10:00〜</span>
+        </div>
+        <div class="qa-a">
+          AIが取ってこれる情報は「世の中に落ちている情報」だけ。情報・スキル・行動力があっても、根本的な「考え方（メンタリティ）」がマイナスなら掛け算で結果はゼロになる。この本質的な考え方の部分はAIでは変わらない。
+          <div class="highlight">
+            💡 情報ばかり集めて頭でっかちになり、本質的な考え方を知らないまま間違った行動をするのが典型的な失敗パターン。本質を押さえた上で正しい情報・知識があれば、結果は導きやすくなる。
+          </div>
+        </div>
+      </div>
+
+      <div class="qa-item">
+        <div class="qa-q-head">
+          <span class="qa-q-badge">Q3</span>
+          <span class="qa-q">結局のところ、AI は投資に役立つのか？</span>
+          <span class="timestamp-chip">13:30〜</span>
+        </div>
+        <div class="qa-a">
+          もちろん役立つ。ただし認識として重要なのは「AIはただのインフラになる」ということ。
+          <div class="highlight">
+            📱 <strong>スマホのたとえ：</strong> 今はまだスマホが出たての頃と同じ段階。「タッチ決済って役に立つの？」と聞くようなもの。浸透してしまえば「そんなのは当たり前」になるだけ。今は移り変わりの段階だから疑問が出るのは当然で、インフラになれば何てことはない。
+          </div>
+        </div>
+      </div>
+
+      <div class="qa-item">
+        <div class="qa-q-head">
+          <span class="qa-q-badge">Q4</span>
+          <span class="qa-q">最近聞いた流行りの使い方は？</span>
+          <span class="timestamp-chip">17:00〜</span>
+        </div>
+        <div class="qa-a">
+          一般投資家の間で流行っている活用例として3つ紹介：
+          <div class="highlight">
+            🔧 <strong>①自動売買EA・サインツール：</strong> Claude Codeなどで2分程度で作れる時代に。「SaaS is dead」——欲しいものが自分で作れてしまうので、既製品に何十万円も払う必要がなくなりつつある。<br><br>
+            📐 <strong>②資金管理ツール：</strong> 損失許容率・エントリーと損切り設定から自動でポジションサイズを計算。資金管理ミスがなくなる。実用性が高く特にニーズあり。<br><br>
+            📊 <strong>③独自インジケーター：</strong> トレードする時間帯を区切るなど、自分専用のツール作成。
+          </div>
+        </div>
+      </div>
+
+      <div class="qa-item">
+        <div class="qa-q-head">
+          <span class="qa-q-badge">Q5</span>
+          <span class="qa-q">試したけどダメだったことは？</span>
+          <span class="timestamp-chip">19:00〜</span>
+        </div>
+        <div class="qa-a">
+          テクニカル分析のAI化が最大の難関。ファンダメンタルズ分析はAIが得意（情報→分析）だが、テクニカルはスポーツ的な要素がある。
+          <div class="highlight">
+            ⚽ <strong>メッシのたとえ：</strong> AIにメッシの蹴り方を学習させることはできる。しかし試合でキーパーや相手の動きに合わせるのはできない。メッシが言語化できていない「スキーマ（感覚知）」があるから。自転車の乗り方を言葉で説明できても、それを聞いて乗れるようにはならないのと同じ。<br><br>
+            ⏳ AI にテクニカル分析を実用レベルで使えるようになるまで、<strong>まだ5年程度かかる</strong>という見解。
+          </div>
+        </div>
+      </div>
+
+      <div class="qa-item">
+        <div class="qa-q-head">
+          <span class="qa-q-badge">Q6</span>
+          <span class="qa-q">Claude Code は必須？ ChatGPT で足りる？</span>
+          <span class="timestamp-chip">24:00〜</span>
+        </div>
+        <div class="qa-a">
+          目的によって用途が違う。
+          <div class="highlight">
+            🤝 <strong>Claude Code = 秘書・部下・パートナー</strong>：自分がやりたいことを達成するためのエージェント。PC内のファイルを読み込んだり、コードを書いて実行したりするエージェント機能が強い。<br><br>
+            🔍 <strong>ChatGPT = 高性能な検索エンジン</strong>：情報を引き出す使い方が多い。エージェント機能面ではまだ弱い。<br><br>
+            Claude Codeを使うと選択肢の幅が広がり、できることが増える。投資対効果は<strong>100%戻ってくる</strong>（AIへの費用より、正しい使い方を教えてもらうことにお金を使う方が利口）。
+          </div>
+        </div>
+      </div>
+
+      <div class="qa-item">
+        <div class="qa-q-head">
+          <span class="qa-q-badge">Q7</span>
+          <span class="qa-q">AIで代替できないものは何だと思いますか？</span>
+          <span class="timestamp-chip">27:00〜</span>
+        </div>
+        <div class="qa-a">
+          「責任」と「全体設計を理解する力」。
+          <div class="highlight">
+            ⚖️ <strong>責任：</strong> AIはWhy・What・How・Whenを全部教えてくれる。でも最後のボタンを押すのは自分。失敗しても「AIが悪い」と言えても取り戻せない。責任は人間が取る。<br><br>
+            🗺️ <strong>全体設計の理解：</strong> カレーを作る例え——「カレーにアイスを隠し味で入れて」とAIが言った時、カレーを知っている人なら「それ要らないでしょ」と判断できる。知らない人は従ってしまう。<br><br>
+            🚫 <strong>本末転倒の例：</strong>「トレーディングができない人がEAを作っても意味がない」。システムが代わりに稼いでくれるわけではなく、作った人の実力が反映されるだけ。
+          </div>
+          最終的に共通した結論は「<strong>AIを使っても、自分自身が成長し続けることは変わらない</strong>」。AIがどんどん賢くなっても、判断・評価・責任を取れる自分でないと、加速する車輪の中でただぐるぐる回るだけになる。
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- KEY INSIGHTS -->
+  <section id="insights">
+    <div class="section-header">
+      <h2><span class="num">3</span>キー洞察まとめ</h2>
+    </div>
+    <p class="lead">このフリートークから得られた重要な考え方を抽出しました。</p>
+
+    <div class="insights-grid">
+
+      <div class="insight-card">
+        <div class="tag">🧠 投資×AI の本質</div>
+        <h4>準備の9割をAIが短縮する</h4>
+        <p>投資の仕事は準備が9割。数ヶ月かかっていた分析検証が数時間になる。それがAIの最大の変化。</p>
+      </div>
+
+      <div class="insight-card">
+        <div class="tag">📱 現在地の把握</div>
+        <h4>スマホ普及直前と同じ段階</h4>
+        <p>「AIって役に立つの？」という疑問は、「タッチ決済って何？」と同じ質問。インフラ化するまでの移行期にいる。</p>
+      </div>
+
+      <div class="insight-card">
+        <div class="tag">⚽ スキーマの壁</div>
+        <h4>テクニカル分析のAI化はあと5年</h4>
+        <p>人間が言語化できていない感覚（スキーマ）を伝えられないと、AIも学習できない。テクニカルはまだその段階。</p>
+      </div>
+
+      <div class="insight-card">
+        <div class="tag">🔧 実用ツール</div>
+        <h4>EAが2分で作れる時代</h4>
+        <p>「SaaS is dead」——自分で作れるなら既製品を買う必要はない。資金管理自動化が特に実用的。</p>
+      </div>
+
+      <div class="insight-card">
+        <div class="tag">🤝 Claude Codeの位置づけ</div>
+        <h4>秘書・部下・パートナー</h4>
+        <p>ChatGPTが検索エンジンなら、Claude Codeはエージェント。「やりたいことを達成するための相棒」。</p>
+      </div>
+
+      <div class="insight-card">
+        <div class="tag">⚖️ 変わらないもの</div>
+        <h4>責任と全体設計の理解</h4>
+        <p>AIに全部任せてもカレーにアイスを入れてしまう。設計図を理解している人だけが、AIの誤りを判断できる。</p>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- NEXT SESSION -->
+  <section>
+    <div class="section-header">
+      <h2><span class="num">4</span>次回予告</h2>
+    </div>
+    <div class="next-box">
+      <h3>🎙️ 西田氏 第2回登壇（2026年7月27日）</h3>
+      <div class="theme">「AIを駆使してプロトレーダーになる最短方法」</div>
+      <p>今回のフリートークを土台に、より実践的な内容へ。プロトレーダー育成後の「活躍の場の提供」についても語られる予定。合計3回の連続登壇でより深い内容になる予定です。</p>
+    </div>
+  </section>
+
+  <div class="ps-block">
+    <p><strong>P.S.</strong> このページは2026-07-20（月）の月曜フォローアップセミナーのうち、特別ゲスト・西田氏（株式会社Kaizen代表）とのフリートークセッション（約38分）を抜粋・まとめたものです。<a href="/2026-07-20/" style="color: var(--accent-magenta); font-weight: 600;">本編サマリ（相場分析・注目銘柄など）はこちら</a>。</p>
+  </div>
+
+</div>
+
+<footer>
+  <div>🐕🍞 Web3Campus · Monday Follow-up Seminar Archive</div>
+  <div style="margin-top: 0.4rem;">
+    🔗 <a href="https://vimeo.com/1211386897/d49a2d019b" target="_blank" rel="noopener">Vimeo Archive（抜粋版）</a>
+    · <a href="/2026-07-20/">本編サマリへ</a>
+    · <a href="/">アーカイブ一覧へ</a>
+  </div>
+  <div style="margin-top: 0.6rem; font-size: 0.75rem;">
+    © 2026 Web3Campus · 受講生限定 · noindex / nofollow ·
+    <span style="opacity: 0.7;">made with 🍞 by a corgi 🐕</span>
+  </div>
+</footer>
+
+<script>
+(function() {
+  const host = document.getElementById('vimeoHost');
+  const wrap = document.getElementById('vimeoWrap');
+  const btnMinimize = document.getElementById('btnMinimize');
+  const btnRestore = document.getElementById('btnRestore');
+  if (!host || !wrap) return;
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) { wrap.classList.remove('pip', 'minimized'); }
+      else if (!wrap.classList.contains('minimized')) { wrap.classList.add('pip'); }
+    });
+  }, { threshold: 0.15 });
+  observer.observe(host);
+  btnMinimize.addEventListener('click', (e) => { e.stopPropagation(); wrap.classList.add('pip', 'minimized'); });
+  btnRestore.addEventListener('click', (e) => { e.stopPropagation(); wrap.classList.remove('pip', 'minimized'); host.scrollIntoView({ behavior: 'smooth', block: 'center' }); });
+  wrap.addEventListener('click', (e) => { if (wrap.classList.contains('minimized')) wrap.classList.remove('minimized'); });
+})();
+</script>
+
+</body>
+</html>
