@@ -1,0 +1,720 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Bitget 日本サービス終了 対応ガイド｜月曜フォローアップ補足資料</title>
+<meta name="robots" content="noindex,nofollow,noarchive,nosnippet">
+<meta name="referrer" content="no-referrer">
+<style>
+:root {
+  /* 🍞 食パン × コーギー カラーパレット（月曜アーカイブ準拠） */
+  --bg-base: oklch(96% 0.025 85);
+  --bg-elev: oklch(99% 0.005 85);
+  --bg-soft: oklch(93% 0.045 75);
+  --bg-mint: oklch(91% 0.05 70);
+  --bg-sky:  oklch(94% 0.04 50);
+
+  --text-primary: oklch(12% 0 0);
+  --text-secondary: oklch(32% 0.01 60);
+  --text-muted: oklch(50% 0.015 60);
+
+  --accent-coral: oklch(58% 0.16 55);
+  --accent-amber: oklch(78% 0.16 85);
+  --accent-mint:  oklch(48% 0.12 50);
+  --accent-sky:   oklch(68% 0.13 65);
+  --accent-magenta: oklch(58% 0.20 25);
+
+  --border: oklch(86% 0.025 75);
+  --border-hi: oklch(75% 0.04 65);
+  --shadow-sm: 0 2px 8px oklch(50% 0.08 60 / 0.12);
+  --shadow-md: 0 4px 16px oklch(50% 0.08 60 / 0.14);
+  --shadow-lg: 0 12px 32px oklch(50% 0.08 60 / 0.18);
+
+  --font-sans: 'Hiragino Maru Gothic ProN', 'Hiragino Sans', 'Yu Gothic', system-ui, sans-serif;
+  --font-mono: 'SF Mono', 'Menlo', 'Consolas', monospace;
+  --space-section: clamp(2.5rem, 1.8rem + 3.5vw, 5rem);
+  --radius: 16px;
+  --radius-sm: 10px;
+}
+* { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body {
+  background: var(--bg-base);
+  background-image:
+    radial-gradient(at 18% 0%, oklch(94% 0.06 80 / 0.7), transparent 50%),
+    radial-gradient(at 88% 8%, oklch(92% 0.07 60 / 0.55), transparent 50%);
+  background-attachment: fixed;
+  color: var(--text-primary);
+  font-family: var(--font-sans);
+  font-size: 17px; line-height: 1.75;
+  -webkit-font-smoothing: antialiased; text-rendering: optimizeLegibility;
+}
+::selection { background: var(--accent-coral); color: white; }
+.container { max-width: 980px; margin: 0 auto; padding: 0 1.5rem; }
+
+/* Sticky header */
+.header-stack {
+  position: sticky; top: 0; z-index: 100;
+  background: oklch(100% 0 0 / 0.92);
+  backdrop-filter: blur(14px);
+  border-bottom: 1px solid var(--border);
+  box-shadow: 0 2px 8px oklch(70% 0.05 260 / 0.06);
+}
+.navbar-inner {
+  max-width: 980px; margin: 0 auto; padding: 0.5rem 1.5rem;
+  display: flex; justify-content: space-between; align-items: center;
+  gap: 1rem; flex-wrap: wrap;
+}
+.brand { display: flex; flex-direction: column; line-height: 1.15; min-width: 0; }
+.brand-main {
+  font-weight: 700; font-size: 0.9rem;
+  background: linear-gradient(120deg, var(--accent-coral), var(--accent-magenta));
+  -webkit-background-clip: text; background-clip: text; color: transparent;
+  white-space: nowrap;
+}
+.brand-sub {
+  font-size: 0.68rem; color: var(--text-secondary); font-weight: 500;
+  margin-top: 0.1rem; letter-spacing: 0.01em;
+  white-space: nowrap; overflow: hidden; text-overflow: ellipsis; max-width: 100%;
+}
+.nav-links { display: flex; gap: 0.2rem; flex-wrap: wrap; font-size: 0.78rem; }
+.nav-links a {
+  color: var(--text-secondary); text-decoration: none;
+  padding: 0.18rem 0.55rem; border-radius: 999px;
+  transition: all 0.18s; line-height: 1.3;
+}
+.nav-links a:hover { color: var(--accent-coral); background: var(--bg-soft); }
+@media (max-width: 640px) {
+  .brand-sub { font-size: 0.62rem; }
+  .nav-links { gap: 0.1rem; font-size: 0.72rem; }
+  .nav-links a { padding: 0.15rem 0.45rem; }
+}
+
+/* 注意書きストリップ（常時表示） */
+.ai-strip {
+  background: oklch(91% 0.07 75 / 0.95);
+  border-top: 1px solid oklch(80% 0.08 65);
+  padding: 0.28rem 1rem;
+  font-size: 0.7rem; color: var(--text-primary);
+  text-align: center; line-height: 1.3;
+}
+.ai-strip .icon { margin-right: 0.3rem; }
+.ai-strip strong { color: var(--accent-coral); font-weight: 700; }
+@media (max-width: 640px) { .ai-strip { font-size: 0.62rem; padding: 0.25rem 0.7rem; } }
+
+/* 注意書き（フル版） */
+.ai-disclaimer {
+  margin: 1.2rem 0 0;
+  padding: 1rem 1.2rem;
+  background: linear-gradient(120deg, oklch(96% 0.06 75), oklch(96% 0.06 30));
+  border: 1px solid oklch(85% 0.08 50);
+  border-radius: var(--radius);
+  font-size: 0.88rem; color: var(--text-primary);
+  display: flex; gap: 0.8rem; align-items: flex-start;
+}
+.ai-disclaimer .icon { font-size: 1.4rem; flex-shrink: 0; }
+.ai-disclaimer strong { color: var(--accent-coral); }
+
+/* Hero */
+.hero { padding: 2rem 0 1.5rem; }
+.eyebrow {
+  display: inline-block; font-size: 0.75rem; letter-spacing: 0.16em;
+  color: var(--accent-coral); font-weight: 700; text-transform: uppercase;
+  margin-bottom: 0.7rem;
+  padding: 0.3rem 0.8rem; background: var(--bg-soft); border-radius: 999px;
+}
+.hero h1 {
+  font-size: clamp(1.6rem, 1.3rem + 1.6vw, 2.3rem);
+  line-height: 1.35; font-weight: 800; letter-spacing: -0.005em;
+  margin-bottom: 0.8rem; color: var(--text-primary);
+}
+.hero h1 .accent {
+  background: linear-gradient(120deg, var(--accent-coral), var(--accent-magenta));
+  -webkit-background-clip: text; background-clip: text; color: transparent;
+}
+.hero-meta {
+  display: flex; gap: 0.6rem; flex-wrap: wrap;
+  font-size: 0.85rem; color: var(--text-secondary); margin-top: 1.2rem;
+}
+.hero-meta span {
+  display: inline-flex; align-items: center; gap: 0.4rem;
+  background: var(--bg-elev); padding: 0.4rem 0.9rem;
+  border-radius: 999px; box-shadow: var(--shadow-sm);
+}
+.hero-meta strong { color: var(--text-primary); font-weight: 700; }
+
+/* Banner */
+.banner {
+  margin: 1.4rem 0;
+  padding: 1rem 1.3rem;
+  background: linear-gradient(120deg, var(--bg-mint), var(--bg-sky));
+  border-left: 4px solid var(--accent-mint);
+  border-radius: var(--radius-sm);
+  font-size: 0.92rem;
+}
+.banner strong { color: var(--accent-mint); }
+
+/* Section */
+section { padding: var(--space-section) 0 0; }
+.section-header {
+  display: flex; align-items: center; gap: 0.7rem;
+  flex-wrap: wrap; margin-bottom: 0.4rem;
+}
+.section-header h2 {
+  font-size: clamp(1.3rem, 1.05rem + 1vw, 1.65rem);
+  font-weight: 800; letter-spacing: -0.005em;
+  display: flex; align-items: center; gap: 0.5rem;
+  color: var(--text-primary);
+}
+.section-header h2 .num {
+  display: inline-flex; justify-content: center; align-items: center;
+  width: 1.9rem; height: 1.9rem; border-radius: 50%;
+  background: linear-gradient(120deg, var(--accent-coral), var(--accent-amber));
+  color: white; font-size: 0.85rem; font-weight: 800;
+  box-shadow: var(--shadow-sm);
+  flex: none;
+}
+.timestamp-chip {
+  display: inline-flex; align-items: center; gap: 0.3rem;
+  padding: 0.25rem 0.7rem;
+  background: var(--bg-elev);
+  border: 1px solid var(--border);
+  border-radius: 999px;
+  font-size: 0.78rem; font-weight: 600;
+  color: var(--accent-coral);
+  font-family: var(--font-mono);
+  box-shadow: var(--shadow-sm);
+}
+.timestamp-chip::before { content: '📍'; }
+.timestamp-chip.date::before { content: '📅'; }
+section .lead { color: var(--text-secondary); font-size: 0.95rem; margin-bottom: 1.3rem; }
+
+/* Strategy box（要点・チェックリスト用） */
+.strategy-box {
+  background: var(--bg-elev);
+  border: 1px solid var(--border-hi);
+  border-radius: var(--radius);
+  padding: 1.5rem 1.8rem;
+  margin-top: 1.3rem;
+  box-shadow: var(--shadow-md);
+  position: relative; overflow: hidden;
+}
+.strategy-box::before {
+  content: '';
+  position: absolute; top: 0; left: 0; right: 0; height: 4px;
+  background: linear-gradient(90deg, var(--accent-coral), var(--accent-amber), var(--accent-mint));
+}
+.strategy-box h3 { font-size: 1.05rem; margin-bottom: 1rem; color: var(--text-primary); font-weight: 700; }
+.strategy-box ul { list-style: none; }
+.strategy-box li {
+  padding: 0.55rem 0;
+  border-bottom: 1px dashed var(--border);
+  font-size: 0.92rem;
+}
+.strategy-box li:last-child { border-bottom: none; }
+.strategy-box li strong { color: var(--accent-coral); margin-right: 0.5rem; font-weight: 700; }
+.strategy-box li .sub { color: var(--text-muted); font-size: 0.85rem; display: block; margin-top: 0.15rem; }
+
+/* Timeline（時系列） */
+.timeline { list-style: none; position: relative; margin-top: 1.3rem; }
+.timeline::before {
+  content: ''; position: absolute; left: 9px; top: 10px; bottom: 10px;
+  width: 3px; border-radius: 999px;
+  background: linear-gradient(180deg, var(--border), var(--accent-amber), var(--accent-coral), var(--accent-magenta));
+}
+.tl-item { position: relative; padding: 0 0 1.1rem 2.1rem; }
+.tl-item::before {
+  content: ''; position: absolute; left: 2px; top: 8px;
+  width: 12px; height: 12px; border-radius: 50%;
+  background: var(--bg-elev); border: 3px solid var(--text-muted);
+  box-shadow: var(--shadow-sm);
+}
+.tl-item.accent::before { border-color: var(--accent-coral); }
+.tl-item.warn::before   { border-color: var(--accent-amber); background: var(--accent-amber); }
+.tl-item.crit::before   { border-color: var(--accent-magenta); background: var(--accent-magenta); }
+.tl-date {
+  font-weight: 800; font-size: 0.92rem; font-family: var(--font-mono);
+  letter-spacing: 0.01em; color: var(--text-primary);
+}
+.tl-item.warn .tl-date { color: var(--accent-mint); }
+.tl-item.crit .tl-date { color: var(--accent-magenta); }
+.tl-body { font-size: 0.92rem; color: var(--text-secondary); }
+.tl-body strong { color: var(--text-primary); }
+.tl-body .sub { color: var(--text-muted); font-size: 0.84rem; display: block; }
+.tl-tag {
+  display: inline-block; font-size: 0.62rem; padding: 0.15rem 0.55rem;
+  border-radius: 999px; font-weight: 700; letter-spacing: 0.08em;
+  vertical-align: 2px; margin-left: 0.4rem;
+}
+.tl-tag.warn { background: var(--bg-soft); color: var(--accent-mint); border: 1px solid var(--border-hi); }
+.tl-tag.crit { background: var(--accent-magenta); color: white; }
+.tl-tag.okay { background: var(--accent-coral); color: white; }
+
+/* News cards（期限カード・取引所比較に流用） */
+.news-grid { display: grid; gap: 1rem; margin-top: 1rem; }
+.news-card {
+  background: var(--bg-elev);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 1.3rem 1.5rem;
+  box-shadow: var(--shadow-sm);
+  transition: transform 0.18s, box-shadow 0.18s;
+}
+.news-card:hover { transform: translateY(-2px); box-shadow: var(--shadow-md); }
+.news-card.priority { border-left: 4px solid var(--accent-coral); }
+.news-card.tech { border-left: 4px solid var(--accent-magenta); }
+.news-card.calm { border-left: 4px solid var(--accent-sky); }
+.news-card-head {
+  display: flex; align-items: center; gap: 0.6rem;
+  flex-wrap: wrap; margin-bottom: 0.6rem;
+}
+.news-card .news-tag {
+  display: inline-block; font-size: 0.7rem; letter-spacing: 0.08em;
+  color: var(--accent-coral); font-weight: 700; text-transform: uppercase;
+}
+.news-card.tech .news-tag { color: var(--accent-magenta); }
+.news-card.calm .news-tag { color: var(--accent-sky); }
+.news-card .timestamp-chip { font-size: 0.72rem; padding: 0.2rem 0.55rem; }
+.news-card h3 { font-size: 1.05rem; font-weight: 700; margin-bottom: 0.6rem; color: var(--text-primary); }
+.news-card p { font-size: 0.92rem; color: var(--text-secondary); }
+.news-card ul { font-size: 0.92rem; color: var(--text-secondary); padding-left: 1.2rem; margin-top: 0.5rem; }
+.news-card ul li { margin-bottom: 0.3rem; }
+.news-card .good-label, .news-card .bad-label {
+  font-size: 0.72rem; font-weight: 800; letter-spacing: 0.1em;
+  display: block; margin: 0.8rem 0 0.2rem;
+}
+.news-card .good-label { color: var(--accent-mint); }
+.news-card .bad-label { color: var(--accent-magenta); }
+
+/* QA（クロスデバイス認証の解決ルート） */
+.qa-list { display: grid; gap: 1rem; margin-top: 1rem; }
+.qa-item {
+  background: var(--bg-elev);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  padding: 1.1rem 1.4rem;
+  box-shadow: var(--shadow-sm);
+}
+.qa-q-head { display: flex; gap: 0.6rem; align-items: center; flex-wrap: wrap; margin-bottom: 0.5rem; }
+.qa-q { font-weight: 700; color: var(--accent-sky); font-size: 0.95rem; }
+.qa-a { font-size: 0.92rem; color: var(--text-secondary); }
+.qa-a .path {
+  display: inline-block; margin: 0.3rem 0;
+  padding: 0.25rem 0.7rem; border-radius: 999px;
+  background: var(--bg-soft); border: 1px solid var(--border-hi);
+  font-size: 0.8rem; font-weight: 700; color: var(--accent-mint);
+}
+.qa-a a { color: var(--accent-coral); font-weight: 600; }
+
+/* Coin cards（ウォレット紹介に流用） */
+.watchlist {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+  gap: 0.9rem; margin-top: 1rem;
+}
+.coin-card {
+  background: var(--bg-elev);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  padding: 1rem 1.2rem;
+  box-shadow: var(--shadow-sm);
+  transition: transform 0.18s;
+}
+.coin-card:hover { transform: translateY(-2px); }
+.coin-card.recommend {
+  border: 2px solid var(--accent-coral);
+  background: linear-gradient(135deg, var(--bg-soft), var(--bg-elev));
+}
+.coin-card .ticker {
+  font-size: 1.02rem; font-weight: 800;
+  color: var(--accent-coral);
+  letter-spacing: 0.02em;
+}
+.coin-card .ticker .label-recommend {
+  display: inline-block; margin-left: 0.4rem;
+  font-size: 0.62rem; padding: 0.18rem 0.5rem; border-radius: 999px;
+  background: var(--accent-coral); color: white;
+  letter-spacing: 0.08em; vertical-align: middle;
+  font-family: var(--font-sans); font-weight: 700;
+}
+.coin-card .desc { font-size: 0.85rem; color: var(--text-secondary); margin-top: 0.5rem; }
+
+/* 警告ブロック */
+.warn-block {
+  margin-top: 1.4rem;
+  padding: 1.1rem 1.4rem;
+  background: linear-gradient(120deg, oklch(95% 0.05 30), var(--bg-elev));
+  border: 1px solid var(--border-hi);
+  border-left: 4px solid var(--accent-magenta);
+  border-radius: var(--radius-sm);
+  font-size: 0.9rem; color: var(--text-secondary);
+}
+.warn-block strong { color: var(--accent-magenta); }
+
+/* PS / 出典 */
+.ps-block {
+  margin-top: 2rem;
+  padding: 1.3rem 1.5rem;
+  background: linear-gradient(120deg, var(--bg-soft), var(--bg-elev));
+  border: 1px dashed var(--border-hi);
+  border-radius: var(--radius);
+  font-size: 0.9rem; color: var(--text-secondary); line-height: 1.8;
+}
+.ps-block strong { color: var(--accent-magenta); }
+.source-list { font-size: 0.85rem; color: var(--text-secondary); padding-left: 1.3rem; margin-top: 0.8rem; }
+.source-list li { margin-bottom: 0.35rem; }
+.source-list a { color: var(--accent-coral); text-decoration: none; font-weight: 600; }
+.source-list a:hover { text-decoration: underline; }
+
+footer {
+  border-top: 1px solid var(--border);
+  margin-top: 3rem; padding: 2rem 0;
+  font-size: 0.82rem; color: var(--text-muted);
+  text-align: center;
+}
+@media (max-width: 640px) {
+  body { font-size: 16px; }
+  .hero h1 { font-size: 1.5rem; }
+  .strategy-box { padding: 1.2rem 1.4rem; }
+}
+</style>
+</head>
+<body>
+
+<!-- Sticky header -->
+<div class="header-stack">
+  <nav class="navbar">
+    <div class="navbar-inner">
+      <div class="brand">
+        <span class="brand-main">🐕🍞 月曜フォローアップ · 補足資料</span>
+        <span class="brand-sub">Bitget 日本サービス終了 — いつまでに・何をするか</span>
+      </div>
+      <div class="nav-links">
+        <a href="#timeline">時系列</a>
+        <a href="#todo">やること</a>
+        <a href="#auth">認証トラブル</a>
+        <a href="#wallet">ウォレット</a>
+        <a href="#cex">取引所</a>
+      </div>
+    </div>
+  </nav>
+  <div class="ai-strip">
+    <span class="icon">🐕</span><strong>AI 調査に基づく補足資料です</strong> — 内容は 2026/8/10 時点。最新情報は必ず Bitget 公式発表でご確認ください 🍞
+  </div>
+</div>
+
+<div class="container">
+
+  <!-- 注意書き フル版 -->
+  <div class="ai-disclaimer">
+    <span class="icon">⚠️</span>
+    <div>
+      <strong>本資料は情報提供のみを目的としています</strong><br>
+      公式発表・X・海外メディアを AI で調査・整理して作成した補足資料です。特定の暗号資産の売買や特定サービスの利用をすすめるものではありません。
+      <strong>今後の公式発表で内容が変わる可能性があります。</strong>
+    </div>
+  </div>
+
+  <!-- HERO -->
+  <header class="hero">
+    <div class="eyebrow">🐕🍞 Web3Campus · Monday Follow-up 補足資料</div>
+    <h1>
+      Bitget 日本サービス終了<br>
+      — <span class="accent">いつまでに・何をするか</span> 完全ガイド 🍞
+    </h1>
+    <div class="hero-meta">
+      <span>📅 最終更新: <strong>2026年8月10日</strong></span>
+      <span>📢 公式発表: <strong>2026年8月3日</strong></span>
+      <span>🔍 調査ソース: <strong>公式 / X / Reddit / メディア</strong></span>
+    </div>
+    <div class="banner">
+      <strong>🚨 まず結論</strong> — 資産は今すぐ消えません。出金機能は 12/31 以降も使えると公式に明記されています。ただし<strong>自分のタイミングで手仕舞えるのは 10月末まで</strong>。12/31 に残ったポジションは強制決済されるため、年内の資産移動完了が安全圏です。
+    </div>
+
+    <div class="strategy-box">
+      <h3>🎯 押さえるべき 3 つのポイント</h3>
+      <ul>
+        <li><strong>①</strong>暗号資産の出金は 2026/12/31 以降も継続可能（公式 FAQ 明記）。慌てて損切りする必要はない
+          <span class="sub">ただし出金機能の最終期限は未発表。「まだ使えるから」と放置しないこと</span></li>
+        <li><strong>②</strong>期限は 2 つ。<b>11/1</b> に取引が「決済専用」になり、<b>12/31</b> に残ポジションが強制決済される
+          <span class="sub">相場を見ながら自分のタイミングで手仕舞えるのは 10月末まで</span></li>
+        <li><strong>③</strong>今回の教訓は「海外取引所ではどこでも起こり得る」こと。大きな資金の置き場所は国内取引所か自己管理ウォレットを軸に設計する</li>
+      </ul>
+    </div>
+  </header>
+
+  <!-- 1. 時系列 -->
+  <section id="timeline">
+    <div class="section-header">
+      <h2><span class="num">1</span>経緯と今後のスケジュール</h2>
+      <span class="timestamp-chip date">2023 → 2027</span>
+    </div>
+    <p class="lead">突然の撤退ではなく、金融庁の警告 → アプリ削除 → 法改正という 3 年がかりの流れの帰結です。X 上では発表直後、悲しみ・驚きの声が多数（ネガティブ 87%）を占めました。</p>
+
+    <ul class="timeline">
+      <li class="tl-item">
+        <div class="tl-date">2023.03.31</div>
+        <div class="tl-body">金融庁が Bitget に <strong>1 回目の警告</strong>（無登録の外国暗号資産交換業者として）</div>
+      </li>
+      <li class="tl-item">
+        <div class="tl-date">2024.11.28</div>
+        <div class="tl-body">金融庁が <strong>2 回目の警告</strong></div>
+      </li>
+      <li class="tl-item">
+        <div class="tl-date">2025.02</div>
+        <div class="tl-body">金融庁の要請で Bitget・Bybit・MEXC・KuCoin のアプリが<strong>日本の App Store / Google Play から削除</strong>
+          <span class="sub">→ 後述の「クロスデバイス認証トラブル」の遠因になります</span></div>
+      </li>
+      <li class="tl-item">
+        <div class="tl-date">2026 年半ば</div>
+        <div class="tl-body">暗号資産を金融商品として扱う<strong>改正法が国会で成立</strong>（2027 年施行見込み）。無登録営業への罰則が大幅強化され、海外取引所の撤退が相次ぐ背景に</div>
+      </li>
+      <li class="tl-item accent">
+        <div class="tl-date">2026.08.03</div>
+        <div class="tl-body"><strong>Bitget が日本居住者向けサービス終了を公式発表</strong><span class="tl-tag okay">発表済み</span>
+          <span class="sub">新規登録は同日で停止。公式 X（@BitgetJP）とサポートセンターで告知</span></div>
+      </li>
+      <li class="tl-item accent">
+        <div class="tl-date">2026.09.17 前後</div>
+        <div class="tl-body">日本居住者と判定されたアカウントへ<strong>通知が届く</strong>
+          <span class="sub">海外在住なのに通知が来た人は KYC2（本人確認レベル 2）で海外住所を証明すれば解除可（11/1 までの完了が目安）</span></div>
+      </li>
+      <li class="tl-item warn">
+        <div class="tl-date">2026.11.01 11:00</div>
+        <div class="tl-body"><strong>決済専用モード開始</strong><span class="tl-tag warn">第 1 期限</span>
+          <span class="sub">新規ポジション・買い増し不可。現物・先物・P2P・コンバート・Earn・コピトレ・Bot が制限。できるのは「ポジションを閉じる」と「出金」のみ</span></div>
+      </li>
+      <li class="tl-item crit">
+        <div class="tl-date">2026.12.31 11:00</div>
+        <div class="tl-body"><strong>残っている全ポジションを強制決済</strong><span class="tl-tag crit">最終期限</span>
+          <span class="sub">カード機能も停止</span></div>
+      </li>
+      <li class="tl-item">
+        <div class="tl-date">2027.01.01 以降</div>
+        <div class="tl-body">暗号資産の<strong>出金機能のみ継続</strong>
+          <span class="sub">終了日は未発表。ここに資産を残し続けるのは避けたいところ</span></div>
+      </li>
+    </ul>
+  </section>
+
+  <!-- 2. やること -->
+  <section id="todo">
+    <div class="section-header">
+      <h2><span class="num">2</span>やることチェックリスト</h2>
+      <span class="timestamp-chip date">今すぐ〜12月末</span>
+    </div>
+    <p class="lead">3 段階に分けて進めれば慌てる必要はありません。ポイントは「強制決済を待たず、自分のタイミングで手仕舞う」ことと「確定申告用のデータを先に確保する」ことです。</p>
+
+    <div class="strategy-box">
+      <h3>🥖 第 1 段階: 棚卸しと解除（今すぐ〜9月末）</h3>
+      <ul>
+        <li><strong>☐</strong>Web / アプリでログインできることを確認し、現物・先物・Earn・コピトレ・Bot の全資産を棚卸し</li>
+        <li><strong>☐</strong>Earn（ステーキング等）・コピートレード・Bot を解除
+          <span class="sub">ロック期間付き商品は満期日を確認。11/1 より前に資金化しておく</span></li>
+        <li><strong>☐</strong>移行先（ウォレット or 他取引所）の口座・アプリを準備</li>
+      </ul>
+    </div>
+
+    <div class="strategy-box">
+      <h3>🍞 第 2 段階: 手仕舞いと記録（〜10月末）</h3>
+      <ul>
+        <li><strong>☐</strong>先物・レバレッジポジションを自分のタイミングで計画的にクローズ
+          <span class="sub">12/31 の強制決済を待つと決済タイミングを選べません</span></li>
+        <li><strong>☐</strong>取引履歴・損益データを CSV でダウンロードして保存
+          <span class="sub">確定申告（雑所得の計算）に必須。撤退後はデータ取得が難しくなる恐れ</span></li>
+        <li><strong>☐</strong>移行先へまず<b>少額でテスト送金</b>し、着金確認後に残りを送る
+          <span class="sub">チェーン（ネットワーク）の選択間違いは資産喪失に直結します</span></li>
+      </ul>
+    </div>
+
+    <div class="strategy-box">
+      <h3>🐕 第 3 段階: 完全撤収（11月〜12月末）</h3>
+      <ul>
+        <li><strong>☐</strong>残っている資産をすべて出金
+          <span class="sub">11/1 以降もクローズと出金は可能ですが、年内完了が安全圏</span></li>
+        <li><strong>☐</strong>出金完了後、Bitget のパスワードを他サービスで使い回していないか確認</li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- 3. クロスデバイス認証 -->
+  <section id="auth">
+    <div class="section-header">
+      <h2><span class="num">3</span>「クロスデバイス認証」で出金できない人へ</h2>
+      <span class="timestamp-chip">解決ルート 4 つ</span>
+    </div>
+    <p class="lead">Bitget はフィッシング対策で「クロスデバイス出金認証」を全員に自動有効化しています。Web で入力した出金アドレスを<b>スマホアプリ側で承認</b>する仕組みのため、2025 年 2 月以降アプリが日本のストアから消えている影響で「アプリを入れられず承認できない」という詰まり方が続出中。次の順で試してください。</p>
+
+    <div class="qa-list">
+      <div class="qa-item">
+        <div class="qa-q-head">
+          <span class="qa-q">ルート ① アプリを持っている人 → 設定から自分でオフにする</span>
+        </div>
+        <div class="qa-a">
+          <span class="path">アプリ → ユーザーセンター → セキュリティ → 出金設定 → クロスデバイス出金認証をオフ</span><br>
+          オフにする際にセキュリティ認証（メール・SMS 等）を求められるので完了させます。
+        </div>
+      </div>
+      <div class="qa-item">
+        <div class="qa-q-head">
+          <span class="qa-q">ルート ② アプリが使えない人 → サポートに UID を送って無効化してもらう（公式案内あり）</span>
+        </div>
+        <div class="qa-a">
+          Bitget 日本公式 X が「クロスデバイス設定により出金ができない方は、カスタマーサポートまで UID をお送りください。担当者が確認のうえ無効化します」と公式に案内しています。窓口は 3 つ:<br>
+          ・メール: support@bitget.com<br>
+          ・<a href="https://bitget.com/support/webform" target="_blank" rel="noopener">サポートフォーム</a><br>
+          ・<a href="https://bitget.com/ja/support" target="_blank" rel="noopener">ライブチャット（日本語対応）</a><br>
+          <span style="font-size:0.82rem; color: var(--text-muted);">※ UID はアプリ / Web のプロフィール画面に表示される数字の ID です。</span>
+        </div>
+      </div>
+      <div class="qa-item">
+        <div class="qa-q-head">
+          <span class="qa-q">ルート ③ アプリを入れ直したい人</span>
+        </div>
+        <div class="qa-a">
+          Android は<a href="https://www.bitget.com/ja/promonew/appdownload" target="_blank" rel="noopener">公式サイトから APK を直接ダウンロード</a>できます。iOS は海外 Apple ID の作成が必要になり、規約・セキュリティ面のリスクを自分で負うことになるため、ルート②のサポート経由のほうが確実です。
+        </div>
+      </div>
+      <div class="qa-item">
+        <div class="qa-q-head">
+          <span class="qa-q">ルート ④ 「認証は通ったのに出金できない」→ 時間制限を疑う</span>
+        </div>
+        <div class="qa-a">
+          新しい端末でログインした直後は<b>その端末から 1 時間出金不可</b>。パスワード変更などセキュリティ設定を変えた直後は<b>24 時間の出金制限</b>がかかる場合があります。エラーではなく仕様なので、時間を置いて再試行してください。
+        </div>
+      </div>
+    </div>
+
+    <div class="warn-block">
+      <strong>🚨 詐欺に注意:</strong> この時期は「Bitget サポート」を名乗る DM・SMS・偽サイトが必ず現れます。UID を送ってよいのは<strong>公式サイト内のフォーム・チャット、または support@bitget.com だけ</strong>。秘密鍵・シードフレーズ・パスワードは、本物のサポートであっても絶対に聞かれません。聞かれたら 100% 詐欺です。
+    </div>
+  </section>
+
+  <!-- 4. ウォレット -->
+  <section id="wallet">
+    <div class="section-header">
+      <h2><span class="num">4</span>移行先の選択肢①: ウォレットアプリ（自己管理）</h2>
+      <span class="timestamp-chip">講座で注目の 2 つ + 5</span>
+    </div>
+    <p class="lead">講座で注目しているのは、大手取引所が開発した <b>OKX ウォレット</b>と <b>Bitget ウォレット</b>。ウォレットアプリの中でも完成度が高く、CEX（取引所）に近い感覚で DEX を使いながら資産を自己管理できるのが特徴です。特定サービスの利用をすすめるものではなく、選択は各自の判断で行ってください。</p>
+
+    <div class="watchlist">
+      <div class="coin-card recommend">
+        <div class="ticker">OKX Wallet<span class="label-recommend">注目</span></div>
+        <div class="desc">オンチェーンツールの完成度と DEX アグリゲータが強み。手数料水準も低く、コンプライアンス面の整備も進んでいる。日本語対応。</div>
+      </div>
+      <div class="coin-card recommend">
+        <div class="ticker">Bitget Wallet<span class="label-recommend">注目</span></div>
+        <div class="desc">ユーザー数 9,000 万超・130 以上のチェーン対応。ワンクリックのクロスチェーンやガス代自動支払いなど初心者に優しい設計。日本語対応。取引所本体の撤退後も別プロダクトとして利用可能だが、取引所連携機能は続報に注意。</div>
+      </div>
+      <div class="coin-card">
+        <div class="ticker">MetaMask</div>
+        <div class="desc">世界最大級（3,000 万人超）。EVM 系の事実上の標準で、解説情報の多さは随一。日本語対応。イーサリアム系中心の人向け。</div>
+      </div>
+      <div class="coin-card">
+        <div class="ticker">Trust Wallet</div>
+        <div class="desc">Binance 系。対応チェーンの幅広さが持ち味。日本語対応。スマホ中心で幅広い銘柄を持つ人向け。</div>
+      </div>
+      <div class="coin-card">
+        <div class="ticker">Phantom</div>
+        <div class="desc">Solana の標準ウォレット。現在は ETH・BTC 等にも対応し UI が秀逸。Solana 中心・エアドロ活動をする人向け。</div>
+      </div>
+      <div class="coin-card">
+        <div class="ticker">Rabby</div>
+        <div class="desc">取引内容を実行前にシミュレーション表示してくれる安全機能が強み。日本語は限定的。DeFi に慣れた中上級者向け。</div>
+      </div>
+      <div class="coin-card">
+        <div class="ticker">Ledger / Trezor</div>
+        <div class="desc">ハードウェアウォレット。秘密鍵をオフライン保管する最終防衛線。大きな額を動かさず長期保管する人向け。</div>
+      </div>
+    </div>
+
+    <div class="warn-block">
+      <strong>🔑 自己管理の大原則:</strong> ウォレットは銀行と違い、シードフレーズ（リカバリーフレーズ）を失うと<strong>誰にも復元できません</strong>。作成時に紙に書き写してオフライン保管。スクリーンショット保存・クラウドメモへの記録は厳禁です。
+    </div>
+  </section>
+
+  <!-- 5. 代替CEX -->
+  <section id="cex">
+    <div class="section-header">
+      <h2><span class="num">5</span>移行先の選択肢②: 海外取引所（BingX / MEXC）</h2>
+      <span class="timestamp-chip">良い点と注意点</span>
+    </div>
+    <p class="lead">「ウォレットの自己管理はまだ難しい」という人向けに、講座で名前が挙がることの多い 2 社を、良い点・注意点の両面で整理します。どちらも金融庁未登録の海外取引所であり、利用は各自の判断と責任で。</p>
+
+    <div class="news-grid">
+      <div class="news-card calm">
+        <div class="news-card-head">
+          <span class="news-tag">🏦 BingX</span>
+          <span class="timestamp-chip">2026/7 時点 金融庁警告なし</span>
+        </div>
+        <h3>アプリを普通に入れられる、Bitget からの移行と親和性が高い</h3>
+        <span class="good-label">👍 良い点</span>
+        <ul>
+          <li>2026 年 7 月時点で金融庁の警告を受けていない（Bitget・Bybit・MEXC・KuCoin・Binance は警告済みの中で対照的）</li>
+          <li>日本の App Store / Google Play から普通にアプリを入れられる（2025 年 2 月の削除対象外）</li>
+          <li>コピートレードが充実しており Bitget ユーザーの使い勝手と近い。流動性良好・日本語対応あり</li>
+        </ul>
+        <span class="bad-label">⚠️ 注意点</span>
+        <ul>
+          <li>金融庁に未登録のため日本の法律による保護はなく自己責任</li>
+          <li>日本円の直接入出金は不可</li>
+          <li>「警告を受けていない」のは現時点の話。2027 年の法施行で Bitget と同じ道を辿る可能性は残る</li>
+        </ul>
+      </div>
+
+      <div class="news-card tech">
+        <div class="news-card-head">
+          <span class="news-tag">🏦 MEXC</span>
+          <span class="timestamp-chip">金融庁警告あり</span>
+        </div>
+        <h3>銘柄数は圧倒的、ただしリスクの織り込みが必要</h3>
+        <span class="good-label">👍 良い点</span>
+        <ul>
+          <li>取扱銘柄数が圧倒的（2,000 銘柄超）で新規上場も世界最速級</li>
+          <li>メイカー手数料 0% など手数料水準が低い</li>
+          <li>新興銘柄へのアクセス目的では代えがきかない存在</li>
+        </ul>
+        <span class="bad-label">⚠️ 注意点</span>
+        <ul>
+          <li>金融庁から警告を受けた実績があり、アプリも日本のストアから削除済み（導入に一手間必要）</li>
+          <li>アカウント凍結・出金遅延の報告が X 上に複数あり、海外メディアも報道</li>
+          <li>日本円の直接入出金は不可</li>
+          <li>警告・アプリ削除まで進んでいる分、日本向け制限のリスクは BingX より高いと見るのが自然</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="ps-block">
+      <strong>P.S.</strong> 今回の最大の教訓は、<strong>「Bitget で起きたことは、他の海外取引所でも起こり得る」</strong>ということです。海外取引所はどこも金融庁未登録であり、規制の波は 2027 年の法施行に向けてさらに強まります。大きな資金の置き場所は国内取引所か自己管理ウォレットを軸にして、海外取引所は用途を絞って使う設計が、これからの時代の基本形になります 🐕🍞
+    </div>
+  </section>
+
+  <!-- 出典 -->
+  <section id="sources">
+    <div class="section-header">
+      <h2><span class="num">†</span>主な出典</h2>
+    </div>
+    <ol class="source-list">
+      <li><a href="https://www.bitget.com/ja/support/articles/12560603890270" target="_blank" rel="noopener">Bitget 公式: 日本居住者の皆様への重要なご案内</a></li>
+      <li><a href="https://www.bitget.com/support/articles/12560603890271" target="_blank" rel="noopener">Bitget 公式 FAQ: Important notice for Japanese Residents</a></li>
+      <li><a href="https://x.com/BitgetJP/status/2084101878259089886" target="_blank" rel="noopener">Bitget 日本公式 X: サービス終了の告知ポスト</a></li>
+      <li><a href="https://x.com/BitgetJP/status/1896736302718132498" target="_blank" rel="noopener">Bitget 日本公式 X: クロスデバイス設定の解除案内</a></li>
+      <li><a href="https://www.bitget.com/ja/support/articles/12560603823450" target="_blank" rel="noopener">Bitget 公式: クロスデバイス出金認証について</a></li>
+      <li><a href="https://coinpost.jp/?p=729332" target="_blank" rel="noopener">CoinPost: Bitget、日本向けサービス終了</a></li>
+      <li><a href="https://jinacoin.ne.jp/bitget-japan/" target="_blank" rel="noopener">JinaCoin: Bitget 日本撤退の経緯</a></li>
+      <li><a href="https://cryptobriefing.com/bitget-exits-japan-closes-positions/" target="_blank" rel="noopener">Crypto Briefing: Bitget exits Japan（規制背景）</a></li>
+      <li><a href="https://jp.beincrypto.com/mexc-criticism-account-freeze-insolvency-fears/" target="_blank" rel="noopener">BeInCrypto: MEXC のアカウント凍結報道</a></li>
+    </ol>
+  </section>
+
+  <footer>
+    🐕🍞 Web3Campus 月曜フォローアップ 補足資料（受講生限定）<br>
+    本資料は情報提供のみを目的としたもので、特定の暗号資産の売買や特定サービスの利用をすすめるものではありません。暗号資産の取引・保管はご自身の判断と責任で行ってください。海外取引所は金融庁未登録であり、日本の法令による利用者保護の対象外です。記載内容は 2026 年 8 月 10 日時点の調査に基づきます。
+  </footer>
+
+</div>
+
+</body>
+</html>
