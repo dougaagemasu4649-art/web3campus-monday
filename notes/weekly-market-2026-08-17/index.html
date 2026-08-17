@@ -1,0 +1,632 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="noindex,nofollow,noarchive,nosnippet">
+<meta name="referrer" content="no-referrer">
+<title>週次相場分析 2026-08-17｜月曜フォローアップ補足資料</title>
+<style>
+  :root{
+    --paper:#faf9f6; --surface2:#f1efe9; --surface3:#e9e6dc;
+    --ink:#1c1f26; --ink2:#5a6072; --ink3:#8a8f9c;
+    --border:#e3e0d6; --border2:#d2cec0;
+    --accent:#1f4e9c; --gold:#a8720a; --gold-soft:#a8720a22;
+    --pos:#0b7fa8; --neg:#c8442c;
+    --pos-soft:#0b7fa81a; --neg-soft:#c8442c1a; --accent-soft:#1f4e9c14;
+    --warn-bg:#a8720a14; --warn-border:#a8720a55;
+    --tooltip-bg:#1c1f26; --tooltip-ink:#faf9f6;
+  }
+  @media (prefers-color-scheme: dark){
+    :root:not([data-theme="light"]){
+      --paper:#14181f; --surface2:#1c222c; --surface3:#232a36;
+      --ink:#e8e7e2; --ink2:#9aa0ad; --ink3:#6d7382;
+      --border:#2a3140; --border2:#394153;
+      --accent:#638cd6; --gold:#b98a2e; --gold-soft:#b98a2e2e;
+      --pos:#2f9bb8; --neg:#d4603c;
+      --pos-soft:#2f9bb824; --neg-soft:#d4603c24; --accent-soft:#638cd61f;
+      --warn-bg:#b98a2e1f; --warn-border:#b98a2e66;
+      --tooltip-bg:#e8e7e2; --tooltip-ink:#14181f;
+    }
+  }
+  :root[data-theme="dark"]{
+    --paper:#14181f; --surface2:#1c222c; --surface3:#232a36;
+    --ink:#e8e7e2; --ink2:#9aa0ad; --ink3:#6d7382;
+    --border:#2a3140; --border2:#394153;
+    --accent:#638cd6; --gold:#b98a2e; --gold-soft:#b98a2e2e;
+    --pos:#2f9bb8; --neg:#d4603c;
+    --pos-soft:#2f9bb824; --neg-soft:#d4603c24; --accent-soft:#638cd61f;
+    --warn-bg:#b98a2e1f; --warn-border:#b98a2e66;
+    --tooltip-bg:#e8e7e2; --tooltip-ink:#14181f;
+  }
+  *{box-sizing:border-box; margin:0;}
+  body{
+    background:var(--paper); color:var(--ink);
+    font-family:"Hiragino Sans","Hiragino Kaku Gothic ProN","Yu Gothic UI","Yu Gothic",Meiryo,system-ui,sans-serif;
+    font-size:15px; line-height:1.85; -webkit-font-smoothing:antialiased;
+  }
+  .wrap{max-width:920px; margin:0 auto; padding:48px 24px 80px;}
+  .serif{font-family:"Yu Mincho","YuMincho","Hiragino Mincho ProN","Hiragino Mincho Pro","MS PMincho",Georgia,serif;}
+  .num{font-variant-numeric:tabular-nums; letter-spacing:-0.01em;}
+
+  /* ===== masthead ===== */
+  .masthead{border-bottom:3px double var(--border2); padding-bottom:28px; margin-bottom:32px;}
+  .eyebrow{font-size:11px; letter-spacing:0.22em; text-transform:uppercase; color:var(--gold); font-weight:600; margin-bottom:14px;}
+  h1{font-size:clamp(30px,5vw,44px); font-weight:600; letter-spacing:0.04em; line-height:1.3; text-wrap:balance;}
+  .masthead .sub{display:flex; flex-wrap:wrap; gap:10px 22px; align-items:center; margin-top:16px; color:var(--ink2); font-size:13px;}
+  .verdict-chip{
+    display:inline-flex; align-items:center; gap:8px;
+    background:var(--warn-bg); border:1px solid var(--warn-border); color:var(--ink);
+    border-radius:999px; padding:5px 16px; font-weight:700; font-size:13.5px;
+  }
+  .verdict-chip .dot{width:9px;height:9px;border-radius:50%;background:var(--gold);flex:none;}
+
+  /* ===== stat tiles ===== */
+  .tiles{display:grid; grid-template-columns:repeat(auto-fit,minmax(136px,1fr)); gap:10px; margin:30px 0 8px;}
+  .tile{background:var(--surface2); border:1px solid var(--border); border-radius:6px; padding:13px 14px 11px;}
+  .tile .k{font-size:11px; letter-spacing:0.1em; color:var(--ink2); text-transform:uppercase; font-weight:600;}
+  .tile .v{font-size:21px; font-weight:700; margin-top:3px; line-height:1.2;}
+  .tile .d{font-size:12px; margin-top:3px; color:var(--ink2);}
+  .up{color:var(--pos);} .down{color:var(--neg);} .gold-t{color:var(--gold);}
+
+  /* ===== sections ===== */
+  section{margin-top:56px;}
+  .sec-head{display:flex; align-items:baseline; gap:14px; border-bottom:1px solid var(--border2); padding-bottom:10px; margin-bottom:22px;}
+  .sec-no{font-size:13px; color:var(--gold); letter-spacing:0.15em; font-weight:600; flex:none;}
+  h2{font-size:23px; font-weight:600; letter-spacing:0.03em; text-wrap:balance;}
+  h3{font-size:16.5px; font-weight:700; margin:30px 0 10px; letter-spacing:0.02em;}
+  p{margin:10px 0; max-width:72ch;}
+  .lead{font-size:16px; color:var(--ink); max-width:72ch;}
+  ul,ol{padding-left:1.4em; margin:10px 0; max-width:70ch;}
+  li{margin:5px 0;}
+  strong{font-weight:700;}
+  mark{background:var(--gold-soft); color:inherit; padding:0 3px; border-radius:2px;}
+  a{color:var(--accent); text-decoration-thickness:1px; text-underline-offset:3px;}
+
+  /* ===== tables ===== */
+  .tbl-scroll{overflow-x:auto; border:1px solid var(--border); border-radius:6px; margin:14px 0;}
+  table{border-collapse:collapse; width:100%; font-size:13.5px; line-height:1.6;}
+  th{background:var(--surface2); text-align:left; font-weight:700; color:var(--ink2); font-size:12px; letter-spacing:0.05em; white-space:nowrap;}
+  th,td{padding:9px 13px; border-bottom:1px solid var(--border); vertical-align:top;}
+  tbody tr:last-child td{border-bottom:none;}
+  td.n,th.n{text-align:right; font-variant-numeric:tabular-nums; white-space:nowrap;}
+  .pill{display:inline-block; border-radius:999px; padding:1px 10px; font-size:11.5px; font-weight:700; white-space:nowrap;}
+  .pill.neg{background:var(--neg-soft); color:var(--neg);}
+  .pill.pos{background:var(--pos-soft); color:var(--pos);}
+  .pill.neu{background:var(--surface3); color:var(--ink2);}
+
+  /* ===== charts ===== */
+  .fig{background:var(--surface2); border:1px solid var(--border); border-radius:6px; padding:18px 18px 12px; margin:18px 0;}
+  .fig .fig-title{font-size:13.5px; font-weight:700;}
+  .fig .fig-sub{font-size:12px; color:var(--ink2); margin-top:2px; margin-bottom:8px;}
+  .fig svg{display:block; width:100%; height:auto;}
+  .fig .fig-note{font-size:11.5px; color:var(--ink3); margin-top:6px;}
+  .legend{display:flex; gap:16px; flex-wrap:wrap; font-size:12px; color:var(--ink2); margin-top:6px;}
+  .legend .sw{display:inline-block; width:10px; height:10px; border-radius:2px; margin-right:5px; vertical-align:-1px;}
+  #tooltip{
+    position:fixed; z-index:50; pointer-events:none; display:none;
+    background:var(--tooltip-bg); color:var(--tooltip-ink);
+    font-size:12px; line-height:1.5; padding:6px 10px; border-radius:5px;
+    font-variant-numeric:tabular-nums; box-shadow:0 3px 12px rgba(0,0,0,0.25); max-width:260px;
+  }
+
+  /* ===== level ladder ===== */
+  .ladder{display:flex; flex-direction:column; gap:0; margin:16px 0; border-left:3px solid var(--border2); max-width:560px;}
+  .rung{display:flex; align-items:baseline; gap:12px; padding:7px 0 7px 16px; font-size:13.5px;}
+  .rung .price{font-weight:700; min-width:86px; font-variant-numeric:tabular-nums;}
+  .rung.now{background:var(--gold-soft); border-left:3px solid var(--gold); margin-left:-3px;}
+  .rung .lbl{color:var(--ink2);}
+
+  /* ===== scenario bars ===== */
+  .scen{display:flex; flex-direction:column; gap:12px; margin:16px 0; max-width:640px;}
+  .scen-row .scen-top{display:flex; justify-content:space-between; font-size:13.5px; margin-bottom:4px;}
+  .scen-row .name{font-weight:700;}
+  .scen-row .pct{font-weight:700; font-variant-numeric:tabular-nums;}
+  .scen-bar{height:12px; background:var(--surface3); border-radius:3px; overflow:hidden;}
+  .scen-bar>i{display:block; height:100%; border-radius:3px;}
+  .scen-note{font-size:12px; color:var(--ink2); margin-top:3px;}
+
+  /* ===== callouts ===== */
+  .callout{border:1px solid var(--border2); border-left:4px solid var(--accent); background:var(--accent-soft); border-radius:0 6px 6px 0; padding:14px 18px; margin:18px 0; max-width:76ch;}
+  .callout.gold{border-left-color:var(--gold); background:var(--gold-soft);}
+  .callout .co-t{font-weight:700; font-size:13px; letter-spacing:0.06em; margin-bottom:4px;}
+  .verdict-box{border:1px solid var(--warn-border); background:var(--warn-bg); border-radius:8px; padding:20px 24px; margin:22px 0;}
+  .verdict-box .vt{font-size:19px; font-weight:700; letter-spacing:0.03em;}
+  .kv{display:grid; grid-template-columns:auto 1fr; gap:6px 18px; font-size:13.5px; margin:12px 0; max-width:76ch;}
+  .kv dt{font-weight:700; white-space:nowrap; color:var(--ink2);}
+  .kv dd{margin:0;}
+
+  footer{margin-top:64px; border-top:3px double var(--border2); padding-top:20px; font-size:12.5px; color:var(--ink2);}
+  footer p{max-width:none;}
+  .disclaimer{font-style:italic; margin-top:12px; color:var(--ink3);}
+  @media (prefers-reduced-motion: no-preference){
+    .scen-bar>i{transition:width .6s ease;}
+  }
+
+  .edu-strip{position:sticky; top:0; z-index:60; background:var(--warn-bg); border-bottom:1px solid var(--warn-border);
+    font-size:12px; line-height:1.6; color:var(--ink2); padding:8px 16px; text-align:center; backdrop-filter:blur(6px);}
+</style>
+</head>
+<body>
+<div class="edu-strip">⚠️ 本レポートは<strong>教育目的の相場環境記録</strong>です。特定の暗号資産・金融商品の売買をすすめるものではありません。AI による自動分析・自動文字起こし由来の情報を含むため、数値・引用には誤りが含まれる可能性があります。</div>
+<div class="wrap">
+
+  <!-- ============ MASTHEAD ============ -->
+  <header class="masthead">
+    <div class="eyebrow">Weekly Market Analysis — Masa流 §B レンズ適用</div>
+    <h1 class="serif">週次相場分析<span style="font-size:0.62em; color:var(--ink2); margin-left:0.6em;">2026年8月17日（月）</span></h1>
+    <div class="sub">
+      <span class="verdict-chip"><span class="dot"></span>Masa流判定：待機 — 急いで動く局面ではない</span>
+      <span>対象週：8/10–8/17</span>
+      <span>枠組み：mr.masa 流分析メソッド §B ＋ ファンダ / オンチェーン / マクロ 3観点</span>
+    </div>
+    <div class="tiles num">
+      <div class="tile"><div class="k">BTC</div><div class="v">$63,629</div><div class="d down">週間 −2.7〜3.0%</div></div>
+      <div class="tile"><div class="k">S&amp;P 500</div><div class="v">7,786</div><div class="d up">年初来 +13.7%</div></div>
+      <div class="tile"><div class="k">Gold</div><div class="v">$4,460</div><div class="d up">1ヶ月 +11.2%</div></div>
+      <div class="tile"><div class="k">SPX / M2</div><div class="v gold-t">0.3343</div><div class="d">ドットコム峰比 103.7%</div></div>
+      <div class="tile"><div class="k">米M2</div><div class="v">$23.29兆</div><div class="d up">前年比 +6.1%</div></div>
+      <div class="tile"><div class="k">米10年金利</div><div class="v">4.63%</div><div class="d">年初来 +0.45pt</div></div>
+    </div>
+  </header>
+
+  <!-- ============ EXEC SUMMARY ============ -->
+  <section style="margin-top:34px;">
+    <div class="sec-head"><span class="sec-no">総括</span><h2 class="serif">エグゼクティブサマリ</h2></div>
+    <div class="tbl-scroll"><table>
+      <thead><tr><th>論点</th><th>結論（1行）</th></tr></thead>
+      <tbody>
+        <tr><td><strong>BTC 今週</strong></td><td>$64.9K → $63.6K（<span class="pill neg">−2.7〜3.0%</span>）。SEC 会合キャンセル＋ETF流出転換が主因</td></tr>
+        <tr><td><strong>オンチェーン</strong></td><td><strong>後期ベアの構図</strong>：LTH 初の分配 vs クジラ蓄積・売り手枯渇がサイクル安値</td></tr>
+        <tr><td><strong>マクロ</strong></td><td>株・金は高値圏、BTC だけ年初来 <span class="pill neg">−27.3%</span> の明確なダイバージェンス</td></tr>
+        <tr><td><strong>ドットコム比較</strong></td><td>SPX/M2 = <strong>0.3343</strong> で 2000年3月ピーク（0.3223）を<mark>既に 3.7% 超過</mark>。「今は1999年」の脚本は崩れた</td></tr>
+        <tr><td><strong>ドル安の偏り</strong></td><td>ドルは実は横ばい（DXY 99.47）。真の共通因子は <strong>M2 拡大（+6.1% YoY）</strong>。BTC だけ内部売り圧で例外化</td></tr>
+        <tr><td><strong>Masa流判定</strong></td><td><strong>⚠️ 待機</strong>：Direct Bear 基本シナリオ継続、Strong Bull 条件未成立、10月ボトム説まで約2ヶ月</td></tr>
+        <tr><td><strong>重要発見</strong></td><td>mr.masa は 5/10 以降 Medium 停止 → <strong>Substack (mrmasa.substack.com) でフルレポート隔週更新中</strong>（5/24創刊・最新 8/9号）。X は抜粋のみ</td></tr>
+      </tbody>
+    </table></div>
+  </section>
+
+  <!-- ============ 1. FUNDAMENTALS ============ -->
+  <section>
+    <div class="sec-head"><span class="sec-no">1</span><h2 class="serif">ビットコイン・ファンダメンタルズ分析</h2></div>
+    <p class="lead">前週金曜（8/7）の弱い7月雇用統計で $65K 超えまで買われた流れが週明けに失速。CPI 通過後も戻れず、8/14 の SEC 会合キャンセル＋弱い小売売上高で $63K を割れる「行って来い」の一週間。</p>
+
+    <div class="fig">
+      <div class="fig-title">BTC/USD 日次推移（8/10–8/17）</div>
+      <div class="fig-sub">高値 $65,180（8/10）／安値 $62,470–62,525（8/14）— CoinGecko 日足</div>
+      <div id="chart-btc"></div>
+      <div class="fig-note">▼ 印＝主要イベント日（ホバーで詳細）</div>
+    </div>
+
+    <h3>材料の序列（情報ソース明記）</h3>
+    <div class="tbl-scroll"><table>
+      <thead><tr><th>#</th><th>材料</th><th>方向</th><th>一次ソース</th><th>報道確認</th></tr></thead>
+      <tbody>
+        <tr><td class="n">1</td><td><strong>SEC「Regulation Crypto」会合の突然キャンセル</strong>（8/14）。トークン化株式計画も延期・再開未定</td><td><span class="pill neg">弱気・週最大</span></td><td>SEC 会合スケジュール（sec.gov）</td><td>Motley Fool 8/15・InteractiveCrypto ★</td></tr>
+        <tr><td class="n">2</td><td><strong>ETF フロー流出転換</strong>：前週 +$853〜865M → 今週 <strong>−$385〜390M</strong>（8/10–14、5営業日中4日流出）</td><td><span class="pill neg">弱気</span></td><td>Farside Investors</td><td>farside.co.uk 実測（§2）</td></tr>
+        <tr><td class="n">3</td><td><strong>CLARITY 法案（H.R.3633）上院採決遅延</strong>（9/15 予定・60票必要）。Galaxy の Alex Thorn：年内通過確率 10%</td><td><span class="pill neg">弱気</span></td><td>米議会 / Galaxy Research</td><td>Bitcoin News Digest 8/16 ★</td></tr>
+        <tr><td class="n">4</td><td>7月 CPI（8/12）はソフト → 利上げ観測後退も BTC は上値追い失敗</td><td><span class="pill neu">中立</span></td><td>BLS</td><td>Yahoo Finance 8/12（Tim Manni）★</td></tr>
+        <tr><td class="n">5</td><td>弱い米小売売上高＋消費者信頼感低下（8/14）</td><td><span class="pill neg">弱気</span></td><td>米商務省</td><td>Motley Fool 8/15 ★</td></tr>
+        <tr><td class="n">6</td><td><strong>Q2 13F 開示ラッシュ</strong>：Morgan Stanley IBIT 13.4M→16.5M株／UBS コール24倍増／Tudor +18.9%／ノルウェー政府系 11,549 BTC 相当（前年比 +60.5%）</td><td><span class="pill pos">強気・下支え</span></td><td>SEC EDGAR 各社 13F</td><td>Bitcoin News Digest 8/16 ★</td></tr>
+        <tr><td class="n">7</td><td>CME 先物 OI 123K BTC（2024年2月以来最低）。2023年以来初めて Binance が CME を逆転。7月現物出来高 −21.7%</td><td><span class="pill neg">構造弱気</span></td><td>CME／取引所データ</td><td>Bitcoin News Digest 8/16</td></tr>
+        <tr><td class="n">8</td><td>ホルムズ海峡危機（通航 130隻/日 → 10隻未満・ADNOC タンカー被弾）→ WTI 5%高 $82</td><td><span class="pill neg">弱気（インフレ経由）</span></td><td>IMO 報告</td><td>Bitcoin News Digest 8/16</td></tr>
+        <tr><td class="n">9</td><td>BlackRock が IBIT in-kind 最低額 $25M→$1M（96%引下げ）／CBOE が 3x レバ ETF 申請</td><td><span class="pill pos">中長期強気</span></td><td>SEC 提出書類 SR-CboeBZX-2026-065</td><td>Bitcoin News Digest 8/16</td></tr>
+      </tbody>
+    </table></div>
+    <p style="font-size:12.5px; color:var(--ink3);">★＝実ページ確認済（スニペット引用ではなく本文まで照合）。SEC 文書・BLS・13F はメディア経由の二次確認であり、EDGAR 等の原文照合は未実施。</p>
+
+    <div class="callout">
+      <div class="co-t">構図</div>
+      「規制明確化の停滞（SEC・CLARITY）」×「ETF 資金の腰折れ」が週を支配。13F が示す機関の構造的保有だけが $62.5K で下げ止まりを支えた。<br>
+      <strong>来週の焦点</strong>：8/19（水）FOMC 議事要旨（FF 3.50–3.75% 据え置きの背景）／SEC 会合の再設定／9/15 CLARITY 上院採決。
+    </div>
+  </section>
+
+  <!-- ============ 2. ONCHAIN ============ -->
+  <section>
+    <div class="sec-head"><span class="sec-no">2</span><h2 class="serif">オンチェーン分析</h2></div>
+    <p class="lead">「LTH 降伏の最終波」と「クジラの静かな蓄積」がぶつかる<strong>後期ベア</strong>。Glassnode のレポートタイトル <em>Priced For Nothing</em> ／ <em>Trigger Happy</em> が構図をよく表す — 株・金が最高値圏でも BTC は何も織り込まず、レバレッジだけが先に回復に賭けている。</p>
+
+    <div class="fig">
+      <div class="fig-title">現物 BTC ETF 日次純フロー（$M）</div>
+      <div class="fig-sub">7/29–8/14 — Farside Investors 実測。前週 +$865M 流入 → 今週 −$385M 流出へ反転</div>
+      <div id="chart-etf"></div>
+      <div class="legend"><span><span class="sw" style="background:var(--pos)"></span>流入（+）</span><span><span class="sw" style="background:var(--neg)"></span>流出（−）</span></div>
+    </div>
+
+    <h3>今週の価格を動かした要因の序列</h3>
+    <ol>
+      <li><strong>ETF フロー流出転換</strong>（タイミング一致・最重要）：8/10 の −$144.6M を境に $64.8K → $62.8K</li>
+      <li><strong>LTH（長期保有者）の 2026 年初の分配転換</strong>：LTH 供給が 7/29 ピーク 16.82M BTC から <strong>−21万 BTC</strong>。売却者 SOPR 0.86–0.90 ＝ $71–76K 取得層が <strong>10–14% の損切り</strong>（Bitfinex・Glassnode）</li>
+      <li><strong>取引所への純流入継続</strong>：Binance 準備高 <strong>667.5K BTC（2月以来最高）</strong>、4月比 +5万 BTC（CryptoQuant）</li>
+      <li><strong>マイナーの構造的売り</strong>：2026 年累計 28–32K BTC。ハッシュプライスが損益分岐割れ</li>
+      <li><strong>買い支え</strong>：クジラ保有 3.06M BTC（2026 年高値）へ蓄積継続。100+ BTC 層は 6/14 以降 +54K BTC</li>
+    </ol>
+
+    <h3>価格の位置 — 「実現価格の分水嶺」</h3>
+    <div class="ladder num">
+      <div class="rung"><span class="price">$68.7K</span><span class="lbl">STH コストベーシス上限（Glassnode）— 上値レジスタンス</span></div>
+      <div class="rung"><span class="price">$67.4K</span><span class="lbl">STH コストベーシス（Bitfinex）</span></div>
+      <div class="rung now"><span class="price">$63.6K</span><span class="lbl"><strong>現在値</strong> ≒ Median Realized Price $63.0K（今まさに分水嶺）</span></div>
+      <div class="rung"><span class="price">$58.5K</span><span class="lbl">6月安値 — 下値サポート</span></div>
+      <div class="rung"><span class="price">$52.2–52.9K</span><span class="lbl">Aggregate Realized Price — 最終防衛ライン（3ソース一致）</span></div>
+    </div>
+
+    <h3>「後期ベア」の証拠</h3>
+    <ul>
+      <li>Glassnode：<strong>Seller Exhaustion Constant がサイクル安値（2013年以来の弱さ）</strong>＝売り手枯渇</li>
+      <li>CryptoQuant：「BTC・ETH・XRP のクジラ蓄積は弱気相場が最終局面にある兆候」（底値確認はまだ）</li>
+      <li>CryptoSlate：マイナー売りは washout（枯渇）に接近</li>
+      <li>現物出来高は 2019 年データ系列開始以来の最低。上方向 IV 約 23% は史上最低＝無関心（Apathy）の極み</li>
+      <li>一方デリバは Binance ロング 69% と<strong>先回りロング過多</strong> → $62K 割れで清算連鎖リスク。MVRV Z-Score 0.36・Fear &amp; Greed 35（Fear）</li>
+    </ul>
+    <p style="font-size:12.5px; color:var(--ink3);">出典：Glassnode Week On-chain 31・32／Bitfinex Alpha 8/12／CryptoQuant（The Block 8/5・Daily Hodl 8/10 経由）／Farside Investors／AhaSignals／CoinGlass／CryptoSlate</p>
+  </section>
+
+  <!-- ============ 3. MACRO ============ -->
+  <section>
+    <div class="sec-head"><span class="sec-no">3</span><h2 class="serif">マクロ環境分析（月足レベル）</h2></div>
+
+    <h3>主要指標ダッシュボード（Yahoo Finance API + FRED 実データ）</h3>
+    <div class="tbl-scroll"><table class="num">
+      <thead><tr><th>指標</th><th class="n">現在値</th><th class="n">1週間</th><th class="n">1ヶ月</th><th class="n">3ヶ月</th><th class="n">年初来</th></tr></thead>
+      <tbody>
+        <tr><td>(a) S&amp;P 500</td><td class="n"><strong>7,785.76</strong></td><td class="n">+0.4%</td><td class="n">+2.8%</td><td class="n">+5.1%</td><td class="n up"><strong>+13.7%</strong></td></tr>
+        <tr><td>(b) ダウ</td><td class="n">53,732.41</td><td class="n">−0.6%</td><td class="n">+2.0%</td><td class="n">+8.5%</td><td class="n up"><strong>+11.8%</strong></td></tr>
+        <tr><td>(c) 米10年金利 (DGS10)</td><td class="n"><strong>4.63%</strong></td><td class="n">−0.06pt</td><td class="n">+0.05pt</td><td class="n">+0.16pt</td><td class="n"><strong>+0.45pt</strong></td></tr>
+        <tr><td>(d) 金 (GC=F)</td><td class="n"><strong>$4,460</strong></td><td class="n">+2.3%</td><td class="n up"><strong>+11.2%</strong></td><td class="n">−2.0%</td><td class="n">+3.1%</td></tr>
+        <tr><td>(e) WTI (CL=F)</td><td class="n"><strong>$82.59</strong></td><td class="n">+0.6%</td><td class="n">+0.1%</td><td class="n down"><strong>−24.0%</strong></td><td class="n up"><strong>+43.8%</strong></td></tr>
+        <tr><td>(f) DXY</td><td class="n">99.47</td><td class="n">−0.3%</td><td class="n">−1.3%</td><td class="n">+0.5%</td><td class="n">+1.2%</td></tr>
+        <tr><td>(g) ドル円</td><td class="n">159.25</td><td class="n">+0.1%</td><td class="n">−1.9%</td><td class="n">+0.3%</td><td class="n">+1.8%</td></tr>
+        <tr><td>(h) BTC</td><td class="n">$63,629</td><td class="n">−0.4%</td><td class="n">−1.8%</td><td class="n down">−17.3%</td><td class="n down"><strong>−27.3%</strong></td></tr>
+        <tr><td>(i) 米M2 (WM2NS)</td><td class="n"><strong>$23.29兆</strong></td><td class="n">—</td><td class="n">拡大基調</td><td class="n">—</td><td class="n up">+3.1%（前年比 <strong>+6.1%</strong>）</td></tr>
+      </tbody>
+    </table></div>
+
+    <div class="fig">
+      <div class="fig-title">年初来パフォーマンス比較（%）</div>
+      <div class="fig-sub">2025-12-31 → 2026-08-14/17。流動性拡大の追い風の中、BTC だけが逆行</div>
+      <div id="chart-ytd"></div>
+    </div>
+
+    <h3 id="dotcom">3.2 ドットコムバブル比較 — 「乖離」の正体 <span style="color:var(--gold);">★今回の核心</span></h3>
+
+    <div class="fig">
+      <div class="fig-title">SPX / WM2NS 比率 — 2026年推移とドットコム・ピーク</div>
+      <div class="fig-sub">金の破線＝2000-03-27 ドットコムバブル・ピーク（0.3223）。現在は 103.7% 水準で<strong>既に超過</strong></div>
+      <div id="chart-ratio"></div>
+      <div class="legend"><span><span class="sw" style="background:var(--accent)"></span>SPX/M2（2026）</span><span><span class="sw" style="background:var(--gold)"></span>2000年ピーク 0.3223</span></div>
+    </div>
+
+    <div class="tbl-scroll"><table class="num">
+      <thead><tr><th>項目</th><th class="n">値</th></tr></thead>
+      <tbody>
+        <tr><td>2000-03-27 ドットコムピーク</td><td class="n">SPX 1,523.86 ÷ M2 $4,728.6B = <strong>0.3223</strong></td></tr>
+        <tr><td>2026-08 現在</td><td class="n">SPX 7,785.76 ÷ M2 $23,290.1B = <strong>0.3343</strong></td></tr>
+        <tr><td><strong>現在 ÷ 2000年ピーク</strong></td><td class="n gold-t"><strong>103.7%（既に 3.7% 超過）</strong></td></tr>
+        <tr><td>1998-08 LTCM 危機安値 → 2000-03 ピーク</td><td class="n">957.28 → 1,527.46（19ヶ月で <strong>+59.6%</strong>）</td></tr>
+        <tr><td>2000-03 ピーク → 2001-09 安値 → 2002-10 底</td><td class="n">−36.8% → <strong>−49.2%</strong></td></tr>
+      </tbody>
+    </table></div>
+
+    <p><strong>講師の仮説（1998–2001 との相似）は、2026年3月まではワークしていた。</strong>Masa 自身も「1998–2001 NASDAQ ベアとの S&amp;P500/M2 相似形」を 2026年1月ベア転換予測の根拠にしており、実際 1–3 月に比率は 0.305 → 0.277 へ急落した。<mark>乖離が発生したのは4月以降</mark>——ドットコム脚本なら天井→本格下落のはずが、V 字回復して前回ピークを更新した。</p>
+
+    <p><strong>乖離の理由（3つの構造差）：</strong></p>
+    <ol>
+      <li><strong>分母（M2）が拡大しながらの比率更新</strong>：2000年は引き締め（FF 金利 6.5% へ利上げ）下のピークだったが、現在は M2 前年比 +6.1% の拡大局面。FFR 3.63% &lt; 2年債 4.199% で、Masa の定義では「<strong>excessive liquidity</strong>」状態（8/9 Substack 号）。Masa 自身これを「<strong>ベースケース（Direct Bear）への未解消の矛盾</strong>」として明示的に保持している</li>
+      <li><strong>AI 設備投資の実需</strong>：ドットコムは「収益なき期待」だったが、現在の AI ブームは大手の実キャッシュフローを伴う（Masa も 6/14 投稿で「前回は internet boom、今回は AI boom」と同一チャートで比較）</li>
+      <li><strong>原油の冷え込み</strong>：5月 $108 → $82 への −24% がインフレ期待を減圧し、株の追い風に（Masa 7/12：Oil/Gold 比が S&amp;P と連動）</li>
+    </ol>
+
+    <div class="callout gold">
+      <div class="co-t">Masa 本人の最新解釈（6/14 X 投稿）— この比率チャートに 3 シナリオ</div>
+      ① 新 ATH 確定 → 米経済は今後 30 年繁栄継続（<strong>ATH 確認済みのため現在のベースケース</strong>）／② ダブルトップ → 持続可能なプラトー／③ 前回 ATH 割れで月足確定 → 米経済ピークアウト（英国の 1910–20 年代ピークアウト → WW2 アナロジーで地政学的大衝突の確率上昇）。<br>
+      <strong>監視シグナル</strong>：「巨大な赤い週足」が長期ベア転換の早期警告（前回サイクルで機能した Red Cross パターン）。<br>
+      <strong>8/9 Substack 号での精緻化</strong>：<mark>月足では新 ATH 確定（シナリオ1がベースケースに）だが、週足では「1999–2000 型の terminal push（最後の押し上げ）」の可能性</mark>として両論を保持。「比率がブレイクアウトを維持するか、旧レンジ内に戻るか」がレジーム判定の分水嶺——講師が感じていた「乖離感」と完全に同じ緊張を Masa 本人も追跡中。
+    </div>
+
+    <p><strong>結論</strong>：SPX/M2 だけ見れば現在は「1999年のどこか」ではなく「<strong>2000年3月を上回った未踏領域</strong>」。ただし上昇スロープは緩やか（1998 安値 → 2000 ピークは 19ヶ月で +59.6%、現在は年初来 +13.7%）で、「バブル末期の垂直上昇」はまだ起きていない。<strong>ドットコム脚本の“時計”は一度リセットされた（または大前提③の 2031–32 に向けた最後の延命ラリー）と読むのが Masa 流に整合的</strong>。比率が前回 ATH（0.322 近辺）を割り込んで月足確定したら、シナリオ③への転落警報。</p>
+
+    <h3>3.3 ドル安と資産反応の偏り <span style="color:var(--gold);">★もう一つの核心</span></h3>
+    <p><strong>まず事実の補正</strong>：「ドル安」という前提はデータ上は限定的——DXY 99.47 は直近1ヶ月 −1.3% のみ、年初来はむしろ +1.2%。つまり現状は「ドル急落」ではなく「<strong>ドル横ばい ＋ M2 拡大（+6.1% YoY）</strong>」。株高・金高の共通ドライバーは対ドルの通貨切下げよりも<strong>マネーサプライ膨張（Masa 大前提①：すべてはマネーサプライで動く）</strong>である。DXY は他の劣化通貨との<em>相対</em>値にすぎず、金は法定通貨全体の劣化を測る<em>絶対</em>系——この「相対 vs 絶対」の差が、ドル指数横ばい・金高騰の同時成立を説明する。</p>
+
+    <div class="tbl-scroll"><table>
+      <thead><tr><th>資産</th><th>反応</th><th>解釈（Masa 流）</th></tr></thead>
+      <tbody>
+        <tr><td><strong>金</strong> <span class="pill pos">+11.2%／月</span></td><td>M2 拡大に最速反応</td><td>大前提①の教科書通り。Masa 8/9：「Global MS 連動の黄色ゾーンが構造的サポート、ここで底打ちする regime バイアス」</td></tr>
+        <tr><td><strong>S&amp;P</strong> <span class="pill pos">+13.7%／年初来</span></td><td>流動性＋AI 実需</td><td>excessive liquidity（FFR&lt;2Y）が下支え</td></tr>
+        <tr><td><strong>10年金利</strong> +0.45pt</td><td>債券は売られる</td><td>インフレ・財政プレミアム。金高と整合（実質金利期待の劣化）</td></tr>
+        <tr><td><strong>BTC</strong> <span class="pill neg">−27.3%／年初来</span></td><td><strong>流動性拡大に不感応</strong></td><td><strong>暗号資産固有の売り圧レイヤーが M2 の追い風を打ち消し中</strong>（下記）</td></tr>
+      </tbody>
+    </table></div>
+
+    <p><strong>BTC だけ取り残される理由（オンチェーン＋Masa 理論の統合）：</strong></p>
+    <ol>
+      <li><strong>機関化パラドックス</strong>（Masa 5/10 Medium 初出・8/9 Substack 号で数値更新）：MSTR（842,138 BTC・供給の約 4.2%）等の Corporate Buying が BTC を「S&amp;P の high-beta 付属物」に変質させ、Digital Gold としてのデカップリングを損なった。金が吸うはずの「通貨劣化ヘッジ需要」を BTC が取れない構造</li>
+      <li><strong>供給側の逆風が全部同時</strong>（§2）：LTH 分配（−21万 BTC）＋マイナー売り（2026年 28–32K BTC）＋取引所流入（Binance 667.5K BTC）＋ ETF 流出（今週 −$385M）</li>
+      <li><strong>規制の停滞</strong>：SEC 会合キャンセル・CLARITY 遅延で「規制明確化 → 新規資金」の物語が足止め</li>
+      <li><strong>無関心レジーム</strong>：リテール参加が歴史的低水準（Masa 5/10 も Apathy Regime を Mid シナリオの根拠に）。新規買い手がいない市場では M2 の恩恵が届かない</li>
+      <li><strong>サイクル位置</strong>：2025-10 ATH $126K から 10ヶ月のベア途上。「ATH から約1年でボトム」の Masa 経験則では <strong>2026年10月前後がボトム候補</strong>＝まだ時間が残っている</li>
+    </ol>
+
+    <div class="callout">
+      <div class="co-t">含意</div>
+      金と BTC の逆行は「安全資産 vs リスク資産」の分裂ではなく、「<strong>マクロの追い風は両方にあるが、BTC は暗号資産内部の売り圧消化が終わっていない</strong>」という時間差。オンチェーンの売り手枯渇シグナル（§2）が示す通り、内部要因が消化されれば M2 拡大は BTC にも効き始める——というのが Masa 流の読み筋。
+    </div>
+
+    <p><strong>ドル円（おまけ）</strong>：USDJPY 159.25（7月 162 台 → 159 台へ小反落、年初来 +1.8% の円安）。円建て投資家から見ると株・金のドル建て上昇は円安でさらに増幅され、BTC の下落は約 2% 分だけ緩和。7月の 162 台は日銀・介入警戒ゾーンの入口で、円キャリーの巻き戻しが起きるとリスク資産全般のボラ要因（2024年8月の前例）。</p>
+  </section>
+
+  <!-- ============ 4. MASA LENS ============ -->
+  <section>
+    <div class="sec-head"><span class="sec-no">4</span><h2 class="serif">Masa流 §B WHEN 判定 — 現在の市場タイミング</h2></div>
+
+    <div class="callout gold">
+      <div class="co-t">発信状況の重要発見（Medium → Substack 移行）</div>
+      <strong>Medium は 2026-05-10 で更新停止</strong>（@mrmasa／@orblabs.memberhelp とも RSS 実測で確認）。<strong>正典は Substack <a href="https://mrmasa.substack.com/">mrmasa.substack.com</a></strong> — 5/24 創刊、従来の 7 セクション構成をフル継続で隔週更新（5/24 → 6/14 → 6/28 → 7/12 → 7/26 → <strong><a href="https://mrmasa.substack.com/p/macro-economy-and-crypto-market-biweekly-815">8/9 最新号</a></strong>）。X (@0xmrmasa88) は同日の抜粋ポストのみ。<br>
+      8/9 号の注目点——金は「Global MS 連動の構造的サポートゾーンで底打ちする regime バイアス」／BTC は 200W SMA タッチも「<strong>ベアサイクル終了ではない</strong>」／$74,000 ゾーンは<strong>レジスタンス</strong>（投機的限界需要の枯渇）／MSTR 最新値：保有 842,138 BTC（供給 4.2%）・長期負債 $6.75B・年間義務 $1.8B（現金カバレッジ 27ヶ月）。<br>
+      最新のフル分析を追いたい方は Substack（mrmasa.substack.com）をご参照ください。
+    </div>
+
+    <h3>Bear Cycle 3シナリオ確率（%明示の最新＝5/10 Medium 時点）</h3>
+    <div class="scen num">
+      <div class="scen-row">
+        <div class="scen-top"><span class="name">Direct Bear（基本シナリオ）</span><span class="pct">65%</span></div>
+        <div class="scen-bar"><i style="width:65%; background:var(--neg);"></i></div>
+        <div class="scen-note">Stage 4 Tightening ＋ Corporate Debt Overhang（MSTR の tactical sell 言及）。微増方向</div>
+      </div>
+      <div class="scen-row">
+        <div class="scen-top"><span class="name">Mid（slow bleed）</span><span class="pct">30%</span></div>
+        <div class="scen-bar"><i style="width:30%; background:var(--gold);"></i></div>
+        <div class="scen-note">Apathy Regime でラリーが構造的に脆弱。微減（Direct Bear へシフト）</div>
+      </div>
+      <div class="scen-row">
+        <div class="scen-top"><span class="name">Strong Bull Reversal</span><span class="pct">5%</span></div>
+        <div class="scen-bar"><i style="width:5%; background:var(--pos);"></i></div>
+        <div class="scen-note">No Policy Pivot：「非線形の労働市場崩壊（大量解雇）」がなく FED に緊急緩和の口実なし。据え置き</div>
+      </div>
+    </div>
+    <p style="font-size:12.5px; color:var(--ink3);">8/9 Substack 号では Direct Bear = base case 継続・Strong Bull ~5% を明示（Mid は Direct Bear へ微シフト。%のフル明示は 5/10 の 65/30/5 が最後）。同号で Masa は「FFR &lt; 2年債 = excessive liquidity（歴史的にアルト追い風）」と「OTHERS 比 0.32 床タッチ後の上ドリフト」の 2 つを<strong>ベースケースへの『未解消の逆行リーディング』として誠実に併記</strong>——確率は据え置きつつ反証を監視するスタンス。7/26 には「労働市場が安定しているので FED は年内<strong>利上げ</strong>の可能性」とも発言＝Strong Bull の発動条件（大量解雇）から現状はさらに遠い。</p>
+
+    <h3>7セクション主要シグナル</h3>
+    <div class="tbl-scroll"><table>
+      <thead><tr><th>セクション</th><th>現状</th><th>判定</th></tr></thead>
+      <tbody>
+        <tr><td>1. Macro Economy</td><td>M2 +6.1% YoY 拡大／DXY 99.5 横ばい／金 $4,460 高値圏／10Y 4.63%</td><td><span class="pill pos">流動性は追い風</span> ただし Masa は 6/28 に「長期 DXY 上昇 regime」を警戒</td></tr>
+        <tr><td>2. Bitcoin</td><td>$63.6K、Median Realized Price $63.0K 上で攻防。ETF 流出転換・LTH 分配 vs クジラ蓄積・売り手枯渇</td><td><span class="pill neg">後期ベア継続</span> 50W SMA（5月時点 〜$95K）は遥か上</td></tr>
+        <tr><td>3. ETH ／ 4. Altcoin ／ 5. Stable Coin ／ 6. AI Macro</td><td>今回未調査（次回スコープ候補）</td><td><span class="pill neu">—</span></td></tr>
+        <tr><td>7. US Stock</td><td>SPX 7,786・52週高値圏。SPX/M2 が 2000年ピーク超え</td><td><span class="pill pos">強い</span> ただし「巨大赤週足」警戒シグナル監視中</td></tr>
+      </tbody>
+    </table></div>
+
+    <h3>大前提との照合</h3>
+    <dl class="kv">
+      <dt>① マネーサプライ</dt><dd>M2 +6.1% 拡大中。株・金は法則通り上昇、<strong>BTC のみ内部売り圧で法則から一時離脱</strong></dd>
+      <dt>② 5年流動性サイクル</dt><dd>（2025後半〜2026初頭ピーク → ベア）BTC はシナリオ通りベア。ただし株はベア入りせず、<strong>ここが現在最大の緊張点</strong>（比率 ATH 更新 vs 5年サイクル説）</dd>
+      <dt>③ 2031–32 USD Shock</dt><dd>先行指標の WTI は $82.59 — Masa の閾値では <strong>Bull（&lt;$75）と Bear（&gt;$90）の中間</strong>。ホルムズ海峡危機が上振れリスク、5月比 −24% の調整が下振れ要因で拮抗中。MSTR は 11月の MSCI 指数除外レビュー対象入りが新たな監視点</dd>
+    </dl>
+
+    <div class="verdict-box">
+      <div class="vt">【最終判定】⚠️ 待機 — 焦って動く局面ではない、という Masa流シミュレーション判定</div>
+      <ul style="margin-top:10px;">
+        <li>Strong Bull Reversal の発動条件（大量解雇 → FED 緊急緩和）は<strong>未成立</strong>（労働市場は依然安定、FED はむしろ利上げバイアス）</li>
+        <li>一方、売り手枯渇・クジラ蓄積・史上最低の IV は「後期ベア」の教科書的サイン群</li>
+        <li>Masa 経験則「ATH（2025-10）から約1年でボトム」→ <strong>2026年10月前後がボトム候補ゾーン、あと約2ヶ月</strong></li>
+      </ul>
+      <p style="margin-top:12px;"><strong>監視トリガー</strong>：① ETF フローの再流入転換 ② LTH 分配の終息（LTH 供給の再増加） ③ SPX/M2 の「巨大赤週足」 ④ WTI $75 割れ（Bull）／$90 超え（Bear） ⑤ 8/19 FOMC 議事要旨・9/15 CLARITY 採決</p>
+    </div>
+  </section>
+
+  <!-- ============ FOOTER ============ -->
+  <footer>
+    <p><strong>根拠ソース</strong>：mr.masa 流分析メソドロジー §B（3大前提・7セクション・3シナリオ・7原則）／mr.masa Medium 5/10 号（RSS 実測・本文抽出）＋ <strong>Substack mrmasa.substack.com Biweekly Update 8/9 号（フル本文確認済・正典）</strong>＋ X @0xmrmasa88 の抜粋ポスト／実データ：Yahoo Finance Chart API・FRED（WM2NS, DGS10, DTWEXBGS）・CoinGecko・Farside Investors</p>
+    <p class="disclaimer">この判定は mr.masa の方法論を再現したシミュレーションであり、mr.masa 本人の判断ではありません。投資判断は自己責任で行ってください。The content of this report is for educational purposes only.</p>
+  </footer>
+</div>
+
+<div id="tooltip"></div>
+
+<script>
+(function(){
+  "use strict";
+  const css = name => getComputedStyle(document.documentElement).getPropertyValue(name).trim();
+  const tooltip = document.getElementById('tooltip');
+  function showTip(html, x, y){
+    tooltip.innerHTML = html;
+    tooltip.style.display = 'block';
+    const pad = 14;
+    const r = tooltip.getBoundingClientRect();
+    let left = x + pad, top = y - r.height - 10;
+    if (left + r.width > window.innerWidth - 8) left = x - r.width - pad;
+    if (top < 8) top = y + pad;
+    tooltip.style.left = left + 'px';
+    tooltip.style.top = top + 'px';
+  }
+  function hideTip(){ tooltip.style.display = 'none'; }
+  const fmt = n => n.toLocaleString('en-US');
+  const NS = 'http://www.w3.org/2000/svg';
+  function el(tag, attrs){
+    const e = document.createElementNS(NS, tag);
+    for (const k in attrs) e.setAttribute(k, attrs[k]);
+    return e;
+  }
+
+  /* ========== Chart 1: BTC daily line ========== */
+  function drawBtc(){
+    const box = document.getElementById('chart-btc'); box.innerHTML = '';
+    const data = [
+      {d:'8/10', v:64860, ev:'弱い雇用統計の余韻で $65K 台。ETF は −$144.6M 流出'},
+      {d:'8/11', v:63933, ev:null},
+      {d:'8/12', v:64181, ev:'7月CPI 発表（ソフト）。CPI 前 $64,194 → 通過後失速'},
+      {d:'8/13', v:63488, ev:'ETF −$131.1M 流出'},
+      {d:'8/14', v:62846, ev:'SEC「Regulation Crypto」会合キャンセル＋弱い小売売上高 → 週安値 $62,470–525'},
+      {d:'8/15', v:62996, ev:null},
+      {d:'8/16', v:63015, ev:null},
+      {d:'8/17', v:63629, ev:'週明け月曜、$63K 台へ小戻し'}
+    ];
+    const W=760, H=250, m={t:16,r:18,b:30,l:56};
+    const iw=W-m.l-m.r, ih=H-m.t-m.b;
+    const lo=62200, hi=65400;
+    const x=i=>m.l+i*(iw/(data.length-1));
+    const y=v=>m.t+ih*(1-(v-lo)/(hi-lo));
+    const svg=el('svg',{viewBox:`0 0 ${W} ${H}`,role:'img','aria-label':'BTC/USD 日次推移 8月10日から17日'});
+    for(let g=63000; g<=65000; g+=1000){
+      svg.appendChild(el('line',{x1:m.l,x2:W-m.r,y1:y(g),y2:y(g),stroke:css('--border'),'stroke-width':1}));
+      const t=el('text',{x:m.l-8,y:y(g)+4,'text-anchor':'end','font-size':10.5,fill:css('--ink3')});
+      t.textContent='$'+(g/1000)+'K'; svg.appendChild(t);
+    }
+    const accent=css('--accent');
+    let dPath='', aPath='';
+    data.forEach((p,i)=>{ dPath+=(i?'L':'M')+x(i)+','+y(p.v)+' '; });
+    aPath=dPath+`L${x(data.length-1)},${m.t+ih} L${x(0)},${m.t+ih} Z`;
+    svg.appendChild(el('path',{d:aPath,fill:accent,opacity:0.09}));
+    svg.appendChild(el('path',{d:dPath,fill:'none',stroke:accent,'stroke-width':2,'stroke-linejoin':'round'}));
+    data.forEach((p,i)=>{
+      if(p.ev){
+        const tri=el('path',{d:`M${x(i)-4},${y(p.v)-11} L${x(i)+4},${y(p.v)-11} L${x(i)},${y(p.v)-5} Z`,fill:css('--gold')});
+        svg.appendChild(tri);
+      }
+      const r = i===data.length-1?4.5:3.5;
+      const dot=el('circle',{cx:x(i),cy:y(p.v),r:r,fill:i===data.length-1?accent:css('--paper'),stroke:accent,'stroke-width':2});
+      svg.appendChild(dot);
+      const hit=el('rect',{x:x(i)-iw/(data.length-1)/2,y:m.t,width:iw/(data.length-1),height:ih,fill:'transparent'});
+      hit.addEventListener('mousemove',e=>showTip(`<strong>${p.d}</strong> — $${fmt(p.v)}${p.ev?'<br>'+p.ev:''}`,e.clientX,e.clientY));
+      hit.addEventListener('mouseleave',hideTip);
+      svg.appendChild(hit);
+      const t=el('text',{x:x(i),y:H-8,'text-anchor':'middle','font-size':10.5,fill:css('--ink2')});
+      t.textContent=p.d; svg.appendChild(t);
+    });
+    const lastLbl=el('text',{x:x(data.length-1)-6,y:y(data[data.length-1].v)-10,'text-anchor':'end','font-size':11,'font-weight':700,fill:accent});
+    lastLbl.textContent='$'+fmt(data[data.length-1].v); svg.appendChild(lastLbl);
+    box.appendChild(svg);
+  }
+
+  /* ========== Chart 2: ETF flows diverging bars ========== */
+  function drawEtf(){
+    const box = document.getElementById('chart-etf'); box.innerHTML = '';
+    const data=[
+      {d:'7/29', v:32.1},{d:'7/30', v:233.1},{d:'7/31', v:-265.4},
+      {d:'8/3', v:170.1},{d:'8/4', v:211.5},{d:'8/5', v:244.4},{d:'8/6', v:137.6},{d:'8/7', v:101.7},
+      {d:'8/10', v:-144.6},{d:'8/11', v:7.8},{d:'8/12', v:-61.1},{d:'8/13', v:-131.1},{d:'8/14', v:-56.2}
+    ];
+    const W=760, H=250, m={t:18,r:18,b:30,l:52};
+    const iw=W-m.l-m.r, ih=H-m.t-m.b;
+    const lo=-300, hi=300;
+    const y=v=>m.t+ih*(1-(v-lo)/(hi-lo));
+    const bw=iw/data.length;
+    const svg=el('svg',{viewBox:`0 0 ${W} ${H}`,role:'img','aria-label':'現物BTC ETF 日次純フロー 7月29日から8月14日'});
+    [-200,-100,0,100,200].forEach(g=>{
+      svg.appendChild(el('line',{x1:m.l,x2:W-m.r,y1:y(g),y2:y(g),stroke:g===0?css('--border2'):css('--border'),'stroke-width':g===0?1.5:1}));
+      const t=el('text',{x:m.l-8,y:y(g)+4,'text-anchor':'end','font-size':10.5,fill:css('--ink3')});
+      t.textContent=(g>0?'+':'')+g; svg.appendChild(t);
+    });
+    const pos=css('--pos'), neg=css('--neg');
+    data.forEach((p,i)=>{
+      const cx=m.l+i*bw+bw/2;
+      const barW=Math.min(26,bw-6);
+      const y0=y(0), y1=y(p.v);
+      const top=Math.min(y0,y1), h=Math.max(2,Math.abs(y1-y0));
+      const rect=el('rect',{x:cx-barW/2,y:top,width:barW,height:h,fill:p.v>=0?pos:neg,rx:3});
+      rect.addEventListener('mousemove',e=>showTip(`<strong>${p.d}</strong> — ${p.v>=0?'+':''}$${p.v.toFixed(1)}M`,e.clientX,e.clientY));
+      rect.addEventListener('mouseleave',hideTip);
+      svg.appendChild(rect);
+      const t=el('text',{x:cx,y:H-8,'text-anchor':'middle','font-size':10,fill:css('--ink2')});
+      t.textContent=p.d; svg.appendChild(t);
+    });
+    // week separator between 8/7 and 8/10
+    const sx=m.l+8*bw;
+    svg.appendChild(el('line',{x1:sx,x2:sx,y1:m.t,y2:m.t+ih,stroke:css('--border2'),'stroke-width':1,'stroke-dasharray':'4 4'}));
+    const wl=el('text',{x:sx+6,y:m.t+12,'font-size':10.5,fill:css('--ink2')});
+    wl.textContent='← 前週 +$865M ｜ 今週 −$385M →'; svg.appendChild(wl);
+    box.appendChild(svg);
+  }
+
+  /* ========== Chart 3: YTD performance diverging horizontal bars ========== */
+  function drawYtd(){
+    const box = document.getElementById('chart-ytd'); box.innerHTML = '';
+    const data=[
+      {n:'WTI 原油', v:43.8},{n:'S&P 500', v:13.7},{n:'ダウ', v:11.8},
+      {n:'金', v:3.1},{n:'ドル円（円安）', v:1.8},{n:'DXY', v:1.2},{n:'BTC', v:-27.3}
+    ];
+    const W=760, rowH=30, m={t:8,r:70,b:24,l:110};
+    const H=m.t+data.length*rowH+m.b;
+    const iw=W-m.l-m.r;
+    const lo=-35, hi=50;
+    const x=v=>m.l+iw*(v-lo)/(hi-lo);
+    const svg=el('svg',{viewBox:`0 0 ${W} ${H}`,role:'img','aria-label':'主要資産の年初来パフォーマンス比較'});
+    [-20,0,20,40].forEach(g=>{
+      svg.appendChild(el('line',{x1:x(g),x2:x(g),y1:m.t,y2:H-m.b,stroke:g===0?css('--border2'):css('--border'),'stroke-width':g===0?1.5:1}));
+      const t=el('text',{x:x(g),y:H-6,'text-anchor':'middle','font-size':10.5,fill:css('--ink3')});
+      t.textContent=(g>0?'+':'')+g+'%'; svg.appendChild(t);
+    });
+    const pos=css('--pos'), neg=css('--neg');
+    data.forEach((p,i)=>{
+      const cy=m.t+i*rowH+rowH/2;
+      const lbl=el('text',{x:m.l-10,y:cy+4,'text-anchor':'end','font-size':12.5,fill:css('--ink'),'font-weight':p.n==='BTC'?700:400});
+      lbl.textContent=p.n; svg.appendChild(lbl);
+      const x0=x(0), x1=x(p.v);
+      const rect=el('rect',{x:Math.min(x0,x1),y:cy-8,width:Math.max(2,Math.abs(x1-x0)),height:16,fill:p.v>=0?pos:neg,rx:3});
+      rect.addEventListener('mousemove',e=>showTip(`<strong>${p.n}</strong> 年初来 ${p.v>=0?'+':''}${p.v}%`,e.clientX,e.clientY));
+      rect.addEventListener('mouseleave',hideTip);
+      svg.appendChild(rect);
+      const vt=el('text',{x:p.v>=0?x1+6:x1-6,y:cy+4,'text-anchor':p.v>=0?'start':'end','font-size':11.5,'font-weight':700,fill:css('--ink2')});
+      vt.textContent=(p.v>0?'+':'')+p.v+'%'; svg.appendChild(vt);
+    });
+    box.appendChild(svg);
+  }
+
+  /* ========== Chart 4: SPX/M2 ratio with dot-com reference ========== */
+  function drawRatio(){
+    const box = document.getElementById('chart-ratio'); box.innerHTML = '';
+    const data=[
+      {d:'1/5', v:0.3053},{d:'2/2', v:0.3111},{d:'3/2', v:0.3038},{d:'3/30', v:0.2772, note:'年初来ボトム（Q1株安）'},
+      {d:'4/27', v:0.3158},{d:'6/1', v:0.3295},{d:'7/6', v:0.3236},{d:'8/14', v:0.3343, note:'年初来最高値・2000年ピーク超え'}
+    ];
+    const REF=0.3223;
+    const W=760, H=260, m={t:20,r:18,b:30,l:60};
+    const iw=W-m.l-m.r, ih=H-m.t-m.b;
+    const lo=0.27, hi=0.34;
+    const x=i=>m.l+i*(iw/(data.length-1));
+    const y=v=>m.t+ih*(1-(v-lo)/(hi-lo));
+    const svg=el('svg',{viewBox:`0 0 ${W} ${H}`,role:'img','aria-label':'SPX/WM2NS比率の2026年推移とドットコムピーク比較'});
+    [0.28,0.30,0.32,0.34].forEach(g=>{
+      svg.appendChild(el('line',{x1:m.l,x2:W-m.r,y1:y(g),y2:y(g),stroke:css('--border'),'stroke-width':1}));
+      const t=el('text',{x:m.l-8,y:y(g)+4,'text-anchor':'end','font-size':10.5,fill:css('--ink3')});
+      t.textContent=g.toFixed(2); svg.appendChild(t);
+    });
+    const gold=css('--gold'), accent=css('--accent');
+    svg.appendChild(el('line',{x1:m.l,x2:W-m.r,y1:y(REF),y2:y(REF),stroke:gold,'stroke-width':1.8,'stroke-dasharray':'7 5'}));
+    const refT=el('text',{x:W-m.r,y:y(REF)+15,'text-anchor':'end','font-size':11,'font-weight':700,fill:gold});
+    refT.textContent='ドットコム・ピーク 0.3223（2000-03-27）'; svg.appendChild(refT);
+    let dPath='';
+    data.forEach((p,i)=>{ dPath+=(i?'L':'M')+x(i)+','+y(p.v)+' '; });
+    svg.appendChild(el('path',{d:dPath,fill:'none',stroke:accent,'stroke-width':2.2,'stroke-linejoin':'round'}));
+    data.forEach((p,i)=>{
+      const last=i===data.length-1;
+      svg.appendChild(el('circle',{cx:x(i),cy:y(p.v),r:last?5:3.5,fill:last?accent:css('--paper'),stroke:accent,'stroke-width':2}));
+      const hit=el('rect',{x:x(i)-iw/(data.length-1)/2,y:m.t,width:iw/(data.length-1),height:ih,fill:'transparent'});
+      hit.addEventListener('mousemove',e=>showTip(`<strong>${p.d}</strong> — ${p.v.toFixed(4)}${p.note?'<br>'+p.note:''}<br>2000年ピーク比 ${(p.v/REF*100).toFixed(1)}%`,e.clientX,e.clientY));
+      hit.addEventListener('mouseleave',hideTip);
+      svg.appendChild(hit);
+      const t=el('text',{x:x(i),y:H-8,'text-anchor':'middle','font-size':10.5,fill:css('--ink2')});
+      t.textContent=p.d; svg.appendChild(t);
+    });
+    const lastP=data[data.length-1];
+    const ll=el('text',{x:x(data.length-1)-8,y:y(lastP.v)-10,'text-anchor':'end','font-size':11.5,'font-weight':700,fill:accent});
+    ll.textContent='0.3343（103.7%）'; svg.appendChild(ll);
+    const bl=el('text',{x:x(3),y:y(data[3].v)+18,'text-anchor':'middle','font-size':10.5,fill:css('--ink2')});
+    bl.textContent='0.2772'; svg.appendChild(bl);
+    box.appendChild(svg);
+  }
+
+  /* ========== render + theme reactivity ========== */
+  function renderAll(){ drawBtc(); drawEtf(); drawYtd(); drawRatio(); }
+  renderAll();
+  const mq = window.matchMedia('(prefers-color-scheme: dark)');
+  if (mq.addEventListener) mq.addEventListener('change', renderAll);
+  new MutationObserver(renderAll).observe(document.documentElement, {attributes:true, attributeFilter:['data-theme']});
+})();
+</script>
+</body>
+</html>
