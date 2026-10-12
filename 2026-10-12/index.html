@@ -1,0 +1,810 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="noindex,nofollow,noarchive,nosnippet">
+<meta name="referrer" content="no-referrer">
+<title>月曜フォローアップ 2026-10-12 アーカイブ</title>
+<style>
+:root {
+  /* 🍞 食パン × コーギー カラーパレット */
+  --bg-base: oklch(96% 0.025 85);          /* 食パン中身クリーム */
+  --bg-elev: oklch(99% 0.005 85);          /* 純白に近い */
+  --bg-soft: oklch(93% 0.045 75);          /* バター薄め */
+  --bg-mint: oklch(91% 0.05 70);           /* クラスト薄め */
+  --bg-sky:  oklch(94% 0.04 50);           /* キャラメル薄め */
+
+  /* 文字は黒基調 */
+  --text-primary: oklch(12% 0 0);          /* 純黒 */
+  --text-secondary: oklch(32% 0.01 60);    /* ダークブラウングレー */
+  --text-muted: oklch(50% 0.015 60);       /* ミディアムブラウングレー */
+
+  --accent-coral: oklch(58% 0.16 55);      /* こんがり焼き色（メイン） */
+  --accent-amber: oklch(78% 0.16 85);      /* バター黄色 */
+  --accent-mint:  oklch(48% 0.12 50);      /* 焦げ目こげ茶 */
+  --accent-sky:   oklch(68% 0.13 65);      /* キャラメル */
+  --accent-magenta: oklch(58% 0.20 25);    /* ストロベリージャム */
+
+  --border: oklch(86% 0.025 75);           /* 食パン境界線 */
+  --border-hi: oklch(75% 0.04 65);
+  --shadow-sm: 0 2px 8px oklch(50% 0.08 60 / 0.12);
+  --shadow-md: 0 4px 16px oklch(50% 0.08 60 / 0.14);
+  --shadow-lg: 0 12px 32px oklch(50% 0.08 60 / 0.18);
+
+  --font-sans: 'Hiragino Maru Gothic ProN', 'Hiragino Sans', 'Yu Gothic', system-ui, sans-serif;
+  --font-mono: 'SF Mono', 'Menlo', 'Consolas', monospace;
+  --space-section: clamp(2.5rem, 1.8rem + 3.5vw, 5rem);
+  --radius: 16px;
+  --radius-sm: 10px;
+}
+* { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body {
+  background: var(--bg-base);
+  background-image:
+    radial-gradient(at 18% 0%, oklch(94% 0.06 80 / 0.7), transparent 50%),
+    radial-gradient(at 88% 8%, oklch(92% 0.07 60 / 0.55), transparent 50%);
+  background-attachment: fixed;
+  color: var(--text-primary);
+  font-family: var(--font-sans);
+  font-size: 17px; line-height: 1.75;
+  -webkit-font-smoothing: antialiased; text-rendering: optimizeLegibility;
+}
+::selection { background: var(--accent-coral); color: white; }
+.container { max-width: 980px; margin: 0 auto; padding: 0 1.5rem; }
+
+/* Sticky header (navbar + AI strip を単一コンテナで包む) */
+.header-stack {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  background: oklch(100% 0 0 / 0.92);
+  backdrop-filter: blur(14px);
+  border-bottom: 1px solid var(--border);
+  box-shadow: 0 2px 8px oklch(70% 0.05 260 / 0.06);
+}
+.navbar {
+  /* sticky は親 .header-stack に委譲 */
+}
+.navbar-inner {
+  max-width: 980px; margin: 0 auto; padding: 0.5rem 1.5rem;
+  display: flex; justify-content: space-between; align-items: center;
+  gap: 1rem; flex-wrap: wrap;
+}
+.brand {
+  display: flex; flex-direction: column;
+  line-height: 1.15;
+  min-width: 0;  /* flex 内で省略可能に */
+}
+.brand-main {
+  font-weight: 700; font-size: 0.9rem;
+  background: linear-gradient(120deg, var(--accent-coral), var(--accent-magenta));
+  -webkit-background-clip: text; background-clip: text; color: transparent;
+  white-space: nowrap;
+}
+.brand-sub {
+  font-size: 0.68rem;
+  color: var(--text-secondary);
+  font-weight: 500;
+  margin-top: 0.1rem;
+  letter-spacing: 0.01em;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 100%;
+}
+@media (max-width: 640px) {
+  .brand-sub { font-size: 0.62rem; }
+}
+.nav-links { display: flex; gap: 0.2rem; flex-wrap: wrap; font-size: 0.78rem; }
+.nav-links a {
+  color: var(--text-secondary); text-decoration: none;
+  padding: 0.18rem 0.55rem; border-radius: 999px;
+  transition: all 0.18s; line-height: 1.3;
+}
+.nav-links a:hover {
+  color: var(--accent-coral); background: var(--bg-soft);
+}
+@media (max-width: 640px) {
+  .nav-links { gap: 0.1rem; font-size: 0.72rem; }
+  .nav-links a { padding: 0.15rem 0.45rem; }
+}
+
+/* AI注意書き（フル版・冒頭表示） */
+.ai-disclaimer {
+  margin: 1.2rem 0 0;
+  padding: 1rem 1.2rem;
+  background: linear-gradient(120deg, oklch(96% 0.06 75), oklch(96% 0.06 30));
+  border: 1px solid oklch(85% 0.08 50);
+  border-radius: var(--radius);
+  font-size: 0.88rem;
+  color: var(--text-primary);
+  display: flex; gap: 0.8rem; align-items: flex-start;
+}
+.ai-disclaimer .icon {
+  font-size: 1.4rem; flex-shrink: 0;
+}
+.ai-disclaimer strong { color: var(--accent-coral); }
+
+/* AI注意書き（短縮版・header-stackの一部として常時表示） */
+.ai-strip {
+  background: oklch(91% 0.07 75 / 0.95);  /* バター薄め */
+  border-top: 1px solid oklch(80% 0.08 65);
+  padding: 0.28rem 1rem;
+  font-size: 0.7rem;
+  color: var(--text-primary);
+  text-align: center;
+  line-height: 1.3;
+}
+.ai-strip .icon { margin-right: 0.3rem; }
+.ai-strip strong { color: var(--accent-coral); font-weight: 700; }
+.ai-strip a { color: var(--accent-coral); font-weight: 600; text-decoration: underline; text-underline-offset: 2px; }
+@media (max-width: 640px) {
+  .ai-strip {
+    font-size: 0.62rem;
+    padding: 0.25rem 0.7rem;
+  }
+}
+
+/* Hero */
+.hero { padding: 2rem 0 1.5rem; }
+.eyebrow {
+  display: inline-block; font-size: 0.75rem; letter-spacing: 0.16em;
+  color: var(--accent-coral); font-weight: 700; text-transform: uppercase;
+  margin-bottom: 0.7rem;
+  padding: 0.3rem 0.8rem; background: var(--bg-soft); border-radius: 999px;
+}
+.hero h1 {
+  font-size: clamp(1.6rem, 1.3rem + 1.6vw, 2.3rem);
+  line-height: 1.35; font-weight: 800; letter-spacing: -0.005em;
+  margin-bottom: 0.8rem;
+  color: var(--text-primary);
+}
+.hero h1 .accent {
+  background: linear-gradient(120deg, var(--accent-coral), var(--accent-magenta));
+  -webkit-background-clip: text; background-clip: text; color: transparent;
+}
+.hero-meta {
+  display: flex; gap: 0.6rem; flex-wrap: wrap;
+  font-size: 0.85rem; color: var(--text-secondary);
+  margin-top: 1.2rem;
+}
+.hero-meta span {
+  display: inline-flex; align-items: center; gap: 0.4rem;
+  background: var(--bg-elev); padding: 0.4rem 0.9rem;
+  border-radius: 999px; box-shadow: var(--shadow-sm);
+}
+.hero-meta strong { color: var(--text-primary); font-weight: 700; }
+
+/* Banner notice */
+.banner {
+  margin: 1.4rem 0;
+  padding: 1rem 1.3rem;
+  background: linear-gradient(120deg, var(--bg-mint), var(--bg-sky));
+  border-left: 4px solid var(--accent-mint);
+  border-radius: var(--radius-sm);
+  font-size: 0.92rem;
+}
+.banner strong { color: var(--accent-mint); }
+
+/* Vimeo embed (PiP-able) */
+.vimeo-host {
+  position: relative;
+  margin: 1.2rem 0 0.5rem;
+  /* 通常時の高さ枠を確保（PiP化してもレイアウトが詰まらないように） */
+  aspect-ratio: 16 / 9;
+}
+.vimeo-wrap {
+  position: relative; width: 100%; height: 100%;
+  background: var(--bg-elev);
+  border-radius: var(--radius); overflow: hidden;
+  box-shadow: var(--shadow-md);
+  border: 1px solid var(--border);
+  transition: all 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+}
+.vimeo-wrap iframe {
+  position: absolute; top: 0; left: 0;
+  width: 100%; height: 100%; border: 0;
+}
+
+/* PiP状態 — スクロールで右下にミニ表示へ変化 */
+.vimeo-wrap.pip {
+  position: fixed;
+  bottom: 1.2rem; right: 1.2rem;
+  width: clamp(280px, 28vw, 400px);
+  height: auto;
+  aspect-ratio: 16 / 9;
+  z-index: 200;
+  border-radius: var(--radius-sm);
+  box-shadow: var(--shadow-lg), 0 0 0 1px var(--accent-coral);
+  cursor: grab;
+}
+.vimeo-wrap.pip.minimized {
+  width: 56px; aspect-ratio: 1 / 1;
+  bottom: 1.2rem; right: 1.2rem;
+  background: var(--accent-coral);
+  border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  box-shadow: var(--shadow-lg);
+  font-size: 1.4rem; color: white;
+}
+.vimeo-wrap.pip.minimized iframe { display: none; }
+.vimeo-wrap.pip.minimized::before {
+  content: '▶'; font-size: 1.4rem; color: white;
+}
+@media (max-width: 640px) {
+  .vimeo-wrap.pip {
+    width: calc(100vw - 1.6rem);
+    right: 0.8rem; bottom: 0.8rem;
+  }
+}
+
+/* PiPコントロール（最小化・閉じる ボタン） */
+.pip-controls {
+  position: absolute; top: 0.4rem; right: 0.4rem;
+  display: none; gap: 0.3rem; z-index: 10;
+}
+.vimeo-wrap.pip:not(.minimized) .pip-controls { display: flex; }
+.pip-controls button {
+  width: 28px; height: 28px;
+  border: 0; border-radius: 50%;
+  background: oklch(0% 0 0 / 0.55); color: white;
+  font-size: 0.85rem; font-weight: 700;
+  cursor: pointer; transition: background 0.15s;
+  display: flex; align-items: center; justify-content: center;
+  backdrop-filter: blur(6px);
+}
+.pip-controls button:hover { background: var(--accent-coral); }
+
+.vimeo-cap {
+  font-size: 0.85rem; color: var(--text-muted);
+  text-align: right; padding: 0.5rem 0.2rem;
+}
+.vimeo-cap a {
+  color: var(--accent-coral); text-decoration: none;
+  font-weight: 600;
+}
+.vimeo-cap a:hover { text-decoration: underline; }
+
+/* Section */
+section { padding: var(--space-section) 0 0; }
+.section-header {
+  display: flex; align-items: center; gap: 0.7rem;
+  flex-wrap: wrap;
+  margin-bottom: 0.4rem;
+}
+.section-header h2 {
+  font-size: clamp(1.3rem, 1.05rem + 1vw, 1.65rem);
+  font-weight: 800; letter-spacing: -0.005em;
+  display: flex; align-items: center; gap: 0.5rem;
+  color: var(--text-primary);
+}
+.section-header h2 .num {
+  display: inline-flex; justify-content: center; align-items: center;
+  width: 1.9rem; height: 1.9rem; border-radius: 50%;
+  background: linear-gradient(120deg, var(--accent-coral), var(--accent-amber));
+  color: white; font-size: 0.85rem; font-weight: 800;
+  box-shadow: var(--shadow-sm);
+}
+.timestamp-chip {
+  display: inline-flex; align-items: center; gap: 0.3rem;
+  padding: 0.25rem 0.7rem;
+  background: var(--bg-elev);
+  border: 1px solid var(--border);
+  border-radius: 999px;
+  font-size: 0.78rem; font-weight: 600;
+  color: var(--accent-coral);
+  font-family: var(--font-mono);
+  box-shadow: var(--shadow-sm);
+}
+.timestamp-chip::before { content: '📍'; }
+section .lead {
+  color: var(--text-secondary);
+  font-size: 0.95rem; margin-bottom: 1.3rem;
+}
+
+/* News cards */
+.news-grid { display: grid; gap: 1rem; }
+.news-card {
+  background: var(--bg-elev);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 1.3rem 1.5rem;
+  box-shadow: var(--shadow-sm);
+  transition: transform 0.18s, box-shadow 0.18s;
+}
+.news-card:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-md);
+}
+.news-card.priority { border-left: 4px solid var(--accent-coral); }
+.news-card.tech { border-left: 4px solid var(--accent-magenta); }
+.news-card-head {
+  display: flex; align-items: center; gap: 0.6rem;
+  flex-wrap: wrap; margin-bottom: 0.6rem;
+}
+.news-card .news-tag {
+  display: inline-block; font-size: 0.7rem; letter-spacing: 0.08em;
+  color: var(--accent-coral); font-weight: 700; text-transform: uppercase;
+}
+.news-card.tech .news-tag { color: var(--accent-magenta); }
+.news-card .timestamp-chip { font-size: 0.72rem; padding: 0.2rem 0.55rem; }
+.news-card h3 {
+  font-size: 1.05rem; font-weight: 700; margin-bottom: 0.6rem;
+  color: var(--text-primary);
+}
+.news-card p { font-size: 0.92rem; color: var(--text-secondary); }
+.news-card ul { font-size: 0.92rem; color: var(--text-secondary); padding-left: 1.2rem; margin-top: 0.5rem; }
+.news-card ul li { margin-bottom: 0.3rem; }
+
+/* Watchlist */
+.watchlist {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+  gap: 0.9rem;
+}
+.coin-card {
+  background: var(--bg-elev);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  padding: 1rem 1.2rem;
+  box-shadow: var(--shadow-sm);
+  transition: transform 0.18s;
+}
+.coin-card:hover { transform: translateY(-2px); }
+.coin-card.recommend {
+  border: 2px solid var(--accent-coral);
+  background: linear-gradient(135deg, var(--bg-soft), var(--bg-elev));
+}
+.coin-card .ticker {
+  font-size: 1.05rem; font-weight: 800;
+  color: var(--accent-coral);
+  font-family: var(--font-mono); letter-spacing: 0.02em;
+}
+.coin-card .ticker .label-recommend {
+  display: inline-block; margin-left: 0.4rem;
+  font-size: 0.62rem; padding: 0.18rem 0.5rem; border-radius: 999px;
+  background: var(--accent-coral); color: white;
+  letter-spacing: 0.08em; vertical-align: middle;
+  font-family: var(--font-sans); font-weight: 700;
+}
+.coin-card .desc {
+  font-size: 0.85rem; color: var(--text-secondary);
+  margin-top: 0.5rem;
+}
+
+/* QA */
+.qa-list { display: grid; gap: 1rem; }
+.qa-item {
+  background: var(--bg-elev);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  padding: 1.1rem 1.4rem;
+  box-shadow: var(--shadow-sm);
+}
+.qa-q-head {
+  display: flex; gap: 0.6rem; align-items: center;
+  flex-wrap: wrap; margin-bottom: 0.5rem;
+}
+.qa-q {
+  font-weight: 700; color: var(--accent-sky);
+  font-size: 0.95rem;
+}
+.qa-a {
+  font-size: 0.92rem; color: var(--text-secondary);
+}
+.qa-item .timestamp-chip { color: var(--accent-sky); }
+
+/* Strategy box */
+.strategy-box {
+  background: var(--bg-elev);
+  border: 1px solid var(--border-hi);
+  border-radius: var(--radius);
+  padding: 1.5rem 1.8rem;
+  margin-top: 1.3rem;
+  box-shadow: var(--shadow-md);
+  position: relative;
+  overflow: hidden;
+}
+.strategy-box::before {
+  content: '';
+  position: absolute; top: 0; left: 0; right: 0; height: 4px;
+  background: linear-gradient(90deg, var(--accent-coral), var(--accent-amber), var(--accent-mint));
+}
+.strategy-box h3 {
+  font-size: 1.05rem; margin-bottom: 1rem;
+  color: var(--text-primary); font-weight: 700;
+}
+.strategy-box ul { list-style: none; }
+.strategy-box li {
+  padding: 0.55rem 0;
+  border-bottom: 1px dashed var(--border);
+  font-size: 0.92rem;
+}
+.strategy-box li:last-child { border-bottom: none; }
+.strategy-box li strong {
+  color: var(--accent-coral); margin-right: 0.5rem;
+  font-weight: 700;
+}
+
+/* PS */
+.ps-block {
+  margin-top: 2rem;
+  padding: 1.3rem 1.5rem;
+  background: linear-gradient(120deg, var(--bg-soft), var(--bg-elev));
+  border: 1px dashed var(--border-hi);
+  border-radius: var(--radius);
+  font-size: 0.9rem;
+  color: var(--text-secondary);
+  line-height: 1.8;
+}
+.ps-block strong { color: var(--accent-magenta); }
+
+/* Footer */
+footer {
+  border-top: 1px solid var(--border);
+  margin-top: 3rem;
+  padding: 2rem 0;
+  font-size: 0.82rem; color: var(--text-muted);
+  text-align: center;
+}
+footer a {
+  color: var(--accent-coral); text-decoration: none;
+  font-weight: 600;
+}
+
+@media (max-width: 640px) {
+  body { font-size: 16px; }
+  .hero h1 { font-size: 1.5rem; }
+  .strategy-box { padding: 1.2rem 1.4rem; }
+}
+</style>
+</head>
+<body>
+
+<!-- Sticky header (navbar + AI strip を1つのstickyコンテナで包む) -->
+<div class="header-stack">
+  <nav class="navbar">
+    <div class="navbar-inner">
+      <div class="brand">
+        <span class="brand-main">🐕🍞 月曜フォローアップ · 2026-10-12</span>
+        <span class="brand-sub">卒業生プラン発表 — 月額3,980円・11月切替。相場は底打ち60%のまま「ありがたい下げ」待ち</span>
+      </div>
+      <div class="nav-links">
+        <a href="#archive">アーカイブ</a>
+        <a href="#summary">サマリ</a>
+        <a href="#news">ニュース</a>
+        <a href="#watchlist">注目銘柄</a>
+        <a href="#qa">Q&amp;A</a>
+      </div>
+    </div>
+  </nav>
+
+  <!-- AI注意書き 短縮版（常時表示ストリップ） -->
+  <div class="ai-strip">
+    <span class="icon">🐕</span><strong>AIによる自動文字起こしです</strong> — 誤字や数値ズレの可能性あり、正確な情報は <a href="#archive">動画本編</a> でご確認ください 🍞
+  </div>
+</div>
+
+<div class="container">
+
+  <!-- AI 注意書き -->
+  <div class="ai-disclaimer">
+    <span class="icon">⚠️</span>
+    <div>
+      <strong>AI による文字起こし・要約レポートです</strong><br>
+      この記事は配信動画を AI で自動文字起こし・整理して作成しています。固有名詞や数値などに誤りが含まれる可能性があります。
+      <strong>正確な情報は必ず動画本編をご確認ください。</strong>
+    </div>
+  </div>
+
+  <!-- HERO -->
+  <header class="hero">
+    <div class="eyebrow">🐕🍞 Web3Campus · Monday Follow-up Archive</div>
+    <h1>
+      240_フォローアップ_20261012<br>
+      — 卒業生プラン発表 — 月額3,980円・11月切替。相場は底打ち60%のまま「ありがたい下げ」待ち 🍞
+    </h1>
+    <div class="hero-meta">
+      <span>📅 配信日: <strong>2026年10月12日(月)</strong></span>
+      <span>⏱ 長さ: <strong>約61分</strong></span>
+      <span>🐕 講師: <strong>Shin (Web3Campus)</strong></span>
+    </div>
+    <div class="banner">
+      <strong>📣 今週は「卒業生プラン発表」の回です</strong> — 相場の整理に加えて、11月からの新体制（月額3,980円）を質疑込みで詳しく説明しました。相場の詳しい分析は <a href="/notes/weekly-market-2026-10-12/" style="color:inherit; font-weight:700;">週次市場レポート（10/12号）</a> をどうぞ。
+    </div>
+  </header>
+
+  <!-- ARCHIVE -->
+  <section id="archive" style="padding-top: 1rem;">
+    <div class="section-header">
+      <h2><span class="num">▶</span>アーカイブ動画</h2>
+      <span class="timestamp-chip" style="background: var(--bg-soft); border-color: var(--accent-coral);">スクロール時は右下に常時表示</span>
+    </div>
+    <div class="vimeo-host" id="vimeoHost">
+      <div class="vimeo-wrap" id="vimeoWrap">
+        <div class="pip-controls">
+          <button type="button" id="btnMinimize" title="最小化">－</button>
+          <button type="button" id="btnRestore" title="元のサイズに戻す">↺</button>
+        </div>
+        <iframe
+          id="vimeoFrame"
+          src="https://player.vimeo.com/video/1235054140?h=e023d8aa0d"
+          allow="autoplay; fullscreen; picture-in-picture"
+          allowfullscreen
+          title="240_フォローアップ_20261012"></iframe>
+      </div>
+    </div>
+    <div class="vimeo-cap">
+      🔗 <a href="https://vimeo.com/1235054140/e023d8aa0d" target="_blank" rel="noopener">Vimeo で開く</a>
+    </div>
+  </section>
+
+  <!-- SUMMARY -->
+  <section id="summary">
+    <div class="section-header">
+      <h2><span class="num">1</span>本日のサマリ</h2>
+      <span class="timestamp-chip">00:00〜</span>
+    </div>
+    <p class="lead">祝日夜の通常回。前半の相場パートは「大きな戦略方針は変わっていません」から始まり、いまの下げを<mark>予定調和の範囲の調整</mark>と整理。底打ちシナリオ 60% は据え置きです。短期はエリオット波動の5波完了説を紹介し、<strong>$79,000〜80,000 へ力を溜めてからの次の1波</strong>という個人的な想定を提示。一方で ETH は10年来の呪縛を突破して「イーサリアムのターン」に期待と、強弱をはっきり分けた見取り図でした。後半は先週予告した<strong>卒業生プラン（月額3,980円・11月切り替え）の正式発表</strong>に時間を使い、加入/未加入の差分からAIモニターとの関係まで質疑込みで丁寧に説明しています。</p>
+
+    <div class="strategy-box">
+      <h3>🎯 今週のシナリオ想定（BTC・据え置き）</h3>
+      <ul>
+        <li><strong>シナリオ ③（60%）</strong>もう底を打った（$60,000 付近が底）— 前回高値の上抜けは「かなり強いサイン」。前回の底値を切り下げずに上がればトレンド転換確定へ。ただし「全部私の直感」といつでも見直す前提つき。</li>
+        <li><strong>シナリオ ①+②（40%）</strong>もう一度底を試す — 5波完了なら ABC 調整で $79,000〜80,000 へ。理想はその過程で50週線にタッチして「追加投資」の押し目になる形。強気になりつつ警戒は怠らない。</li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- NEWS -->
+  <section id="news">
+    <div class="section-header">
+      <h2><span class="num">2</span>今週の重要ニュース</h2>
+      <span class="timestamp-chip">04:00〜</span>
+    </div>
+    <p class="lead">前半は初参加の方向けに4年周期の大前提から丁寧に。後半のニュース④が今週の本題・卒業生プラン発表です。</p>
+
+    <div class="news-grid">
+      <div class="news-card priority">
+        <div class="news-card-head">
+          <span class="news-tag">⭐ ニュース ①</span>
+          <span class="timestamp-chip">04:00〜</span>
+        </div>
+        <h3>戦略方針は不変 — いまの下げは「予定調和の範囲」</h3>
+        <p>9月からの上昇に対して一旦調整が入っているが「そこまでひどい下げではない」が総括。長期は積立継続（6〜11月は強気・ETH 比率多め）、中期はアルトバブルの可能性を捨てず損切りライン付きで、という従来方針のまま。</p>
+        <ul>
+          <li>BTC は一度割れた青い平行四辺形の中へ復活し、前回高値を上回った — 「これはかなり強いサイン」。前回の底値を切り下げずに上がればトレンド転換の確定へ</li>
+          <li>50週移動平均線（ピンクの線）は「健康診断」の位置づけ。理想の下げ方は、一旦下がって50週線にタッチしたところで追加投資を入れて上がっていく形</li>
+          <li>短期はエリオット波動の5波目との見方があり、数週間かけて $79,000〜80,000 へじわじわ下げて力を溜め、次の1波を待つ展開を個人的な想定として提示（外れて一発上がる可能性も併記）</li>
+          <li>詳しい数値は配布済みの<a href="/notes/weekly-market-2026-10-12/">週次市場レポート（10/12号）</a>を参照</li>
+        </ul>
+      </div>
+
+      <div class="news-card priority">
+        <div class="news-card-head">
+          <span class="news-tag">⭐ ニュース ②</span>
+          <span class="timestamp-chip">15:00〜</span>
+        </div>
+        <h3>イーサリアムが10年の呪縛を突破 — 「ETH のターンが来るぞ」</h3>
+        <p>ETH は BTC より強い動き。ETH/BTC チャートで約10年間蓋をされ続けた白い下降ラインをついに上抜けし、「呪縛から解放された」状態に。講師が積立で ETH 比率を多めにしている理由もここにある。</p>
+        <ul>
+          <li>ETH 単体も前回の底で耐え切ってから前回高値を上抜け。調整が終われば $3,500 あたりへのもう一段を期待していると言及</li>
+          <li>白い線を再び下回ると「イーサリアム終わった」になってしまうため、ここが生命線</li>
+          <li>ETH の上抜けがアルト全体に波及中。受講生から「$2 付近で仕込んだ UNI が約2.5倍」の報告も — 数週間で2倍が取れる動きがアルトに出始めている</li>
+        </ul>
+      </div>
+
+      <div class="news-card priority">
+        <div class="news-card-head">
+          <span class="news-tag">⭐ ニュース ③</span>
+          <span class="timestamp-chip">26:00〜</span>
+        </div>
+        <h3>警報器は「黄・赤・黄」— 今週の分かれ目は 10/14 の CPI</h3>
+        <p>マクロは木の幹。3つの警報器のうち10年国債利回りが5%超で赤信号。信用スプレッドは先週ガンと上がったが、警戒すべき「加速的な上げ」は今週は見られず様子見。原油は警報解除するかしないかの際で、引き続き警報が鳴っている状態。</p>
+        <ul>
+          <li>10/7 の FOMC 議事録で「大半の参加者が年内あと1回の利上げ」が明文化。株・金・ドルは無風だったのに、なぜかビットコインだけが下がった</li>
+          <li>ETF からは週 −$681M の流出。一方でオンチェーンの大口は買い増しており、「機関は警戒・詳しい大口は買う」のねじれが観測されている</li>
+          <li>来週の最重要は 10/14（水）の9月 CPI。上振れなら12月利上げが固まり警報器①が一気に上がるリスク、下振れなら「年内スキップ」に化ける可能性も — 状況を左右するニュースとして要警戒</li>
+          <li>対応方針は従来どおり: 個別銘柄が良くても、マクロの幹が傾いたら全体が影響を受ける。警戒は怠らない</li>
+        </ul>
+      </div>
+
+      <div class="news-card priority">
+        <div class="news-card-head">
+          <span class="news-tag">⭐ ニュース ④</span>
+          <span class="timestamp-chip">35:30〜</span>
+        </div>
+        <h3>卒業生プランを正式発表 — 月額3,980円・11月切り替え</h3>
+        <p>5月から予告しつつ金商法対応で延期していた卒業生プランを正式発表。月額3,980円（卒業生全員対象・一般価格に対して59%オフ）で、現行サービスは10/31まで提供、11月から新体制へ切り替わる。</p>
+        <ul>
+          <li><strong>加入した場合</strong>: 手持ちチケットはそのまま引き継ぎ／別枠で毎月1回復活する特別チケット（最大1枚ストック・暗号資産にもAI学習にも使用可）／月曜配信（アドバンス以上は金曜も）継続参加／これまでアドバンス限定だった週次レポートをベーシックの方にも解禁／Band・Telegram での質問サポート／eラーニング継続</li>
+          <li>アドバンス以上はさらに AI 特別配信・スキル・モジュール提供（講師の「虎の巻」を順次配信。自分の AI に組み込めば講師の知識が入った AI になる構想）</li>
+          <li><strong>未加入の場合</strong>: 個別相談は受付終了（手持ちチケットも失効）／月曜配信はリアルタイム参加不可でレポート配布のみ（動画なし）／質問は簡単な返信のみになる場合あり。グループのつながりと週次レポート配布は残り、途中からの再加入も可能（一旦停止扱い）</li>
+          <li>配信中の訂正: 2022年以前からの方が使ってきた LINE での質問サポートは終了し、Band への入り直しが必要（サポートは Band・Telegram に一本化）</li>
+          <li>申込ページは現在ドラフト構築中で、来週か再来週に発表予定。申込者は新しい Band グループへ招待し、新規配信はそちらへ。旧 Band は 10/31 まで通常配信・11月以降は簡易配信のみ</li>
+        </ul>
+      </div>
+
+      <div class="news-card tech">
+        <div class="news-card-head">
+          <span class="news-tag">⭐ ニュース ⑤</span>
+          <span class="timestamp-chip">30:30〜</span>
+        </div>
+        <h3>今週の急騰銘柄は Starknet（約2倍）— 先週組は BTC につられ調整</h3>
+        <p>毎週何かしらのアルトが吹く流れが継続中。今週は Starknet（STRK）が「イーサリアムから独立した L1 への移行を検討」のニュースで約2倍に。講師は「それだけでこれだけ上がるのはあまりよくわからない」と距離を置いた評価。</p>
+        <ul>
+          <li>BTW と LayerZero（ZRO）は連続で上昇中</li>
+          <li>先週の急騰組は NIGHT が小幅高の他は PUMP・AAVE など下落 — 「ビットコインにつられてなので、大して気にする必要はない」が講師の整理</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- WATCHLIST -->
+  <section id="watchlist">
+    <div class="section-header">
+      <h2><span class="num">3</span>注目銘柄ウォッチリスト</h2>
+      <span class="timestamp-chip">10:00〜</span>
+    </div>
+    <p class="lead">今週、講師が個人的に注目している銘柄です。投資の推奨ではありません。投資判断は各自の責任で行ってください。</p>
+
+    <div class="watchlist">
+      <div class="coin-card recommend">
+        <div class="ticker">LDO<span class="label-recommend">注目</span></div>
+        <div class="desc">三角持ち合いを上抜けた後、ボリンジャーバンドがギューッと収縮して「すごい力を溜めている状態」。収縮期間が長いほど跳ねが大きいという講師の好きな型に合致しており、継続保有中。手放す基準も明言: トレンド転換ラインの $0.3 を下回らない限り持ち続ける想定（購入価格もその付近）</div>
+      </div>
+      <div class="coin-card">
+        <div class="ticker">ONDO</div>
+        <div class="desc">一度パンと上がってから下げたが復活してきており「非常にいい感じ」。バンドをまだ閉じ切っていないので引き続き保有中</div>
+      </div>
+      <div class="coin-card">
+        <div class="ticker">ETH</div>
+        <div class="desc">BTC より強い。ETH/BTC の10年来の白い蓋を上抜けし、調整後の $3,500 方向へのもう一段に期待。積立で比率を多めにしている対象</div>
+      </div>
+      <div class="coin-card">
+        <div class="ticker">BTC</div>
+        <div class="desc">前回高値上抜けは強いサインだが、短期は5波完了→ABC 調整で $79,000〜80,000 へ力を溜める展開を想定。理想は50週移動平均線タッチでの押し目。「思った以上に強い」ため、そのまま上がる可能性も併記</div>
+      </div>
+      <div class="coin-card">
+        <div class="ticker">UNI</div>
+        <div class="desc">受講生の報告銘柄（$2 付近仕込みで約2.5倍）。ラインで屈伸しそうな位置にあり、もう一発上げれば勢いづく形。ただしストキャスティクスが上がりすぎで調整が入る可能性にも言及</div>
+      </div>
+      <div class="coin-card">
+        <div class="ticker">PENG</div>
+        <div class="desc">Q&A で受講生から質問。三角形を抜けて力を溜めている「私の好きなパターン」で、LDO よりいいかもしれないと高評価。上がれば1週間で2倍規模の期待が持てる動きだが、時価総額が小さく、ちょっとした動きで急落するリスクを抱える点は難しいところ、との見立て</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- QA -->
+  <section id="qa">
+    <div class="section-header">
+      <h2><span class="num">4</span>Q&amp;A ハイライト</h2>
+      <span class="timestamp-chip">50:00〜</span>
+    </div>
+    <p class="lead">今週の Q&A は卒業生プラン・AIモニター関連が中心。銘柄の質問（PENG）はウォッチリスト側に収録しています。</p>
+
+    <div class="qa-list">
+      <div class="qa-item">
+        <div class="qa-q-head">
+          <span class="qa-q">Q1. AIモニターと卒業生プラン、両方に入る必要はありますか？</span>
+          <span class="timestamp-chip">50:00〜</span>
+        </div>
+        <div class="qa-a">不要です。AIモニターには1年間の卒業生プランと同等の権利が付いているため、モニター参加者は月額課金なしで同じサービスを受けられます（二重加入は不要）。金額だけ見れば卒業生プランの方が数千円お得ですが、モニターはチケットが一気に入り、AI特化の内容（アドバンス向け配信相当）を個別相談で学べるため、内容の質ではモニターが上、が講師の整理。卒業生の参加費は半額の5万円・定員20名程度。</div>
+      </div>
+
+      <div class="qa-item">
+        <div class="qa-q-head">
+          <span class="qa-q">Q2. AI の勉強に事前準備は必要ですか？</span>
+          <span class="timestamp-chip">54:30〜</span>
+        </div>
+        <div class="qa-a">パソコンと Zoom があれば大丈夫。パソコンのスペックは初回の Zoom で確認し、問題があればその場で相談する流れ。かなり古いパソコンでも大丈夫だったケースが多いとのこと。</div>
+      </div>
+
+      <div class="qa-item">
+        <div class="qa-q-head">
+          <span class="qa-q">Q3. すでに Claude Code をゴリゴリ使っていても参加する価値はありますか？</span>
+          <span class="timestamp-chip">57:00〜</span>
+        </div>
+        <div class="qa-a">講師自身、毎日使い込んでいた上で約40万円の研修を受けたところ「それをはるかに飛び越えていく使い方」を学べた経験から、参加価値はあると思う、との回答。「今ここまで使えるがどうか」と個別相談で具体的に聞けば、伸びしろの有無をその場で判断できる。</div>
+      </div>
+
+      <div class="qa-item">
+        <div class="qa-q-head">
+          <span class="qa-q">Q4. 1回目の予約前に Claude の有料プラン契約は必要ですか？</span>
+          <span class="timestamp-chip">58:30〜</span>
+        </div>
+        <div class="qa-a">不要。初回はパソコンのセットアップに注力するので、課金はその場でやるくらいのスピード感で大丈夫。プランは一番安い Pro で十分（講師は Max を使用）。</div>
+      </div>
+
+      <div class="qa-item">
+        <div class="qa-q-head">
+          <span class="qa-q">Q5. AIモニターの内容はどこで確認できますか？</span>
+          <span class="timestamp-chip">59:30〜</span>
+        </div>
+        <div class="qa-a">2週間前（9/28 特別講義回）のアーカイブ動画が案内になっています。加えて今週中に、AIモニターに関する記事を含めた配信を行う予定。</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PS -->
+  <div class="ps-block">
+    <p><strong>P.S.</strong> 卒業生プランの申込ページは準備が整い次第（来週か再来週）ご案内します。それまでに「AIモニター」の案内記事も今週中に配信予定です。旧 Band グループへの通常配信は 10/31 まで継続します。切り替えに関するご質問は、個別相談やチャットでいつでもどうぞ。</p>
+  </div>
+
+</div>
+
+<footer>
+  <div>🐕🍞 Web3Campus · Monday Follow-up Seminar Archive</div>
+  <div style="margin-top: 0.4rem;">
+    🔗 <a href="https://vimeo.com/1235054140/e023d8aa0d" target="_blank" rel="noopener">Vimeo Archive</a>
+    · <a href="/">アーカイブインデックスへ戻る</a>
+  </div>
+  <div style="margin-top: 0.6rem; font-size: 0.75rem;">
+    © 2026 Web3Campus · 受講生限定 · noindex / nofollow ·
+    <span style="opacity: 0.7;">made with 🍞 by a corgi 🐕</span>
+  </div>
+</footer>
+
+<script>
+/**
+ * PiP (Picture-in-Picture) 動画ヘッダー制御
+ *
+ * 仕組み:
+ * - 動画が画面内にある時: 通常表示（記事の最初に大きく）
+ * - スクロールして画面外に出た時: 右下にミニプレイヤーとして固定表示
+ * - ユーザーが「－」ボタンで丸いアイコンに最小化、「↺」で元のサイズに戻せる
+ */
+(function() {
+  const host = document.getElementById('vimeoHost');
+  const wrap = document.getElementById('vimeoWrap');
+  const btnMinimize = document.getElementById('btnMinimize');
+  const btnRestore = document.getElementById('btnRestore');
+
+  if (!host || !wrap) return;
+
+  let userClosed = false;  // ユーザーが「最小化」を選んだ場合は自動展開しない
+
+  // IntersectionObserver で動画ホストの可視状態を監視
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        // 画面内に戻った → PiP解除（最小化中でも展開）
+        wrap.classList.remove('pip', 'minimized');
+      } else {
+        // 画面外に出た → PiP化（最小化中はそのまま）
+        if (!wrap.classList.contains('minimized')) {
+          wrap.classList.add('pip');
+        }
+      }
+    });
+  }, { threshold: 0.15 });
+
+  observer.observe(host);
+
+  // 「－」最小化ボタン: 丸アイコンに変身
+  btnMinimize.addEventListener('click', (e) => {
+    e.stopPropagation();
+    wrap.classList.add('pip', 'minimized');
+  });
+
+  // 「↺」復元ボタン: PiP化解除して元の位置にスクロール
+  btnRestore.addEventListener('click', (e) => {
+    e.stopPropagation();
+    wrap.classList.remove('pip', 'minimized');
+    host.scrollIntoView({ behavior: 'smooth', block: 'center' });
+  });
+
+  // 最小化された丸アイコンをクリックで PiP 復活
+  wrap.addEventListener('click', (e) => {
+    if (wrap.classList.contains('minimized')) {
+      wrap.classList.remove('minimized');
+    }
+  });
+})();
+</script>
+
+</body>
+</html>
