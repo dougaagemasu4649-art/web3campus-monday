@@ -6,3 +6,7 @@
 
 /*.html
   Cache-Control: no-cache, must-revalidate
+
+/notes/ai-monitor/demo*
+  ! X-Frame-Options
+  Content-Security-Policy: frame-ancestors 'self'

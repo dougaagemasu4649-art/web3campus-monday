@@ -1,0 +1,493 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="noindex,nofollow,noarchive,nosnippet">
+<meta name="referrer" content="no-referrer">
+<title>AI 個別指導モニターのご案内｜Web3Campus</title>
+<style>
+  :root{
+    --paper:#faf9f6; --surface2:#f1efe9; --surface3:#e9e6dc;
+    --ink:#1c1f26; --ink2:#5a6072; --ink3:#8a8f9c;
+    --border:#e3e0d6; --border2:#d2cec0;
+    --accent:#1f4e9c; --gold:#a8720a; --gold-soft:#a8720a22;
+    --pos:#0b7fa8; --neg:#c8442c; --good:#2e7d43;
+    --pos-soft:#0b7fa81a; --neg-soft:#c8442c1a; --accent-soft:#1f4e9c14; --good-soft:#2e7d431a;
+    --warn-bg:#a8720a14; --warn-border:#a8720a55;
+    --tooltip-bg:#1c1f26; --tooltip-ink:#faf9f6;
+    --glass:rgba(250,249,246,0.82);
+    --strip-bg:#f4ecd8;
+  }
+  @media (prefers-color-scheme: dark){
+    :root:not([data-theme="light"]){
+      --paper:#14181f; --surface2:#1c222c; --surface3:#232a36;
+      --ink:#e8e7e2; --ink2:#9aa0ad; --ink3:#6d7382;
+      --border:#2a3140; --border2:#394153;
+      --accent:#638cd6; --gold:#b98a2e; --gold-soft:#b98a2e2e;
+      --pos:#2f9bb8; --neg:#d4603c; --good:#4caf6d;
+      --pos-soft:#2f9bb824; --neg-soft:#d4603c24; --accent-soft:#638cd61f; --good-soft:#4caf6d24;
+      --warn-bg:#b98a2e1f; --warn-border:#b98a2e66;
+      --tooltip-bg:#e8e7e2; --tooltip-ink:#14181f;
+      --glass:rgba(20,24,31,0.82);
+      --strip-bg:#241f14;
+    }
+  }
+  :root[data-theme="dark"]{
+    --paper:#14181f; --surface2:#1c222c; --surface3:#232a36;
+    --ink:#e8e7e2; --ink2:#9aa0ad; --ink3:#6d7382;
+    --border:#2a3140; --border2:#394153;
+    --accent:#638cd6; --gold:#b98a2e; --gold-soft:#b98a2e2e;
+    --pos:#2f9bb8; --neg:#d4603c; --good:#4caf6d;
+    --pos-soft:#2f9bb824; --neg-soft:#d4603c24; --accent-soft:#638cd61f; --good-soft:#4caf6d24;
+    --warn-bg:#b98a2e1f; --warn-border:#b98a2e66;
+    --tooltip-bg:#e8e7e2; --tooltip-ink:#14181f;
+    --glass:rgba(20,24,31,0.82);
+    --strip-bg:#241f14;
+  }
+  *{box-sizing:border-box; margin:0;}
+  html{scroll-behavior:smooth; background:var(--paper);}
+  body{
+    background:var(--paper); color:var(--ink);
+    font-family:"Hiragino Sans","Hiragino Kaku Gothic ProN","Yu Gothic UI","Yu Gothic",Meiryo,system-ui,sans-serif;
+    font-size:15px; line-height:1.85; -webkit-font-smoothing:antialiased;
+  }
+  .wrap{max-width:920px; margin:0 auto; padding:40px 24px 80px;}
+  .serif{font-family:"Yu Mincho","YuMincho","Hiragino Mincho ProN","Hiragino Mincho Pro","MS PMincho",Georgia,serif;}
+  .num{font-variant-numeric:tabular-nums; letter-spacing:-0.01em;}
+  #progress{position:fixed; top:0; left:0; height:3px; width:0; background:var(--gold); z-index:80;}
+  .edu-strip{position:sticky; top:0; z-index:60; background:var(--strip-bg); border-bottom:1px solid var(--warn-border);
+    font-size:12px; line-height:1.6; color:var(--ink2); padding:8px 16px; text-align:center;}
+  nav.toc{position:sticky; top:37px; z-index:55; background:var(--glass); backdrop-filter:blur(14px) saturate(160%);
+    border-bottom:1px solid var(--border); padding:8px 24px;
+    display:flex; gap:6px; overflow-x:auto; scrollbar-width:none;}
+  nav.toc::-webkit-scrollbar{display:none;}
+  nav.toc a{flex:none; font-size:12px; font-weight:600; color:var(--ink2); text-decoration:none;
+    padding:4px 12px; border-radius:999px; border:1px solid transparent; transition:background .15s ease, color .15s ease;}
+  nav.toc a:hover{background:var(--surface2); color:var(--ink);}
+  nav.toc a:active{transform:scale(0.97);}
+  nav.toc a.on{background:var(--accent-soft); color:var(--accent); border-color:var(--border);}
+  @media (prefers-reduced-transparency: reduce){
+    nav.toc{background:var(--paper); backdrop-filter:none;}
+    .edu-strip{backdrop-filter:none; background:var(--surface2);}
+  }
+  section{scroll-margin-top:96px;}
+  .masthead{border-bottom:3px double var(--border2); padding-bottom:28px; margin-bottom:8px; padding-top:34px;}
+  .eyebrow{font-size:11px; letter-spacing:0.22em; text-transform:uppercase; color:var(--gold); font-weight:600; margin-bottom:14px;}
+  h1{font-size:clamp(28px,5vw,44px); font-weight:600; letter-spacing:-0.015em; line-height:1.25; text-wrap:balance;}
+  .h1-date{font-size:0.62em; color:var(--ink2); margin-left:0.6em;}
+  @media (max-width:520px){ .h1-date{display:block; margin-left:0; font-size:15px; margin-top:4px;} }
+  .masthead .sub{display:flex; flex-wrap:wrap; gap:10px 22px; align-items:center; margin-top:16px; color:var(--ink2); font-size:13px;}
+  .verdict-chip{display:inline-flex; align-items:center; gap:8px; background:var(--warn-bg); border:1px solid var(--warn-border);
+    color:var(--ink); border-radius:999px; padding:5px 16px; font-weight:700; font-size:13.5px;}
+  .verdict-chip .dot{width:9px;height:9px;border-radius:50%;background:var(--gold);flex:none;}
+  .notice{border:1px solid var(--border2); border-left:4px solid var(--gold); background:var(--gold-soft);
+    border-radius:0 6px 6px 0; padding:14px 18px; margin:20px 0 4px; max-width:76ch; font-size:14px;}
+  .notice .co-t{font-weight:700; font-size:13px; letter-spacing:0.06em; margin-bottom:4px; color:var(--gold);}
+  .tiles{display:grid; grid-template-columns:repeat(auto-fit,minmax(176px,1fr)); gap:10px; margin:26px 0 8px;}
+  .tile{background:var(--surface2); border:1px solid var(--border); border-radius:6px; padding:13px 14px 11px;}
+  .tile .k{font-size:11px; letter-spacing:0.06em; color:var(--ink2); text-transform:uppercase; font-weight:600;}
+  .tile .v{font-size:21px; font-weight:700; margin-top:3px; line-height:1.2; letter-spacing:-0.01em;}
+  .tile .d{font-size:12px; margin-top:3px; color:var(--ink2);}
+  .up{color:var(--pos);} .down{color:var(--neg);} .gold-t{color:var(--gold);} .good-t{color:var(--good);}
+  .ic{width:18px;height:18px;flex:none;display:inline-block;}
+  .sec-ic{width:19px;height:19px;color:var(--gold);flex:none;align-self:center;}
+  .chip{width:31px;height:31px;border-radius:9px;flex:none;display:flex;align-items:center;justify-content:center;}
+  .chip .ic{width:17px;height:17px;}
+  .tile{display:flex;gap:11px;align-items:flex-start;}
+  .tile .tx{min-width:0;}
+  .what .ic{width:16px;height:16px;vertical-align:-3px;margin-right:6px;color:var(--gold);}
+  .g-name .ic{width:17px;height:17px;vertical-align:-3px;margin-right:6px;}
+  .coin{display:inline-flex;width:26px;height:26px;border-radius:50%;align-items:center;justify-content:center;margin-right:8px;vertical-align:-7px;overflow:hidden;background:var(--surface3);}
+  .coin img{width:100%;height:100%;object-fit:contain;display:block;}
+  .chip img{width:22px;height:22px;border-radius:50%;display:block;}
+  .ti{width:16px;height:16px;border-radius:50%;vertical-align:-3px;margin-right:4px;display:inline-block;}
+  section{margin-top:56px;}
+  .sec-head{display:flex; align-items:baseline; gap:14px; border-bottom:1px solid var(--border2); padding-bottom:10px; margin-bottom:22px;}
+  .sec-no{font-size:13px; color:var(--gold); letter-spacing:0.15em; font-weight:600; flex:none;}
+  h2{font-size:23px; font-weight:600; letter-spacing:0.01em; line-height:1.35; text-wrap:balance;}
+  h3{font-size:16.5px; font-weight:700; margin:30px 0 10px; letter-spacing:0.01em;}
+  p{margin:10px 0; max-width:72ch;}
+  .lead{font-size:16px; max-width:72ch;}
+  ul,ol{padding-left:1.4em; margin:10px 0; max-width:70ch;}
+  li{margin:5px 0;}
+  strong{font-weight:700;}
+  mark{background:var(--gold-soft); color:inherit; padding:0 3px; border-radius:2px;}
+  a{color:var(--accent); text-decoration-thickness:1px; text-underline-offset:3px;}
+  .sec-photo{position:relative; margin:2px 0 20px; border-radius:6px; overflow:hidden; border:1px solid var(--border);}
+  .sec-photo img{display:block; width:100%; aspect-ratio:21/7; object-fit:cover; filter:saturate(0.82);}
+  .sec-photo .cap{position:absolute; left:0; right:0; bottom:0; padding:22px 14px 8px; font-size:11px; color:#f2efe8;
+    background:linear-gradient(transparent, rgba(10,12,16,0.62)); letter-spacing:0.04em;}
+  @media (prefers-color-scheme: dark){ :root:not([data-theme="light"]) .sec-photo img{filter:saturate(0.8) brightness(0.88);} }
+  :root[data-theme="dark"] .sec-photo img{filter:saturate(0.8) brightness(0.88);}
+  @media (max-width:520px){ .sec-photo img{aspect-ratio:16/7;} }
+  .rv{opacity:0; transform:translateY(10px); transition:opacity .5s ease-out, transform .5s ease-out;}
+  .rv.in{opacity:1; transform:none;}
+  @media (prefers-reduced-motion: reduce){
+    html{scroll-behavior:auto;}
+    .rv{opacity:1; transform:none; transition:opacity .2s ease;}
+    .scen-bar>i,.gauge .fill{transition:none !important;}
+  }
+  .tbl-scroll{overflow-x:auto; border:1px solid var(--border); border-radius:6px; margin:14px 0;}
+  table{border-collapse:collapse; width:100%; font-size:13.5px; line-height:1.6;}
+  th{background:var(--surface2); text-align:left; font-weight:700; color:var(--ink2); font-size:12px; letter-spacing:0.05em; white-space:nowrap;}
+  th,td{padding:9px 13px; border-bottom:1px solid var(--border); vertical-align:top;}
+  tbody tr:last-child td{border-bottom:none;}
+  td.n,th.n{text-align:right; font-variant-numeric:tabular-nums; white-space:nowrap;}
+  .pill{display:inline-block; border-radius:999px; padding:1px 10px; font-size:11.5px; font-weight:700; white-space:nowrap;}
+  .pill.neg{background:var(--neg-soft); color:var(--neg);}
+  .pill.pos{background:var(--pos-soft); color:var(--pos);}
+  .pill.neu{background:var(--surface3); color:var(--ink2);}
+  .pill.gold{background:var(--gold-soft); color:var(--gold);}
+  .pill.good{background:var(--good-soft); color:var(--good);}
+  .fig{background:var(--surface2); border:1px solid var(--border); border-radius:6px; padding:18px 18px 12px; margin:18px 0;}
+  .fig .fig-title{font-size:13.5px; font-weight:700;}
+  .fig .fig-sub{font-size:12px; color:var(--ink2); margin-top:2px; margin-bottom:8px;}
+  .fig svg{display:block; width:100%; height:auto;}
+  .fig .fig-note{font-size:11.5px; color:var(--ink3); margin-top:6px;}
+  .legend{display:flex; gap:16px; flex-wrap:wrap; font-size:12px; color:var(--ink2); margin-top:6px;}
+  .legend .sw{display:inline-block; width:10px; height:10px; border-radius:2px; margin-right:5px; vertical-align:-1px;}
+  #tooltip{position:fixed; z-index:90; pointer-events:none; display:none; background:var(--tooltip-bg); color:var(--tooltip-ink);
+    font-size:12px; line-height:1.5; padding:6px 10px; border-radius:5px; font-variant-numeric:tabular-nums;
+    box-shadow:0 3px 12px rgba(0,0,0,0.25); max-width:260px;}
+  .gauge{margin:20px 0; max-width:680px;}
+  .gauge .g-head{display:flex; justify-content:space-between; align-items:baseline; gap:10px; flex-wrap:wrap;}
+  .gauge .g-name{font-weight:700; font-size:14px;}
+  .gauge .g-stat{font-size:12.5px; font-weight:700;}
+  .gauge .track{position:relative; height:14px; background:var(--surface3); border-radius:4px; margin:8px 0 4px; overflow:visible;}
+  .gauge .fill{position:absolute; left:0; top:0; bottom:0; width:0; border-radius:4px 0 0 4px; transition:width .7s ease-out;}
+  .gauge .tick{position:absolute; top:-5px; bottom:-5px; width:2px; background:var(--ink3);}
+  .gauge .tick.alert{background:var(--neg);}
+  .gauge .tick .t-lbl{position:absolute; top:-20px; left:50%; transform:translateX(-50%); font-size:10.5px; color:var(--ink3); white-space:nowrap;}
+  .gauge .prev{position:absolute; top:-3px; bottom:-3px; width:2px; background:var(--ink); opacity:.45;}
+  .gauge .g-scale{display:flex; justify-content:space-between; font-size:10.5px; color:var(--ink3);}
+  .gauge .g-note{font-size:12px; color:var(--ink2); margin-top:4px;}
+  .scen{display:flex; flex-direction:column; gap:12px; margin:16px 0; max-width:640px;}
+  .scen-row .scen-top{display:flex; justify-content:space-between; font-size:13.5px; margin-bottom:4px;}
+  .scen-row .name{font-weight:700;}
+  .scen-row .pct{font-weight:700; font-variant-numeric:tabular-nums;}
+  .scen-bar{height:12px; background:var(--surface3); border-radius:3px; overflow:hidden;}
+  .scen-bar>i{display:block; height:100%; border-radius:3px; width:0; transition:width .7s ease-out;}
+  .scen-note{font-size:12px; color:var(--ink2); margin-top:3px;}
+  .cards{display:grid; grid-template-columns:repeat(auto-fit,minmax(260px,1fr)); gap:14px; margin:18px 0;}
+  .card{background:var(--surface2); border:1px solid var(--border); border-radius:8px; padding:16px 18px;}
+  .card .c-head{display:flex; justify-content:space-between; align-items:baseline; gap:8px;}
+  .card .c-tkr{font-weight:700; font-size:16px;}
+  .card .c-chg{font-weight:700; font-variant-numeric:tabular-nums;}
+  .card .c-meta{font-size:11.5px; color:var(--ink3); margin-top:2px;}
+  .card p{font-size:13px; margin:8px 0 0; color:var(--ink2); max-width:none;}
+  .card p strong{color:var(--ink);}
+  .callout{border:1px solid var(--border2); border-left:4px solid var(--accent); background:var(--accent-soft);
+    border-radius:0 6px 6px 0; padding:14px 18px; margin:18px 0; max-width:76ch;}
+  .callout.gold{border-left-color:var(--gold); background:var(--gold-soft);}
+  .callout.red{border-left-color:var(--neg); background:var(--neg-soft);}
+  .callout .co-t{font-weight:700; font-size:13px; letter-spacing:0.06em; margin-bottom:4px;}
+  .kv{display:grid; grid-template-columns:auto 1fr; gap:6px 18px; font-size:13.5px; margin:12px 0; max-width:76ch;}
+  .kv dt{font-weight:700; white-space:nowrap; color:var(--ink2);}
+  .kv dd{margin:0;}
+  footer{margin-top:64px; border-top:3px double var(--border2); padding-top:20px; font-size:12.5px; color:var(--ink2);}
+  footer p{max-width:none;}
+  .disclaimer{font-style:italic; margin-top:12px; color:var(--ink3);}
+
+  .shot{margin:14px 0; border:1px solid var(--border); border-radius:8px; overflow:hidden; background:var(--surface2);}
+  .shot img{display:block; width:100%; height:auto;}
+  .shot figcaption{font-size:12.5px; color:var(--ink2); padding:9px 14px; line-height:1.6; border-top:1px solid var(--border);}
+  .shots3{display:grid; grid-template-columns:repeat(auto-fit,minmax(240px,1fr)); gap:14px; margin:14px 0;}
+  .shots3 .shot{margin:0;}
+  .reel-row{display:flex; gap:20px; align-items:flex-start; flex-wrap:wrap; margin:18px 0 6px;}
+  .reel-box{flex:none; width:min(250px,100%);}
+  .reel-box video{display:block; width:100%; border-radius:10px; border:1px solid var(--border2); background:#000;}
+  .reel-box .cap2{font-size:12.5px; color:var(--ink2); margin-top:8px; line-height:1.6;}
+  .reel-note{flex:1; min-width:240px; font-size:14px;}
+
+  .demo-row{display:flex; gap:24px; flex-wrap:wrap; align-items:flex-start; margin:22px 0 6px;}
+  .phone{flex:none; width:min(375px,100%); height:660px; border:1px solid var(--border2); border-radius:18px; overflow:hidden; background:#fff; box-shadow:0 6px 24px rgba(0,0,0,.10);}
+  .phone iframe{width:100%; height:100%; border:0; display:block;}
+  .demo-note{flex:1; min-width:240px; font-size:14px;}
+  .demo-btn{display:inline-block; margin-top:10px; padding:9px 18px; border-radius:999px; border:1px solid var(--border2); background:var(--surface2); color:var(--ink); font-weight:700; font-size:13.5px; text-decoration:none;}
+  .demo-btn:hover{background:var(--surface3);}
+
+  a.shot-link{display:block; text-decoration:none; color:inherit;}
+  a.shot-link .shot{transition:transform .15s ease, box-shadow .15s ease;}
+  a.shot-link:hover .shot{transform:translateY(-2px); box-shadow:0 6px 18px rgba(0,0,0,.10);}
+  .shot .open-tag{display:inline-block; margin-left:6px; font-size:11px; font-weight:700; color:var(--accent);}
+  .arts{display:grid; grid-template-columns:repeat(auto-fit,minmax(160px,1fr)); gap:14px; margin:14px 0;}
+  .arts .shot{margin:0; background:var(--surface2);}
+  .arts .shot img{aspect-ratio:1/1; object-fit:contain; padding:10px; box-sizing:border-box;}
+  .arts .shot.wide img{aspect-ratio:16/9; object-fit:cover; padding:0;}
+
+  .req-list{border:1px solid var(--border); border-radius:8px; background:var(--surface2); overflow:hidden; margin:18px 0; max-width:76ch;}
+  .req-item{display:flex; gap:18px; padding:20px 22px; border-bottom:1px solid var(--border); align-items:flex-start;}
+  .req-item:last-child{border-bottom:none;}
+  .req-num{flex:none; width:44px; text-align:center;}
+  .req-num .n{font-family:"Yu Mincho","YuMincho","Hiragino Mincho ProN",Georgia,serif; font-size:25px; font-weight:600; color:var(--gold); line-height:1; letter-spacing:.02em; font-variant-numeric:tabular-nums;}
+  .req-num .u{display:block; width:22px; height:2px; background:var(--gold); opacity:.45; margin:7px auto 0;}
+  .req-body{flex:1; min-width:0;}
+  .req-title{font-weight:700; font-size:15.5px; margin-bottom:4px;}
+  .req-desc{font-size:13.5px; color:var(--ink2); line-height:1.75;}
+</style>
+</head>
+<body>
+<div id="progress" aria-hidden="true"></div>
+<svg width="0" height="0" style="position:absolute" aria-hidden="true"><defs>
+<symbol id="i-bank" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9.5 12 4l9 5.5"/><path d="M5 11v7M9.7 11v7M14.3 11v7M19 11v7"/><path d="M3.5 20.5h17"/></symbol>
+<symbol id="i-oil" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"><path d="M12 3.5s5.8 6.4 5.8 10.4a5.8 5.8 0 1 1-11.6 0C6.2 9.9 12 3.5 12 3.5z"/></symbol>
+<symbol id="i-percent" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M7 17 17 7"/><circle cx="8.2" cy="8.2" r="2"/><circle cx="15.8" cy="15.8" r="2"/></symbol>
+<symbol id="i-pie" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"><circle cx="12" cy="12" r="8.5"/><path d="M12 3.5V12l6 6"/></symbol>
+<symbol id="i-compass" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="m15.2 8.8-2 4.4-4.4 2 2-4.4z"/></symbol>
+<symbol id="i-cal" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="5.5" width="16" height="15" rx="2"/><path d="M4 10.5h16M8.5 3.5v4M15.5 3.5v4"/></symbol>
+<symbol id="i-check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="4.5" y="4.5" width="15" height="16" rx="2"/><path d="m8.5 12.8 2.4 2.4 4.6-5"/></symbol>
+<symbol id="i-shield" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"><path d="M12 3.2 19.5 6v6.2c0 4.6-3.2 7.4-7.5 8.6-4.3-1.2-7.5-4-7.5-8.6V6z"/></symbol>
+<symbol id="i-search" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><circle cx="11" cy="11" r="6.5"/><path d="m20.5 20.5-4.9-4.9"/></symbol>
+<symbol id="i-trend" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="m3.5 16.5 5.5-5.5 3.6 3.6 7-7.8"/><path d="M14.5 6.5h5.2v5.2"/></symbol>
+<symbol id="i-flag" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M6 21V4"/><path d="M6 5h11.5l-2.2 3.8L17.5 13H6"/></symbol>
+</defs></svg>
+<div class="edu-strip">ℹ️ 本ページは <strong>Web3Campus 受講生・卒業生向けのご案内</strong>です。AI 個別指導モニターは有料のサービスです。内容・条件をご確認のうえ、ご不明点はお気軽にご相談ください。</div>
+
+<nav class="toc" aria-label="目次">
+  <a href="#what">どんなものか</a><a href="#demo">できるようになること</a><a href="#monitor">モニターの意味</a><a href="#terms">条件</a><a href="#compare">卒業生プランとの関係</a><a href="#request">お願い</a><a href="#apply">お申込み</a>
+</nav>
+
+<div class="wrap">
+
+  <header class="masthead">
+    <div class="eyebrow">AI Private Coaching — Monitor Program</div>
+    <h1 class="serif">AI 個別指導モニター<span class="h1-date">のご案内</span></h1>
+    <div class="sub">
+      <span class="verdict-chip"><span class="dot"></span>卒業生は5万円からスタート可能 — 定員20名ほど</span>
+      <span>2026年10月</span>
+    </div>
+    <div class="notice">
+      <div class="co-t">このページについて</div>
+      先日の配信でご質問の多かった「AI モニター」の内容を、文字でまとめたご案内です。まだの方は <a href="https://monday.web3campus.net/2026-09-28/">9/28 特別講義のアーカイブ</a>をご覧いただくと、いちばんイメージが掴めると思います。
+    </div>
+  </header>
+
+  <section id="what" class="rv" style="margin-top:36px;">
+    <div class="sec-head"><svg class="sec-ic"><use href="#i-compass"/></svg><span class="sec-no">1</span><h2 class="serif">どんなものか</h2></div>
+    <figure class="sec-photo"><img src="assets/mentor-laptop.jpg" alt="ラップトップを囲ん1対1で教わる様子" loading="lazy"><figcaption class="cap">初回は環境づくりから、隣に座る感覚で — 1対1の個別相談形式で進めます（Photo: Pexels）</figcaption></figure>
+    <p class="lead">講師と1対1の個別相談形式で、Claude Code のような<strong>デスクトップ型 AI</strong> を「自走できる状態」になるまでセットアップしていくプログラムです。</p>
+    <ul>
+      <li>初回はパソコンの環境づくりから始めます。<strong>事前の準備はパソコンと Zoom だけ</strong>で大丈夫です</li>
+      <li>AI の課金も初回以降で構いません（いちばん安い Pro プランで十分です）</li>
+      <li>内容は <strong>AI 活用に特化</strong>しています。アドバンスコース向けに配信予定の技術やノウハウ、プロンプトなども、個別相談の中でそのままお伝えします</li>
+    </ul>
+  </section>
+
+  <section id="demo" class="rv">
+    <div class="sec-head"><svg class="sec-ic"><use href="#i-trend"/></svg><span class="sec-no">2</span><h2 class="serif">どんなことができるようになるか</h2></div>
+    <figure class="sec-photo"><img src="assets/focused-workspace.jpg" alt="デスクで集中して作業する様子" loading="lazy"><figcaption class="cap">ゴールは「もう教わらなくていい状態」— 自分の手で形にできる環境と習慣をつくります（Photo: Pexels）</figcaption></figure>
+    <p class="lead">9/28 の特別講義でお見せしたとおりです。ゲストのヨシさんのご相談をその場で AI に渡し、<strong>30分ほどで企画書・動くアプリ・紹介ページ・画像</strong>が形になっていく様子をご覧いただきました。</p>
+    <div class="tiles">
+      <div class="tile"><span class="chip" style="color:var(--accent);background:var(--accent-soft)"><svg class="ic"><use href="#i-check"/></svg></span><div class="tx"><div class="k">実演で作ったもの</div><div class="v" style="font-size:15px;">企画書・アプリ・LP・画像</div><div class="d">お題をもらってから約30分</div></div></div>
+      <div class="tile"><span class="chip" style="color:var(--gold);background:var(--gold-soft)"><svg class="ic"><use href="#i-search"/></svg></span><div class="tx"><div class="k">活用の例</div><div class="v" style="font-size:15px;">仕事の資料・調べ物</div><div class="d">テスト作成・時間割づくり など</div></div></div>
+      <div class="tile"><span class="chip" style="color:var(--good);background:var(--good-soft)"><svg class="ic"><use href="#i-compass"/></svg></span><div class="tx"><div class="k">ゴール</div><div class="v" style="font-size:15px;">もう教わらなくていい状態</div><div class="d">自分で AI に聞ける環境と習慣</div></div></div>
+    </div>
+    
+    <h3>当日つくったもの（実際の画面）</h3>
+    <p style="font-size:14px;">以下はすべて <strong>9/28 の配信アーカイブの実際の画面</strong>です。指示は音声メモの文字起こしを貼るだけ — その間、AI が並列で作り続けます。</p>
+    <figure class="shot"><img src="assets/demo-parallel.jpg" alt="4つのAIセッションが並列で動作している画面" loading="lazy"><figcaption>こんな感じで作っていました — <strong>4つの AI を並列で稼働</strong>させ、企画書・アプリ・紹介ページ・素材を同時に制作中の実際の画面（アーカイブ 31分ごろ）</figcaption></figure>
+    <div class="shots3">
+      <figure class="shot"><img src="assets/demo-app.jpg" alt="完成したデモアプリ「現調見積アシスタント」の画面" loading="lazy"><figcaption><strong>動くデモアプリ</strong>「現調見積アシスタント」— 項目を選んで写真を送ると見積の下書きが届く（54分ごろ）</figcaption></figure>
+      <figure class="shot"><img src="assets/demo-lp.jpg" alt="完成した紹介ページのひとつ" loading="lazy"><figcaption><strong>紹介ページ（LP）は3案</strong>完成 — これはそのうちの1案（56分ごろ）</figcaption></figure>
+      <figure class="shot"><img src="assets/demo-assets.jpg" alt="画像素材とリール動画のレビュー画面" loading="lazy"><figcaption><strong>バナー・キャラクターなどの画像素材と動画</strong>もその場でレビュー（57分ごろ）</figcaption></figure>
+    </div>
+    
+    <h3>デモアプリを、実際に触ってみる</h3>
+    <div class="demo-row">
+      <div class="phone"><iframe src="demo/" title="現調見積アシスタント（デモ）" loading="lazy"></iframe></div>
+      <div class="demo-note">
+        <p>実演で作った<strong>「現調見積アシスタント」のデモアプリ本体</strong>です。項目を選んで進めると、見積の下書きができあがる流れをそのまま体験できます。</p>
+        <ul style="font-size:13.5px;">
+          <li>入力はお使いの端末の中だけで動きます。<strong>どこにも送信されません</strong></li>
+          <li>金額はデモ用のサンプル単価です（実在の塗装単価ではありません）</li>
+          <li>お題をいただいてから、このアプリの初版ができるまで約30分でした</li>
+        </ul>
+        <a class="demo-btn" href="demo/" target="_blank" rel="noopener">別タブで大きく開く →</a>
+      </div>
+    </div>
+
+    
+    <h3>紹介ページ（LP）3案 — 実物をそのまま公開します</h3>
+    <p style="font-size:14px;">同じ企画書から、方向性の違う3案が同時に出てきました。<strong>サムネイルをタップすると実物が開きます</strong>（別タブ・デモ用の架空サービスです）。</p>
+    <div class="shots3">
+      <a class="shot-link" href="demo-lp-a/" target="_blank" rel="noopener"><figure class="shot"><img src="assets/lp-a-thumb.jpeg" alt="LP A案 太陽スタイルのファーストビュー" loading="lazy"><figcaption><strong>A案「太陽スタイル」</strong>— 明るく元気な訴求型<span class="open-tag">実物を開く →</span></figcaption></figure></a>
+      <a class="shot-link" href="demo-lp-b/" target="_blank" rel="noopener"><figure class="shot"><img src="assets/lp-b-thumb.jpeg" alt="LP B案 シンプルのファーストビュー" loading="lazy"><figcaption><strong>B案「シンプル」</strong>— 情報を整理した端正な構成<span class="open-tag">実物を開く →</span></figcaption></figure></a>
+      <a class="shot-link" href="demo-lp-c/" target="_blank" rel="noopener"><figure class="shot"><img src="assets/lp-c-thumb.jpeg" alt="LP C案 会話体験のファーストビュー" loading="lazy"><figcaption><strong>C案「会話体験」</strong>— LINE のやり取りを見せる体験型<span class="open-tag">実物を開く →</span></figcaption></figure></a>
+    </div>
+
+    <h3>画像素材 — ロゴからバナーまで、これも当日のまま</h3>
+    <p style="font-size:14px;">ロゴ・キャラクター・告知バナーなどの素材一式も、同じ30分の中で生成されたものです（実物・無加工）。</p>
+    <div class="arts">
+      <figure class="shot"><img src="assets/art-logo.png" alt="生成されたロゴ" loading="lazy"><figcaption>ロゴ</figcaption></figure>
+      <figure class="shot"><img src="assets/art-character.png" alt="生成されたイメージキャラクター" loading="lazy"><figcaption>イメージキャラクター</figcaption></figure>
+      <figure class="shot wide"><img src="assets/art-banner-hero.jpg" alt="生成されたホームページ用ヒーローバナー" loading="lazy"><figcaption>HP 用ヒーローバナー</figcaption></figure>
+      <figure class="shot"><img src="assets/art-x-square.jpg" alt="生成された告知用スクエア画像" loading="lazy"><figcaption>告知用スクエア画像</figcaption></figure>
+    </div>
+
+    <div class="reel-row">
+      <div class="reel-box">
+        <video src="assets/genchou-reel.mp4" controls playsinline preload="metadata"></video>
+        <div class="cap2">仕上がった <strong>15秒のリール動画（完成版）</strong>。配信中は作成途中まででしたが、終了後にそのまま完成しています（音が出ます）。</div>
+      </div>
+      <div class="reel-note"><p>お題をいただいてから、ここまでが約30分。もちろん細かい仕上げは人の手で整えますが、「<strong>アイデアを形にする最初の一歩</strong>」がこの速さで出てくる — これが、モニターで身につけていただく環境です。</p></div>
+    </div>
+
+    <p>講師が初期のセットアップを2時間ほど教えた家族は、学校の先生という AI から遠い職場で、テスト作成や時間割づくりに自力で活用するようになりました。</p>
+    <p style="font-size:13px; color:var(--ink2);">※ 活用の幅やスピードには個人差があります。</p>
+    <div class="callout">
+      <div class="co-t">🎥 まずはアーカイブで雰囲気を</div>
+      実演の様子は <a href="https://monday.web3campus.net/2026-09-28/"><strong>9/28 特別講義のアーカイブ</strong></a>でそのままご覧いただけます。「なんかすごいらしい」で止まっている方にこそおすすめです。
+    </div>
+  </section>
+
+  <section id="monitor" class="rv">
+    <div class="sec-head"><svg class="sec-ic"><use href="#i-search"/></svg><span class="sec-no">3</span><h2 class="serif">「モニター」の意味</h2></div>
+    <figure class="sec-photo"><img src="assets/climbers-together.jpg" alt="岩壁を一緒に登る二人" loading="lazy"><figcaption class="cap">教えた実績を一緒に積み上げていただく段階です — そのご協力への感謝が特別条件です（Photo: Pexels）</figcaption></figure>
+    <p class="lead">今後 AI をお伝えしていくにあたり、<strong>教えた実績と、皆さんの感想を集めさせていただく段階</strong>です。そのご協力をいただく代わりに、特別な条件でご案内しています。</p>
+  </section>
+
+  <section id="terms" class="rv">
+    <div class="sec-head"><svg class="sec-ic"><use href="#i-check"/></svg><span class="sec-no">4</span><h2 class="serif">条件（卒業生の皆さん向け）</h2></div>
+    <figure class="sec-photo"><img src="assets/ticket-coins.jpg" alt="チケットとコイン" loading="lazy"><figcaption class="cap">5万円 = 1回1万円相当のチケット5枚分。使わなかった分は返金します（Photo: Pexels）</figcaption></figure>
+    <dl class="kv">
+      <dt>参加費</dt><dd>卒業生は<strong>5万円からスタート可能</strong>（一般の方は10万円から）</dd>
+      <dt>仕組み</dt><dd>デポジット制。5万円 = <strong>1回1万円相当の個別相談チケット5枚分</strong>です（チケットの単価は一般の方と同じで、少ない枚数から始められるのが卒業生優遇です）</dd>
+      <dt>返金</dt><dd>使わなかったチケット分は<strong>返金</strong>いたします<br><span style="font-size:12px; color:var(--ink3);">※ 返金のお申し出は契約期間（1年間）内に限ります。期間満了後の未使用分は返金対象外となります。<br>※ 返金後は、退会扱いとなります。個別相談のみならず配信の参加やアーカイブの受け取り、e ラーニング、その他サービス全般の提供が受けられなくなります。</span></dd>
+      <dt>定員</dt><dd>20名ほど（すでにご参加いただいている方がいます）</dd>
+    </dl>
+  </section>
+
+  <section id="compare" class="rv">
+    <div class="sec-head"><svg class="sec-ic"><use href="#i-pie"/></svg><span class="sec-no">5</span><h2 class="serif">卒業生プランとの関係</h2></div>
+    <figure class="sec-photo"><img src="assets/forest-fork.jpg" alt="森の中の分かれ道と道標" loading="lazy"><figcaption class="cap">短期集中のモニターか、月1ペースの卒業生プランか — 進む道は選べます（Photo: Pexels）</figcaption></figure>
+    <p class="lead">モニターには、<mark>1年間、卒業生プランとほぼ同等の権利</mark>が付きます。モニターにご参加の方は、月額3,980円の卒業生プランに別途加入していただく必要はありません（二重加入は不要です）。<br><span style="font-size:13px; color:var(--ink2);">※「ほぼ」としているのは、毎月1枚復活する特別チケットなど、卒業生プラン側だけの特典が一部あるためです。配信・レポート・サポート等は同等にご利用いただけます。</span></p>
+    <div class="tbl-scroll"><table>
+      <thead><tr><th></th><th>AI モニター</th><th>卒業生プラン</th></tr></thead>
+      <tbody>
+        <tr><td><strong>金額</strong></td><td><strong>5万円から</strong>スタート可能（チケット5枚分・1年間有効）</td><td>月額 3,980円（年間 約4.8万円）</td></tr>
+        <tr><td><strong>個別相談チケット</strong></td><td>一気に <strong>5枚</strong></td><td>毎月 <strong>1枚ずつ復活</strong>（最大1枚ストック）</td></tr>
+        <tr><td><strong>内容</strong></td><td><strong>AI 活用に特化</strong>（アドバンス向け配信相当のノウハウ・プロンプト込み）</td><td>暗号資産・AI どちらの相談にも</td></tr>
+        <tr><td><strong>向いている方</strong></td><td>短期間で集中して学びたい方</td><td>月1回のペースでじっくり続けたい方</td></tr>
+        <tr><td><strong>配信・サポート等</strong></td><td colspan="2" style="text-align:center;">同等（月曜/金曜の配信・レポート・Band / Telegram サポート・eラーニング）</td></tr>
+      </tbody>
+    </table></div>
+    <p style="font-size:13.5px;">金額だけを比べると、卒業生プラン1年分より<strong>少しお高く</strong>なります。ただ、チケットが毎月1枚の復活を待たずに一気に5枚入るので、短期集中で学びたい方にはモニターのほうが向いています。</p>
+  </section>
+
+
+  <section id="request" class="rv">
+    <div class="sec-head"><svg class="sec-ic"><use href="#i-check"/></svg><span class="sec-no">6</span><h2 class="serif">モニター受講者への、3つのお願い</h2></div>
+    <p class="lead">このモニターは、講師自身が受講した<strong>3か月で40万円以上する法人向け AI 研修</strong>にも全く引けを取らない、個人向けではまず出会えない水準のプログラムです。にもかかわらずこの価格でご提供できるのは、今後の「投資 × AI」への事業シフトとサービス拡充に向けて、<mark>実績とお客様の声を集めさせていただく段階</mark>だからです。そこで、ご参加の方には次の3点へのご協力（同意）をお願いしています。</p>
+    <div class="req-list">
+      <div class="req-item">
+        <div class="req-num"><span class="n">01</span><span class="u"></span></div>
+        <div class="req-body"><div class="req-title">毎回の講義の感想</div><div class="req-desc">ひとこと・数行で大丈夫です。サービス改善と実績づくりに使わせていただきます。</div></div>
+      </div>
+      <div class="req-item">
+        <div class="req-num"><span class="n">02</span><span class="u"></span></div>
+        <div class="req-body"><div class="req-title">AI で作った成果物の共有</div><div class="req-desc">セッションで作ったもののスクリーンショットや完成品の共有をお願いします。対外的に紹介する際は、<strong>事前に内容と範囲を必ず確認</strong>します。</div></div>
+      </div>
+      <div class="req-item">
+        <div class="req-num"><span class="n">03</span><span class="u"></span></div>
+        <div class="req-body"><div class="req-title">将来的なインタビューへのご協力</div><div class="req-desc">サービス紹介などで体験談をお聞かせください。お名前の出し方・掲載範囲はご相談のうえ、ご無理のない形で調整します。</div></div>
+      </div>
+    </div>
+    <div class="callout gold">
+      <div class="co-t">🤝 ご紹介のお願い</div>
+      本プログラムは、<strong>一般向けにも10万円でご提供予定</strong>です。「これは合いそう」というお知り合いがいらっしゃいましたら、ぜひご紹介ください。ご紹介いただいた方がご参加された場合、<strong>紹介料として参加費の20%</strong>をお渡しします（詳細は個別にご案内します）。
+    </div>
+  </section>
+
+  <section id="apply" class="rv">
+    <div class="sec-head"><svg class="sec-ic"><use href="#i-flag"/></svg><span class="sec-no">7</span><h2 class="serif">お申込み・ご相談</h2></div>
+    <figure class="sec-photo"><img src="assets/coffee-two-cups.jpg" alt="木のテーブルに並んだ二つのコーヒーカップ" loading="lazy"><figcaption class="cap">まずは気軽にご相談から — どちらが合うかを一緒に考えるところからで大丈夫です（Photo: Pexels）</figcaption></figure>
+    <p class="lead"><strong>個別にご連絡ください</strong>。Band への返信や、個別相談の際にお声がけいただく形で大丈夫です。</p>
+    <div class="callout gold">
+      <div class="co-t">迷っている方へ</div>
+      「自分の場合はモニターと卒業生プランのどちらが合うか」という<strong>ご相談だけでも歓迎</strong>です。いまの AI の経験度合い（まったく初めて／ChatGPT は使っている／すでに Claude Code を触っている 等）を添えてご連絡いただけると、お話が早いです。
+    </div>
+  </section>
+
+  <footer>
+    <p><strong>ご注意</strong>: 本ページは Web3Campus 受講生・卒業生向けの有料サービスのご案内です。記載の実演・活用例は特定の成果を保証するものではなく、活用の幅やスピードには個人差があります。条件・定員は 2026年10月時点のもので、状況により変更となる場合があります。</p>
+    <p class="disclaimer">運営: アウリオン合同会社（Web3Campus）／ お問い合わせは Band・Telegram または個別相談にて。写真: Pexels（Kampus Production / Julio Lopez / Elizabeth Olson / Torsten Dettlaff / ilayda 0700 / cottonbro studio）。</p>
+  </footer>
+</div>
+
+<div id="tooltip" role="tooltip"></div>
+
+
+<script>
+(function(){
+  "use strict";
+  var reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  var bar = document.getElementById("progress");
+  var ticking = false;
+  function onScroll(){
+    if(ticking) return; ticking = true;
+    requestAnimationFrame(function(){
+      var h = document.documentElement;
+      var max = h.scrollHeight - h.clientHeight;
+      bar.style.width = (max > 0 ? (h.scrollTop / max * 100) : 0) + "%";
+      ticking = false;
+    });
+  }
+  document.addEventListener("scroll", onScroll, {passive:true}); onScroll();
+
+  var revealed = function(el){
+    el.classList.add("in");
+    el.querySelectorAll(".scen-bar>i,.gauge .fill").forEach(function(b){
+      var w = b.getAttribute("data-w");
+      if(w){ if(reduce){ b.style.width = w; } else { requestAnimationFrame(function(){ b.style.width = w; }); } }
+    });
+  };
+  var els = document.querySelectorAll(".rv");
+  if("IntersectionObserver" in window && !reduce){
+    var io = new IntersectionObserver(function(entries){
+      entries.forEach(function(e){
+        if(e.isIntersecting || e.boundingClientRect.top < 0){ revealed(e.target); io.unobserve(e.target); }
+      });
+    }, {rootMargin:"0px 0px -8% 0px", threshold:[0, 0.05]});
+    els.forEach(function(el){ io.observe(el); });
+  } else {
+    els.forEach(revealed);
+  }
+
+  var links = Array.prototype.slice.call(document.querySelectorAll("nav.toc a"));
+  var secs = links.map(function(a){ return document.querySelector(a.getAttribute("href")); });
+  if("IntersectionObserver" in window){
+    var cur = -1;
+    var io2 = new IntersectionObserver(function(entries){
+      entries.forEach(function(e){
+        var i = secs.indexOf(e.target);
+        if(e.isIntersecting && i > -1){ cur = i;
+          links.forEach(function(a,j){ a.classList.toggle("on", j === cur); });
+        }
+      });
+    }, {rootMargin:"-40% 0px -55% 0px"});
+    secs.forEach(function(s){ if(s) io2.observe(s); });
+  }
+
+  var tip = document.getElementById("tooltip");
+  function showTip(e, el){
+    tip.innerHTML = "<strong>" + el.getAttribute("data-d") + "</strong><br>" + el.getAttribute("data-v");
+    tip.style.display = "block";
+    var x = (e.touches ? e.touches[0].clientX : e.clientX);
+    var y = (e.touches ? e.touches[0].clientY : e.clientY);
+    var w = tip.offsetWidth;
+    tip.style.left = Math.min(Math.max(8, x - w/2), window.innerWidth - w - 8) + "px";
+    tip.style.top = (y - tip.offsetHeight - 14) + "px";
+  }
+  function hideTip(){ tip.style.display = "none"; }
+  document.querySelectorAll(".pt").forEach(function(pt){
+    pt.style.cursor = "pointer";
+    pt.addEventListener("pointerenter", function(e){ pt.setAttribute("r","6"); showTip(e, pt); });
+    pt.addEventListener("pointermove", function(e){ showTip(e, pt); });
+    pt.addEventListener("pointerleave", function(){ pt.setAttribute("r","4"); hideTip(); });
+  });
+  document.addEventListener("scroll", hideTip, {passive:true});
+})();
+</script>
+</body>
+</html>
