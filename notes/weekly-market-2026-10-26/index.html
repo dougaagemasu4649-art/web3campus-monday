@@ -1,0 +1,531 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="noindex,nofollow,noarchive,nosnippet">
+<meta name="referrer" content="no-referrer">
+<title>週次市場レポート 2026-10-26｜月曜フォローアップ補足資料</title>
+<style>
+  :root{
+    --paper:#faf9f6; --surface2:#f1efe9; --surface3:#e9e6dc;
+    --ink:#1c1f26; --ink2:#5a6072; --ink3:#8a8f9c;
+    --border:#e3e0d6; --border2:#d2cec0;
+    --accent:#1f4e9c; --gold:#a8720a; --gold-soft:#a8720a22;
+    --pos:#0b7fa8; --neg:#c8442c; --good:#2e7d43;
+    --pos-soft:#0b7fa81a; --neg-soft:#c8442c1a; --accent-soft:#1f4e9c14; --good-soft:#2e7d431a;
+    --warn-bg:#a8720a14; --warn-border:#a8720a55;
+    --tooltip-bg:#1c1f26; --tooltip-ink:#faf9f6;
+    --glass:rgba(250,249,246,0.82);
+    --strip-bg:#f4ecd8;
+  }
+  @media (prefers-color-scheme: dark){
+    :root:not([data-theme="light"]){
+      --paper:#14181f; --surface2:#1c222c; --surface3:#232a36;
+      --ink:#e8e7e2; --ink2:#9aa0ad; --ink3:#6d7382;
+      --border:#2a3140; --border2:#394153;
+      --accent:#638cd6; --gold:#b98a2e; --gold-soft:#b98a2e2e;
+      --pos:#2f9bb8; --neg:#d4603c; --good:#4caf6d;
+      --pos-soft:#2f9bb824; --neg-soft:#d4603c24; --accent-soft:#638cd61f; --good-soft:#4caf6d24;
+      --warn-bg:#b98a2e1f; --warn-border:#b98a2e66;
+      --tooltip-bg:#e8e7e2; --tooltip-ink:#14181f;
+      --glass:rgba(20,24,31,0.82);
+      --strip-bg:#241f14;
+    }
+  }
+  :root[data-theme="dark"]{
+    --paper:#14181f; --surface2:#1c222c; --surface3:#232a36;
+    --ink:#e8e7e2; --ink2:#9aa0ad; --ink3:#6d7382;
+    --border:#2a3140; --border2:#394153;
+    --accent:#638cd6; --gold:#b98a2e; --gold-soft:#b98a2e2e;
+    --pos:#2f9bb8; --neg:#d4603c; --good:#4caf6d;
+    --pos-soft:#2f9bb824; --neg-soft:#d4603c24; --accent-soft:#638cd61f; --good-soft:#4caf6d24;
+    --warn-bg:#b98a2e1f; --warn-border:#b98a2e66;
+    --tooltip-bg:#e8e7e2; --tooltip-ink:#14181f;
+    --glass:rgba(20,24,31,0.82);
+    --strip-bg:#241f14;
+  }
+  *{box-sizing:border-box; margin:0;}
+  html{scroll-behavior:smooth; background:var(--paper);}
+  body{
+    background:var(--paper); color:var(--ink);
+    font-family:"Hiragino Sans","Hiragino Kaku Gothic ProN","Yu Gothic UI","Yu Gothic",Meiryo,system-ui,sans-serif;
+    font-size:15px; line-height:1.85; -webkit-font-smoothing:antialiased;
+  }
+  .wrap{max-width:920px; margin:0 auto; padding:40px 24px 80px;}
+  .serif{font-family:"Yu Mincho","YuMincho","Hiragino Mincho ProN","Hiragino Mincho Pro","MS PMincho",Georgia,serif;}
+  .num{font-variant-numeric:tabular-nums; letter-spacing:-0.01em;}
+  #progress{position:fixed; top:0; left:0; height:3px; width:0; background:var(--gold); z-index:80;}
+  .edu-strip{position:sticky; top:0; z-index:60; background:var(--strip-bg); border-bottom:1px solid var(--warn-border);
+    font-size:12px; line-height:1.6; color:var(--ink2); padding:8px 16px; text-align:center;}
+  nav.toc{position:sticky; top:37px; z-index:55; background:var(--glass); backdrop-filter:blur(14px) saturate(160%);
+    border-bottom:1px solid var(--border); padding:8px 24px;
+    display:flex; gap:6px; overflow-x:auto; scrollbar-width:none;}
+  nav.toc::-webkit-scrollbar{display:none;}
+  nav.toc a{flex:none; font-size:12px; font-weight:600; color:var(--ink2); text-decoration:none;
+    padding:4px 12px; border-radius:999px; border:1px solid transparent; transition:background .15s ease, color .15s ease;}
+  nav.toc a:hover{background:var(--surface2); color:var(--ink);}
+  nav.toc a:active{transform:scale(0.97);}
+  nav.toc a.on{background:var(--accent-soft); color:var(--accent); border-color:var(--border);}
+  @media (prefers-reduced-transparency: reduce){
+    nav.toc{background:var(--paper); backdrop-filter:none;}
+    .edu-strip{backdrop-filter:none; background:var(--surface2);}
+  }
+  section{scroll-margin-top:96px;}
+  .masthead{border-bottom:3px double var(--border2); padding-bottom:28px; margin-bottom:8px; padding-top:34px;}
+  .eyebrow{font-size:11px; letter-spacing:0.22em; text-transform:uppercase; color:var(--gold); font-weight:600; margin-bottom:14px;}
+  h1{font-size:clamp(28px,5vw,44px); font-weight:600; letter-spacing:-0.015em; line-height:1.25; text-wrap:balance;}
+  .h1-date{font-size:0.62em; color:var(--ink2); margin-left:0.6em;}
+  @media (max-width:520px){ .h1-date{display:block; margin-left:0; font-size:15px; margin-top:4px;} }
+  .masthead .sub{display:flex; flex-wrap:wrap; gap:10px 22px; align-items:center; margin-top:16px; color:var(--ink2); font-size:13px;}
+  .verdict-chip{display:inline-flex; align-items:center; gap:8px; background:var(--warn-bg); border:1px solid var(--warn-border);
+    color:var(--ink); border-radius:999px; padding:5px 16px; font-weight:700; font-size:13.5px;}
+  .verdict-chip .dot{width:9px;height:9px;border-radius:50%;background:var(--neg);flex:none;}
+  .notice{border:1px solid var(--border2); border-left:4px solid var(--gold); background:var(--gold-soft);
+    border-radius:0 6px 6px 0; padding:14px 18px; margin:20px 0 4px; max-width:76ch; font-size:14px;}
+  .notice .co-t{font-weight:700; font-size:13px; letter-spacing:0.06em; margin-bottom:4px; color:var(--gold);}
+  .tiles{display:grid; grid-template-columns:repeat(auto-fit,minmax(176px,1fr)); gap:10px; margin:26px 0 8px;}
+  .tile{background:var(--surface2); border:1px solid var(--border); border-radius:6px; padding:13px 14px 11px;}
+  .tile .k{font-size:11px; letter-spacing:0.06em; color:var(--ink2); text-transform:uppercase; font-weight:600;}
+  .tile .v{font-size:21px; font-weight:700; margin-top:3px; line-height:1.2; letter-spacing:-0.01em;}
+  .tile .d{font-size:12px; margin-top:3px; color:var(--ink2);}
+  .up{color:var(--pos);} .down{color:var(--neg);} .gold-t{color:var(--gold);} .good-t{color:var(--good);}
+  .ic{width:18px;height:18px;flex:none;display:inline-block;}
+  .sec-ic{width:19px;height:19px;color:var(--gold);flex:none;align-self:center;}
+  .chip{width:31px;height:31px;border-radius:9px;flex:none;display:flex;align-items:center;justify-content:center;}
+  .chip .ic{width:17px;height:17px;}
+  .tile{display:flex;gap:11px;align-items:flex-start;}
+  .tile .tx{min-width:0;}
+  .what .ic{width:16px;height:16px;vertical-align:-3px;margin-right:6px;color:var(--gold);}
+  .g-name .ic{width:17px;height:17px;vertical-align:-3px;margin-right:6px;}
+  .coin{display:inline-flex;width:26px;height:26px;border-radius:50%;align-items:center;justify-content:center;margin-right:8px;vertical-align:-7px;overflow:hidden;background:var(--surface3);}
+  .coin img{width:100%;height:100%;object-fit:contain;display:block;}
+  .chip img{width:22px;height:22px;border-radius:50%;display:block;}
+  .ti{width:16px;height:16px;border-radius:50%;vertical-align:-3px;margin-right:4px;display:inline-block;}
+  section{margin-top:56px;}
+  .sec-head{display:flex; align-items:baseline; gap:14px; border-bottom:1px solid var(--border2); padding-bottom:10px; margin-bottom:22px;}
+  .sec-no{font-size:13px; color:var(--gold); letter-spacing:0.15em; font-weight:600; flex:none;}
+  h2{font-size:23px; font-weight:600; letter-spacing:0.01em; line-height:1.35; text-wrap:balance;}
+  h3{font-size:16.5px; font-weight:700; margin:30px 0 10px; letter-spacing:0.01em;}
+  p{margin:10px 0; max-width:72ch;}
+  .lead{font-size:16px; max-width:72ch;}
+  ul,ol{padding-left:1.4em; margin:10px 0; max-width:70ch;}
+  li{margin:5px 0;}
+  strong{font-weight:700;}
+  mark{background:var(--gold-soft); color:inherit; padding:0 3px; border-radius:2px;}
+  a{color:var(--accent); text-decoration-thickness:1px; text-underline-offset:3px;}
+  .sec-photo{position:relative; margin:2px 0 20px; border-radius:6px; overflow:hidden; border:1px solid var(--border);}
+  .sec-photo img{display:block; width:100%; aspect-ratio:21/7; object-fit:cover; filter:saturate(0.82);}
+  .sec-photo .cap{position:absolute; left:0; right:0; bottom:0; padding:22px 14px 8px; font-size:11px; color:#f2efe8;
+    background:linear-gradient(transparent, rgba(10,12,16,0.62)); letter-spacing:0.04em;}
+  @media (prefers-color-scheme: dark){ :root:not([data-theme="light"]) .sec-photo img{filter:saturate(0.8) brightness(0.88);} }
+  :root[data-theme="dark"] .sec-photo img{filter:saturate(0.8) brightness(0.88);}
+  @media (max-width:520px){ .sec-photo img{aspect-ratio:16/7;} }
+  .rv{opacity:0; transform:translateY(10px); transition:opacity .5s ease-out, transform .5s ease-out;}
+  .rv.in{opacity:1; transform:none;}
+  @media (prefers-reduced-motion: reduce){
+    html{scroll-behavior:auto;}
+    .rv{opacity:1; transform:none; transition:opacity .2s ease;}
+    .scen-bar>i,.gauge .fill{transition:none !important;}
+  }
+  .tbl-scroll{overflow-x:auto; border:1px solid var(--border); border-radius:6px; margin:14px 0;}
+  table{border-collapse:collapse; width:100%; font-size:13.5px; line-height:1.6;}
+  th{background:var(--surface2); text-align:left; font-weight:700; color:var(--ink2); font-size:12px; letter-spacing:0.05em; white-space:nowrap;}
+  th,td{padding:9px 13px; border-bottom:1px solid var(--border); vertical-align:top;}
+  tbody tr:last-child td{border-bottom:none;}
+  td.n,th.n{text-align:right; font-variant-numeric:tabular-nums; white-space:nowrap;}
+  .pill{display:inline-block; border-radius:999px; padding:1px 10px; font-size:11.5px; font-weight:700; white-space:nowrap;}
+  .pill.neg{background:var(--neg-soft); color:var(--neg);}
+  .pill.pos{background:var(--pos-soft); color:var(--pos);}
+  .pill.neu{background:var(--surface3); color:var(--ink2);}
+  .pill.gold{background:var(--gold-soft); color:var(--gold);}
+  .pill.good{background:var(--good-soft); color:var(--good);}
+  .fig{background:var(--surface2); border:1px solid var(--border); border-radius:6px; padding:18px 18px 12px; margin:18px 0;}
+  .fig .fig-title{font-size:13.5px; font-weight:700;}
+  .fig .fig-sub{font-size:12px; color:var(--ink2); margin-top:2px; margin-bottom:8px;}
+  .fig svg{display:block; width:100%; height:auto;}
+  .fig .fig-note{font-size:11.5px; color:var(--ink3); margin-top:6px;}
+  .legend{display:flex; gap:16px; flex-wrap:wrap; font-size:12px; color:var(--ink2); margin-top:6px;}
+  .legend .sw{display:inline-block; width:10px; height:10px; border-radius:2px; margin-right:5px; vertical-align:-1px;}
+  #tooltip{position:fixed; z-index:90; pointer-events:none; display:none; background:var(--tooltip-bg); color:var(--tooltip-ink);
+    font-size:12px; line-height:1.5; padding:6px 10px; border-radius:5px; font-variant-numeric:tabular-nums;
+    box-shadow:0 3px 12px rgba(0,0,0,0.25); max-width:260px;}
+  .gauge{margin:20px 0; max-width:680px;}
+  .gauge .g-head{display:flex; justify-content:space-between; align-items:baseline; gap:10px; flex-wrap:wrap;}
+  .gauge .g-name{font-weight:700; font-size:14px;}
+  .gauge .g-stat{font-size:12.5px; font-weight:700;}
+  .gauge .track{position:relative; height:14px; background:var(--surface3); border-radius:4px; margin:8px 0 4px; overflow:visible;}
+  .gauge .fill{position:absolute; left:0; top:0; bottom:0; width:0; border-radius:4px 0 0 4px; transition:width .7s ease-out;}
+  .gauge .tick{position:absolute; top:-5px; bottom:-5px; width:2px; background:var(--ink3);}
+  .gauge .tick.alert{background:var(--neg);}
+  .gauge .tick .t-lbl{position:absolute; top:-20px; left:50%; transform:translateX(-50%); font-size:10.5px; color:var(--ink3); white-space:nowrap;}
+  .gauge .prev{position:absolute; top:-3px; bottom:-3px; width:2px; background:var(--ink); opacity:.45;}
+  .gauge .g-scale{display:flex; justify-content:space-between; font-size:10.5px; color:var(--ink3);}
+  .gauge .g-note{font-size:12px; color:var(--ink2); margin-top:4px;}
+  .scen{display:flex; flex-direction:column; gap:12px; margin:16px 0; max-width:640px;}
+  .scen-row .scen-top{display:flex; justify-content:space-between; font-size:13.5px; margin-bottom:4px;}
+  .scen-row .name{font-weight:700;}
+  .scen-row .pct{font-weight:700; font-variant-numeric:tabular-nums;}
+  .scen-bar{height:12px; background:var(--surface3); border-radius:3px; overflow:hidden;}
+  .scen-bar>i{display:block; height:100%; border-radius:3px; width:0; transition:width .7s ease-out;}
+  .scen-note{font-size:12px; color:var(--ink2); margin-top:3px;}
+  .cards{display:grid; grid-template-columns:repeat(auto-fit,minmax(260px,1fr)); gap:14px; margin:18px 0;}
+  .card{background:var(--surface2); border:1px solid var(--border); border-radius:8px; padding:16px 18px;}
+  .card .c-head{display:flex; justify-content:space-between; align-items:baseline; gap:8px;}
+  .card .c-tkr{font-weight:700; font-size:16px;}
+  .card .c-chg{font-weight:700; font-variant-numeric:tabular-nums;}
+  .card .c-meta{font-size:11.5px; color:var(--ink3); margin-top:2px;}
+  .card p{font-size:13px; margin:8px 0 0; color:var(--ink2); max-width:none;}
+  .card p strong{color:var(--ink);}
+  .callout{border:1px solid var(--border2); border-left:4px solid var(--accent); background:var(--accent-soft);
+    border-radius:0 6px 6px 0; padding:14px 18px; margin:18px 0; max-width:76ch;}
+  .callout.gold{border-left-color:var(--gold); background:var(--gold-soft);}
+  .callout.red{border-left-color:var(--neg); background:var(--neg-soft);}
+  .callout .co-t{font-weight:700; font-size:13px; letter-spacing:0.06em; margin-bottom:4px;}
+  .kv{display:grid; grid-template-columns:auto 1fr; gap:6px 18px; font-size:13.5px; margin:12px 0; max-width:76ch;}
+  .kv dt{font-weight:700; white-space:nowrap; color:var(--ink2);}
+  .kv dd{margin:0;}
+  footer{margin-top:64px; border-top:3px double var(--border2); padding-top:20px; font-size:12.5px; color:var(--ink2);}
+  footer p{max-width:none;}
+  .disclaimer{font-style:italic; margin-top:12px; color:var(--ink3);}
+</style>
+</head>
+<body>
+<div id="progress" aria-hidden="true"></div>
+<svg width="0" height="0" style="position:absolute" aria-hidden="true"><defs>
+<symbol id="i-bank" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9.5 12 4l9 5.5"/><path d="M5 11v7M9.7 11v7M14.3 11v7M19 11v7"/><path d="M3.5 20.5h17"/></symbol>
+<symbol id="i-oil" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"><path d="M12 3.5s5.8 6.4 5.8 10.4a5.8 5.8 0 1 1-11.6 0C6.2 9.9 12 3.5 12 3.5z"/></symbol>
+<symbol id="i-percent" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M7 17 17 7"/><circle cx="8.2" cy="8.2" r="2"/><circle cx="15.8" cy="15.8" r="2"/></symbol>
+<symbol id="i-pie" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"><circle cx="12" cy="12" r="8.5"/><path d="M12 3.5V12l6 6"/></symbol>
+<symbol id="i-compass" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="m15.2 8.8-2 4.4-4.4 2 2-4.4z"/></symbol>
+<symbol id="i-cal" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="5.5" width="16" height="15" rx="2"/><path d="M4 10.5h16M8.5 3.5v4M15.5 3.5v4"/></symbol>
+<symbol id="i-check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="4.5" y="4.5" width="15" height="16" rx="2"/><path d="m8.5 12.8 2.4 2.4 4.6-5"/></symbol>
+<symbol id="i-shield" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"><path d="M12 3.2 19.5 6v6.2c0 4.6-3.2 7.4-7.5 8.6-4.3-1.2-7.5-4-7.5-8.6V6z"/></symbol>
+<symbol id="i-search" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><circle cx="11" cy="11" r="6.5"/><path d="m20.5 20.5-4.9-4.9"/></symbol>
+<symbol id="i-trend" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="m3.5 16.5 5.5-5.5 3.6 3.6 7-7.8"/><path d="M14.5 6.5h5.2v5.2"/></symbol>
+<symbol id="i-flag" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M6 21V4"/><path d="M6 5h11.5l-2.2 3.8L17.5 13H6"/></symbol>
+</defs></svg>
+<div class="edu-strip">⚠️ 本レポートは<strong>教育目的の相場環境記録</strong>です。特定の暗号資産・金融商品の売買をすすめるものではありません。AI による自動調査由来の情報を含むため、数値・引用には誤りが含まれる可能性があります。</div>
+
+<nav class="toc" aria-label="目次">
+  <a href="#summary">総括</a><a href="#answers">答え合わせ</a><a href="#rates">FOMCと金利</a><a href="#alarm">警報器</a><a href="#research">外部リサーチ</a><a href="#gainers">急騰・教材</a><a href="#next">来週の監視</a>
+</nav>
+
+<div class="wrap">
+
+  <header class="masthead">
+    <div class="eyebrow">Weekly Market Report — 月曜フォローアップ補足資料</div>
+    <h1 class="serif"><span style="white-space:nowrap;">週次市場レポート</span><span class="h1-date">2026年10月26日（月）</span></h1>
+    <div class="sub">
+      <span class="verdict-chip"><span class="dot"></span>週足2週連続割れ（約−3%）— 検証ゾーンの深度評価へ</span>
+      <span>対象週：10/20–10/26</span>
+    </div>
+    <div class="notice">
+      <div class="co-t">本日は通常回です</div>
+      本日 10/26（月）21時は通常回。<strong>前半30分で相場の整理</strong>（このレポートの中身を講師が解説します）、<strong>後半30分は質問会</strong>です。11月からの新体制（卒業生プラン・AI 個別指導モニター）の続報・ご質問も歓迎です。配信前の予習・配信後の復習にお使いください。
+    </div>
+    <div class="tiles num">
+      <div class="tile"><span class="chip" style="background:#d9822b1f"><img src="assets/btc.png" alt="Bitcoin"></span><div class="tx"><div class="k">BTC</div><div class="v">$79,650</div><div class="d down">週間 −2.4%・週明け $80K 割れ</div></div></div>
+      <div class="tile"><span class="chip" style="color:var(--neg);background:var(--neg-soft)"><svg class="ic"><use href="#i-check"/></svg></span><div class="tx"><div class="k">週足終値 10/25</div><div class="v down">$80,154</div><div class="d">❌ 2週連続割れ（−3.2%）</div></div></div>
+      <div class="tile"><span class="chip" style="color:var(--gold);background:var(--gold-soft)"><svg class="ic"><use href="#i-bank"/></svg></span><div class="tx"><div class="k">米10年金利</div><div class="v gold-t">4.96%</div><div class="d">3週連続低下・1か月ぶり5%割れ</div></div></div>
+      <div class="tile"><span class="chip" style="color:var(--neg);background:var(--neg-soft)"><svg class="ic"><use href="#i-shield"/></svg></span><div class="tx"><div class="k">信用スプレッド</div><div class="v down">3.40%</div><div class="d">🔴 格上げ初週に新ピーク続伸</div></div></div>
+      <div class="tile"><span class="chip" style="color:var(--neg);background:var(--neg-soft)"><svg class="ic"><use href="#i-oil"/></svg></span><div class="tx"><div class="k">原油 WTI</div><div class="v down">$101</div><div class="d">🔴 $100 定着（ピークは $110）</div></div></div>
+      <div class="tile"><span class="chip" style="color:var(--gold);background:var(--gold-soft)"><svg class="ic"><use href="#i-percent"/></svg></span><div class="tx"><div class="k">ETF 週間フロー</div><div class="v gold-t">+$301M</div><div class="d">3週ぶり流入も木金 −$773M 反転</div></div></div>
+    </div>
+  </header>
+
+  <section id="summary" class="rv" style="margin-top:36px;">
+    <div class="sec-head"><svg class="sec-ic"><use href="#i-compass"/></svg><span class="sec-no">総括</span><h2 class="serif">今週の3行まとめ</h2></div>
+    <ol class="lead" style="font-weight:600;">
+      <li>週足判定は<strong>2週連続の不合格</strong>。終値 $80,154 はライン $82,814 を <mark>−3.2%</mark> 下回り、割れ幅は前週（−0.96%）の<strong>約3倍</strong>に拡大。土曜の安値 約$79,200 は<strong>前週安値を更新し、検証ゾーンの第1節目にタッチ</strong>しました。</li>
+      <li>木曜は<strong>「Everything Sell-Off」</strong>。AI 企業の資金調達不安を引き金に<mark>株・BTC・金が同時安</mark>となり、買われたのは国債だけ（10年金利は1日で −17bp 超＝2年超ぶりの下げ幅で 4.96% へ）。<strong>金まで週 −4.1%（$4,000 割れ）</strong>の換金売りでした。</li>
+      <li>警報器は<strong>信用スプレッドが格上げ初週に 3.40% の新ピークへ続伸</strong>。そしてアルトでは <mark>ZRO 剥落・STRK 出尽くし・AAVE 全消滅・Q 逆回転</mark> と、「期待先行→剥落」の教材が<strong>1週間で4例</strong>揃いました。</li>
+    </ol>
+    <div class="tbl-scroll"><table>
+      <thead><tr><th>側</th><th>材料</th><th>位置づけ</th></tr></thead>
+      <tbody>
+        <tr><td><span class="pill neg">弱気</span></td><td>週足終値 $80,154 で<strong>2週連続割れ・幅は約3倍</strong>（−3.2%）・前週安値も更新</td><td>検証ゾーン第1節目にタッチし、週明けに明確割れ</td></tr>
+        <tr><td><span class="pill neg">弱気</span></td><td>信用スプレッド 3.40% 新ピーク（格上げした初週に続伸）</td><td>金利低下の中でスプレッドだけ拡大する「質の悪い」形が2週目</td></tr>
+        <tr><td><span class="pill neg">弱気</span></td><td>BTC 現値が ETF の推定平均コスト帯（$81,500〜82,000）を<strong>初めて下回った</strong></td><td>ETF 買い平均が含み損圏入り・$81,500 奪回が強気側の条件に</td></tr>
+        <tr><td><span class="pill neg">弱気</span></td><td>アルトの下方ベータ2週目: BTC −2.4% の週に主要アルトは −8〜28%</td><td>防衛ライン戦績 0勝3敗・ARB はゾーン下抜けで決着</td></tr>
+        <tr><td><span class="pill good">強気</span></td><td>50週移動平均線（実測 $76,000〜76,500）比 <strong>+5.3〜5.8% は維持</strong>・$77,000 未到達</td><td>「ライン割れ＝即シナリオ棄却」ではない状態は継続</td></tr>
+        <tr><td><span class="pill good">強気</span></td><td>ETF 週計 +$301M と<strong>3週ぶりの週間純流入</strong>（月水だけで +$1,075M）</td><td>ただし木金 −$773M の急反転 — 中身の評価は分かれる</td></tr>
+        <tr><td><span class="pill good">強気</span></td><td>10年金利 4.96%・利上げ観測は 5% まで消滅（明日からの FOMC は据え置き 94% 織り込み）</td><td>金利面の逆風は剥落。ただし低下の原因が「質への逃避」なら両義的</td></tr>
+        <tr><td><span class="pill neu">両義的</span></td><td>金 −4.1%（$4,000 割れ・7月以来最悪の週）・銀 年初来 −24%</td><td>「BTC だけが弱い」のではなく「全部が換金された」週という証拠</td></tr>
+      </tbody>
+    </table></div>
+    <p style="font-size:14px;"><strong>今週の一行</strong>: 「2週連続のライン割れで検証ゾーン第1節目にタッチ。AI 資金調達不安の Everything Sell-Off で株・BTC・金が同時安となり、10年金利は 4.96% へ急低下・利上げ観測は消滅。警報器は信用スプレッド 3.40% 新ピーク続伸 — そして『期待先行の教材』が1週間で4例揃った週」。</p>
+  </section>
+
+  <section id="answers" class="rv">
+    <div class="sec-head"><svg class="sec-ic"><use href="#i-check"/></svg><span class="sec-no">1</span><h2 class="serif">答え合わせ — 2週連続割れ、検証ゾーンの「深さ」を測る段階へ</h2></div>
+    <figure class="sec-photo"><img src="assets/three-peaks-dusk.jpg" alt="夕暮れに連なる三つの峰" loading="lazy"><figcaption class="cap">検証ゾーンには節目が連なっています — 第1節目（前週安値）にタッチし、次は $77,600 → $77,000 → 50週線です（Photo: Pexels）</figcaption></figure>
+    <p class="lead">先週「初のライン割れ・ただし浅い」とお伝えした週足判定。今週は<strong>割れ幅が約3倍（−3.2%）へ拡大</strong>し、問いが「割れたか」から<strong>「どこまで深く入るか」</strong>へ変わりました。</p>
+
+    <div class="fig">
+      <div class="fig-title">今週の BTC — $85,000 タッチから「2週連続割れ」確定まで</div>
+      <div class="fig-sub">単位: USD。主要な節目5点の推移（図は Binance 基準。週足終値は集計により $80,049〜80,485 の幅・いずれも判定ライン下）</div>
+      <svg viewBox="0 0 660 300" role="img" aria-label="BTCの週内推移。前週終値82,116ドルから10/21に高値84,898ドルまで急騰した後、10/22のEverything Sell-Offで反落し、10/24に週安値79,221ドルで前週安値79,676ドルを更新、10/25週足終値80,154ドルで判定ライン82,814ドルを2週連続で下回り、10/26現在79,650ドル">
+        <g stroke="var(--border2)" stroke-width="1">
+          <line x1="52" y1="20" x2="640" y2="20"/><line x1="52" y1="80" x2="640" y2="80"/><line x1="52" y1="140" x2="640" y2="140"/><line x1="52" y1="200" x2="640" y2="200"/><line x1="52" y1="260" x2="640" y2="260"/>
+        </g>
+        <g fill="var(--ink3)" font-size="10.5" font-family="inherit">
+          <text x="46" y="24" text-anchor="end">86k</text><text x="46" y="84" text-anchor="end">84k</text><text x="46" y="144" text-anchor="end">82k</text><text x="46" y="204" text-anchor="end">80k</text><text x="46" y="264" text-anchor="end">78k</text>
+          <text x="52" y="288">10/18 前週足</text><text x="186" y="288">10/21 高値</text><text x="318" y="288">10/24 安値</text><text x="452" y="288">10/25 週足</text><text x="586" y="288">10/26 現在</text>
+        </g>
+        <line x1="52" y1="115.6" x2="640" y2="115.6" stroke="var(--neg)" stroke-width="1.8" stroke-dasharray="6 5"/>
+        <text x="638" y="110" text-anchor="end" font-size="11" font-weight="700" fill="var(--neg)">判定ライン $82,814</text>
+        <line x1="52" y1="209.7" x2="640" y2="209.7" stroke="var(--gold)" stroke-width="1.5" stroke-dasharray="3 4"/>
+        <text x="638" y="224" text-anchor="end" font-size="10.5" font-weight="700" fill="var(--gold)">前週安値 $79,676（検証ゾーン第1節目）</text>
+        <polyline fill="none" stroke="var(--accent)" stroke-width="2" stroke-linejoin="round" stroke-linecap="round"
+          points="60,136.5 200,53.1 340,223.4 480,195.4 620,210.5"/>
+        <g fill="var(--accent)">
+          <circle class="pt" cx="60" cy="136.5" r="4" data-d="10/18（日）前週の週足終値（初のライン割れ）" data-v="$82,116"/>
+          <circle class="pt" cx="200" cy="53.1" r="5" data-d="10/21（水）週内高値・$85,000 寸前まで急騰→即反落（24時間で $3,000 往復）" data-v="$84,898"/>
+          <circle class="pt" cx="340" cy="223.4" r="5" data-d="10/24（土）週安値・前週安値 $79,676 を更新（検証ゾーン第1節目にタッチ）" data-v="$79,221"/>
+          <circle class="pt" cx="480" cy="195.4" r="5" data-d="10/25（日）週足終値・2週連続のライン割れ確定（−3.2%）" data-v="$80,154"/>
+          <circle class="pt" cx="620" cy="210.5" r="4" data-d="10/26（月）現在・前週安値を下回って推移中" data-v="$79,650"/>
+        </g>
+      </svg>
+      <div class="legend"><span><span class="sw" style="background:var(--accent);"></span>BTC（節目5点・Binance）</span><span><span class="sw" style="background:var(--neg);"></span>判定ライン $82,814</span><span><span class="sw" style="background:var(--gold);"></span>前週安値（第1節目）</span></div>
+      <div class="fig-note">50週移動平均線（実測計算 $76,000〜76,500）はチャート下方で、終値はその +5.3〜5.8% 上（+8.6% → +7.2% → +5.3% と3〜4週連続で距離が縮小）。水曜のショート清算 約$173M → 木曜のロング中心清算 約$431M と、両方向に清算が走った週でした。ポイントにタッチ/カーソルで数値表示。</div>
+    </div>
+
+    <dl class="kv">
+      <dt>判定の結果</dt><dd><strong>2週連続の不合格</strong>。終値 $80,154（集計により $80,049〜80,485）はライン比 <strong>−$2,660 前後（−2.8〜−3.3%）</strong>で、割れ幅は前週の約3倍。週間では −1.9〜−2.4% の下落週です。</dd>
+      <dt>週の形</dt><dd>水曜に $85,000 寸前まで急騰（ショートの踏み上げ）→ 木曜の Everything Sell-Off で全戻し → 土曜に週安値 約$79,200 で<strong>前週安値を更新</strong> → 週明けの今朝も $80,000 割れ。高安 $5,700 の往復で、方向よりも「清算の往復」が主役でした。</dd>
+      <dt>ETF の二面性</dt><dd>週間では <strong>+$301M と3週ぶりの純流入</strong>。ただし中身は「月水 +$1,075M → 木金 −$773M」の急反転で、木曜単日 −$636M は6月以来の最大流出。そして現値は <strong>ETF の推定平均コスト帯（$81,500〜82,000）を初めて下回りました</strong> — $81,500 の奪回が強気側の条件です。</dd>
+      <dt>シナリオの現在地</dt><dd>講師想定は<strong>「③もう底を打った」60% ／「①+② まだ下がある」40%</strong>（据え置き）。今週の実測は「検証ゾーン入り」から<strong>「深度評価の段階」</strong>へ。下の節目は 約$79,200（今週安値）→ $77,600 → $77,000 → 50週線 $76,000〜76,500。評価の更新は本日の配信で講師からお伝えします。</dd>
+    </dl>
+  </section>
+
+  <section id="rates" class="rv">
+    <div class="sec-head"><svg class="sec-ic"><use href="#i-bank"/></svg><span class="sec-no">2</span><h2 class="serif">FOMC 直前の論点整理 — 利上げ観測は消滅した。なのに、なぜ下げたか</h2></div>
+    <figure class="sec-photo"><img src="assets/lighthouse-storm.jpg" alt="荒れた海と波しぶきの中に立つ灯台" loading="lazy"><figcaption class="cap">木曜の嵐の中で買われたのは国債だけでした — 株・BTC・金・銀はすべて売り（Photo: Pexels）</figcaption></figure>
+    <p class="lead">明日 10/27（火）から FOMC です。<strong>据え置き 94%・利上げ 5%</strong> と結果はほぼ織り込み済み — 1週間で 28%→16%→8%→5% と、利上げ観測は事実上消滅しました。ならば木曜に売られた理由は金利ではありません。</p>
+
+    <dl class="kv">
+      <dt>何が起きたか</dt><dd>10/22（木）、<strong>AI 企業の資金調達不安</strong>を引き金に全資産が売られました。大手テック決算と新株発行の発表を受けて関連企業の社債保証コストが過去最高となり、ナスダック −2.6%（6月以来最悪）・半導体指数 −6.7%。欧州では仏国債も売られ（金利は2002年以来の水準）、BTC は一時 $81,000 割れ・24時間清算 約$431M でした。</dd>
+      <dt>資金の行き先</dt><dd>その日買われたのは<strong>米国債だけ</strong>。10年金利は1日で −17bp 超（2年超ぶりの下げ幅）の 4.96% へ低下し、1か月ぶりに 5% を割れました。<strong>金も週 −4.1%（$4,000 割れ・7月以来最悪の週）、銀は年初来 −24%</strong> — 安全資産まで売られる「換金売り」の色が濃い1日です。</dd>
+      <dt>整理</dt><dd>先週お伝えした「良い金利低下と悪い金利低下」の続編です。金利が下がったのは利上げ観測の剥落に加えて<strong>質への逃避</strong>の側面が強く、「金利低下＝追い風」とは今週も単純化できません。一方で「BTC だけが弱い」のでもなく、<strong>全部が換金された週</strong>でした。</dd>
+    </dl>
+
+    <div class="callout">
+      <div class="co-t">FOMC 本番（10/27-28）の見どころ3点</div>
+      結果（据え置き）はほぼ決まっているため、見るべきは中身です。<strong>① エネルギー由来のインフレ（Brent は $116）を「一時的」と扱うか</strong> <strong>② 12月利上げの織り込み（76〜79%）を声明・会見が追認するか</strong> <strong>③ 10/28 は BTC を大量保有する米上場企業の臨時株主総会と同日</strong>で、関連銘柄のボラティリティが BTC のセンチメントに乗りやすい日程です。結果発表は日本時間 10/29（木）早朝 — 木曜の配信アーカイブ復習時にはすべて答えが出ています。
+    </div>
+  </section>
+
+  <section id="alarm" class="rv">
+    <div class="sec-head"><svg class="sec-ic"><use href="#i-shield"/></svg><span class="sec-no">3</span><h2 class="serif">警報器ダッシュボード — 主語は引き続き「信用」。金すら逃げ場にならなかった</h2></div>
+    <p class="lead">黒い縦線が先週の位置、色付きバーが今週の位置です。先週「格上げ」した②信用スプレッドは、<strong>初週からさらに新ピークへ続伸</strong>しました。解除できた計器は今週もゼロです。</p>
+
+    <div class="gauge">
+      <div class="g-head"><span class="g-name"><svg class="ic" style="color:var(--neg)"><use href="#i-shield"/></svg>② 信用スプレッド（HY OAS）</span><span class="g-stat" style="color:var(--neg);">🔴 新ピーク続伸</span></div>
+      <div class="track">
+        <i class="fill" data-w="70%" style="background:linear-gradient(90deg, var(--good) 35%, var(--gold) 50%, var(--neg) 58%);"></i>
+        <span class="tick alert" style="left:50%;"><span class="t-lbl">注意 3.0%</span></span>
+        <span class="prev" style="left:62.5%;" title="先週 3.25%"></span>
+      </div>
+      <div class="g-scale num"><span>2.0%</span><span>4.0%</span></div>
+      <div class="g-note num">格上げした初週の答えは<strong>「続伸」</strong>でした。10/16 3.31% → 10/20 3.33% → <strong>10/22 3.40%（前ピーク 3.25% を 15bp 上回る今期新ピーク）</strong>。10/1 以降の 3% 超えは全営業日で継続中です。金利が下がる中でスプレッドだけが広がる「質の悪い」形が2週目に入り、大手テックの社債保証コスト上昇とも整合。<strong>次の質的節目は 3.5% 台</strong>。※ 統計の公表ラグで 10/23 以降は未反映。</div>
+    </div>
+
+    <div class="gauge">
+      <div class="g-head"><span class="g-name"><svg class="ic" style="color:var(--gold)"><use href="#i-percent"/></svg>① 米10年国債利回り</span><span class="g-stat" style="color:var(--gold);">🟡 3週連続低下</span></div>
+      <div class="track">
+        <i class="fill" data-w="64%" style="background:linear-gradient(90deg, var(--good), var(--gold) 50%, var(--neg) 64%);"></i>
+        <span class="tick" style="left:53.3%;"><span class="t-lbl">注意 4.8%</span></span>
+        <span class="tick alert" style="left:66.7%;"><span class="t-lbl">警報 5.0%</span></span>
+        <span class="prev" style="left:71.3%;" title="先週 5.07%"></span>
+      </div>
+      <div class="g-scale num"><span>4.0%</span><span>5.5%</span></div>
+      <div class="g-note num">10/22 に単日 −17bp 超（2年超ぶりの下げ幅）で <strong>4.96%・1か月ぶりの 5% 割れ</strong>。週では −10〜13bp・3週連続の低下で、<strong>警報 5.0% ラインの内側へ戻りました</strong>。ただし低下の原因は「株・BTC・金が売られる中で国債だけ買われた」質への逃避であり、黄色への戻しは<strong>数字上の改善・中身は両義的</strong>という扱いです。</div>
+    </div>
+
+    <div class="gauge">
+      <div class="g-head"><span class="g-name"><svg class="ic" style="color:var(--neg)"><use href="#i-oil"/></svg>③ 原油 WTI</span><span class="g-stat" style="color:var(--neg);">🔴 $100 定着</span></div>
+      <div class="track">
+        <i class="fill" data-w="82.7%" style="background:linear-gradient(90deg, var(--good), var(--gold) 45%, var(--neg) 62%);"></i>
+        <span class="tick alert" style="left:60%;"><span class="t-lbl">警報 $90</span></span>
+        <span class="prev" style="left:80%;" title="先週 約$100"></span>
+      </div>
+      <div class="g-scale num"><span>$60</span><span>$110</span></div>
+      <div class="g-note num">10/19 に <strong>$110.01 のピーク</strong>を付けたあと $101 前後へ反落 — ただし<strong>週を通じて $100 割れはなし＝定着</strong>です（Brent は $116・週 +6.2%）。なお、統計元の数値改定により先週の時系列は一部修正されています（$100 の初突破は 10/15。急騰→$110 ピーク→失速という方向は不変）。ホルムズ海峡の新規攻撃は今週分の報道が確認できず、<strong>イベント剥落の初動かどうかが来週の定点</strong>です。</div>
+    </div>
+
+    <div class="callout red">
+      <div class="co-t">今週の読み方</div>
+      <strong>金利は下がったのに、信用スプレッドは新ピーク・原油は $100 定着・そして金まで売られた</strong> — 「下がった金利」以外に逃げ場がなかった週です。警報器の主語は引き続き「信用」。3.5% 台への続伸が出るかが最大の定点です。明日からの FOMC の結果に関わらず、「いつでも USDT 等に変えられる状態」の維持を。
+    </div>
+  </section>
+
+  <section id="research" class="rv">
+    <div class="sec-head"><svg class="sec-ic"><use href="#i-search"/></svg><span class="sec-no">4</span><h2 class="serif">外部リサーチの視点 — 48日間未公開・隔週刊3号分のスキップが確定</h2></div>
+    <p class="lead">講師が定点観測している外部リサーチ（隔週レポート）は<strong>本日時点で48日間未公開</strong>となり、隔週刊として3号分のスキップが確定しました（配信フィード自体は稼働しており、休刊ではなく低頻度化の状態）。「不定期アーカイブ」運用を継続し、公開を検知したら最優先で差分をお届けします。</p>
+    <div class="tbl-scroll"><table>
+      <thead><tr><th>前号の枠組み</th><th>今週までの実際</th><th>評価</th></tr></thead>
+      <tbody>
+        <tr><td>重要サポートが耐えれば「7月安値＝底」が確定</td><td>週足2週連続割れ（−3.2%）・週安値は前週安値を更新・週明けも $80K 割れ</td><td><span class="pill gold">判定は前週より一段と際どく — 50週線 +5.3% が最後の砦</span></td></tr>
+        <tr><td>「50週線への最初の突破試行は通常失敗する」</td><td>終値は50週線の +5.3〜5.8% 上（+8.6% → +7.2% → +5.3% と縮小継続）</td><td><span class="pill neu">定着は維持・ただし「試行失敗」側へ接近中</span></td></tr>
+        <tr><td>「年内の追加利上げは生きている」（少数派の読み）</td><td>10月は消滅（5%）・12月 76〜79% へ収斂</td><td><span class="pill neu">「10月スキップ・12月1回」へ — 12月分が最後の判定機会</span></td></tr>
+        <tr><td>Q4 は金がビットコインに優位（リスクオフ想定）</td><td>金 週 −4.1%（$4,000 割れ）vs BTC 週 −2% 前後</td><td><span class="pill gold">「金＞BTC」は2週で終了 — 換金売り局面では安全資産も売られる実例</span></td></tr>
+      </tbody>
+    </table></div>
+    <p style="font-size:13px; color:var(--ink2);">BTC が検証ゾーンに入った今、前号の「底値判定」の答え合わせは次号の最重要チェック項目です。複眼の確保は、他の外部識者の分析と本レポートの実測定点で代替します。</p>
+  </section>
+
+  <section id="gainers" class="rv">
+    <div class="sec-head"><svg class="sec-ic"><use href="#i-trend"/></svg><span class="sec-no">5</span><h2 class="serif">急騰銘柄は今週1本だけ — そして「期待先行の教材」が4例完成した</h2></div>
+    <p class="lead">時価総額上位100位以内で 7日間 +20% 超は、先週の3件からさらに減って<strong>今週は1件のみ</strong>。市場全体が −3% の週に件数がここまで絞られること自体が、物色の冷え込みを示すシグナルです。そして今週の主役は新しい急騰ではなく — <mark>過去3週の急騰銘柄たちの「答え合わせ」が一斉に出たこと</mark>です。</p>
+
+    <div class="cards">
+      <div class="card">
+        <div class="c-head"><span class="c-tkr"><span class="coin"><img src="assets/m.png" alt="MemeCore"></span>M</span><span class="c-chg up num">+26〜36%</span></div>
+        <div class="c-meta num">$0.977 ／ 10/24 瞬間高値 $1.14 → 即反落 ／ 時価総額 約$22億（46位）</div>
+        <p><strong>要因:</strong> 市場 −3.2% の中の逆行高＝市場連動では説明できない固有の動きです。ただし<strong>確定できる材料は見つからず</strong>（各報道とも「明確なトリガー不明」）、週末の閑散時間帯に瞬間 $1.14 まで刺さって即反落する値動きでした。</p>
+        <p><strong>見方:</strong> <span class="pill neg">極端な薄商い・アンロック接近</span> 日次出来高は時価総額のわずか <strong>0.08%</strong>（BTC の約1/13）で、少額の資金で大きく動く構造です。<strong>11/1 に日次出来高の約30日分に相当するロック解除</strong>が控えており、「一過性」評価の答え合わせは来週。</p>
+      </div>
+    </div>
+
+    <h3>「期待先行 → 剥落」の答え合わせ — 1週間で4例完成</h3>
+    <p style="font-size:13.5px; margin-top:-4px;">ここ3週間レポートで観察してきた「材料が期待段階の銘柄」の答えが、今週まとめて出ました。<strong>4本とも下方向</strong>です。</p>
+    <div class="tbl-scroll"><table>
+      <thead><tr><th>銘柄</th><th>期待の中身</th><th>今週の結果</th><th>確定した教材</th></tr></thead>
+      <tbody>
+        <tr><td><img class="ti" src="assets/zro.png" alt="">ZRO</td><td>ロック解除を買い戻し装置が吸収できるか（10/20 解除・流通の約6%）</td><td>解除当日〜2日は耐えて反発（$2.01）→ 木曜の全市場売りと重なって4日目に $1.77 を下抜け → <strong>$1.66（週 −12%・ピーク比 −29%）</strong></td><td><span class="pill neg">遅発剥落型（第3の型）</span> 即日型とも事前消化型とも違う「数日遅れて割れる」型。※全市場売りと同時のため供給要因と断定はせず、$1.77 奪回がない限りこの判定を維持</td></tr>
+        <tr><td><img class="ti" src="assets/strk.png" alt="">STRK</td><td>独立 L1 移行の是非投票（10/22 締切）が可決されれば…</td><td><strong>賛成 93.5% で可決 — しかし価格は1ミリも上がらず続落</strong>。$0.0446（週 −26%・最高値比 −99%）</td><td><span class="pill neg">出尽くしの確定例</span> 「材料が“検討・期待”のみの銘柄は、材料が実現しても上がらないことがある」の完成形</td></tr>
+        <tr><td><img class="ti" src="assets/aave.png" alt="">AAVE</td><td>バーン（買い戻し焼却）期待の急騰（9/29 起点）→ 四半期コールで詳細発表のはず</td><td><strong>4週連続で開催日程すら出ないまま $134（週 −12%）</strong> — 起点価格を割り込み「全戻し」を通り越した</td><td><span class="pill neg">期待先行の全消滅・完成形</span> 日程未定のまま6週間で急騰分が消えた記録</td></tr>
+        <tr><td><img class="ti" src="assets/q.png" alt="">Q</td><td>先週 +457% の急騰（材料不明のショートスクイーズ・RSI 93.8）</td><td><strong>−64%（$0.175 → $0.058・時価総額 $824M → $274M・88位 → 145位）の完全逆回転</strong></td><td><span class="pill neg">過熱指標が機能した事例</span> 「RSI 90 超＋建玉が時価総額の 64%」という先週の定量的な危険信号どおりの結末</td></tr>
+      </tbody>
+    </table></div>
+    <p style="font-size:13.5px;">次のテストは <strong>11/2（月）BTW のロック解除</strong>（日次出来高の約7倍・3例目）。BTW はすでに<strong>9日前から −36% の前倒し剥落</strong>が進んでおり（$1.57・最高値比 −43%）、ZRO 型の「事前消化」かさらなる崩落かを 11/5 までの値持ちで最終判定します。</p>
+
+    <h3>講師注目銘柄フォロー（配信で言及された銘柄）</h3>
+    <div class="tbl-scroll"><table>
+      <thead><tr><th>銘柄</th><th class="n">先週</th><th class="n">今週</th><th>状況</th></tr></thead>
+      <tbody>
+        <tr><td><img class="ti" src="assets/ldo.png" alt="">LDO</td><td class="n">$0.3976</td><td class="n down">$0.362（−8.4%）</td><td>講師が先週「ルール通り一旦クローズ」と判断した後、火曜に +4% 反発 → 木曜に全戻し → <strong>クローズ時点を約8〜9%下回る新安値圏</strong>。数値上はルール遵守のクローズが下げ回避として機能（評価・再イン判断は講師から）</td></tr>
+        <tr><td><img class="ti" src="assets/ondo.png" alt="">ONDO</td><td class="n">$0.4367</td><td class="n down">$0.400（−8.1%）</td><td>LDO と同じ経路（+6% 反発 → 全戻し → クローズ時点以下）。<strong>2銘柄とも「反発は2日もたず」</strong>でした</td></tr>
+        <tr><td><img class="ti" src="assets/arb.png" alt="">ARB</td><td class="n">$0.1932</td><td class="n down">$0.169（−13.5%）</td><td><strong>$0.19〜0.20 ゾーンを下抜けて攻防決着（敗北側）</strong>。3週続いた攻防はダウンサイドで終了</td></tr>
+        <tr><td><img class="ti" src="assets/near.png" alt="">NEAR</td><td class="n">$5.05</td><td class="n down">$4.48（−11.5%）</td><td>2週連続の2桁安。逆行高だった9月分の上昇はほぼ全戻し</td></tr>
+        <tr><td>MORPHO</td><td class="n">$2.43</td><td class="n down">$2.01（−18.2%）</td><td>先週「最も底堅い」とお伝えした1本が、今週は<strong>保有系で最弱</strong>に。下方ベータの波が一巡した形</td></tr>
+        <tr><td><img class="ti" src="assets/eth.png" alt="">ETH</td><td class="n">$2,426</td><td class="n down">$2,305（約−5%）</td><td>BTC（−2%台）より弱い週が3週目。ETH の ETF も週 −$221M の流出</td></tr>
+      </tbody>
+    </table></div>
+    <p style="font-size:13px; color:var(--ink2);">BTC −2.4% の週に主要アルトは −8〜28% — 下方ベータの2週目です。防衛ライン3本の戦績は 0勝3敗（ARB 決着負け・LDO 奪回失敗・NEAR 続落）。唯一の明るい材料は「<strong>自分で決めたルール通りに動けたこと自体が損失回避として機能した</strong>」という運用規律の実証でした。※ 個別銘柄の記載は市場観察の記録であり、売買をすすめるものではありません。</p>
+  </section>
+
+  <section id="next" class="rv">
+    <div class="sec-head"><svg class="sec-ic"><use href="#i-flag"/></svg><span class="sec-no">6</span><h2 class="serif">来週に向けて — イベント密集週の監視ポイント</h2></div>
+    <figure class="sec-photo"><img src="assets/capitol-dusk.jpg" alt="夕暮れの議会議事堂" loading="lazy"><figcaption class="cap">FOMC・臨時株主総会・中間選挙 — ここから2週間は「政策とイベントの季節」です（Photo: Pexels）</figcaption></figure>
+    <h3>答えが出るイベント（日付順）</h3>
+    <ol>
+      <li><strong>10/27-28（火水）FOMC</strong> — 据え置き 94% 織り込み。声明・会見でのエネルギーインフレの扱いと「12月 76〜79%」の追認が焦点。<strong>10/28 は BTC 大量保有の米上場企業の臨時株主総会と同日</strong>（優先株の条件変更の可否）。</li>
+      <li><strong>10/29（木）米コア PCE・ECB ／ 10/30（金）日銀</strong> — 中銀ウィーク後半。</li>
+      <li><strong>11/1（日）週足終値</strong> — 3週連続割れなら 50週線（$76,000〜76,500）攻防が現実化。上は $81,500（ETF コスト帯上限）奪回が条件。</li>
+      <li><strong>11/2（月）BTW ロック解除</strong> — 3例目のテスト本番（前倒し −36% 済み・日次出来高の約7倍）。11/5 までの値持ちで最終判定。</li>
+      <li><strong>11/3（火）米中間選挙</strong> — 下院は民主 91% でソース一致・上院はソースにより 50:50〜民主優位 64% と幅が大きい状態。結果確定後の規制トラックへの含意も。</li>
+      <li><strong>11/6（金）米雇用統計</strong>。</li>
+    </ol>
+    <h3>警報器の定点観測</h3>
+    <ul>
+      <li><strong>最優先: 信用スプレッド</strong> — 3.40% からの続伸有無。<strong>3.5% 台に乗せたら質的悪化の加速</strong>と判定</li>
+      <li>10年金利 4.96% — 5% 台への復帰か、4.9% 割れへの低下継続か（低下なら「質への逃避」の深刻度とセットで点検）</li>
+      <li>原油 $101 — $100 割れが出るか（$110 からの反落継続なら警戒一段緩和の初動。ホルムズ海峡の新規攻撃件数も記録継続）</li>
+    </ul>
+    <h3>そのほか</h3>
+    <ul>
+      <li>ETF: コスト帯割れ状態での流出が続くか（木金の −$773M が単発かどうか）</li>
+      <li>金 $4,000 攻防 — 換金売りの継続か FOMC 後の反発か</li>
+      <li>ZRO $1.77 奪回の有無（奪回なしなら「遅発剥落型」判定を維持）／ MemeCore は 11/1 アンロック通過後の値持ち</li>
+      <li>外部リサーチの次号検知（公開されたら最優先で総括をお届け）</li>
+    </ul>
+    <div class="callout">
+      <div class="co-t">本日の配信</div>
+      21時から通常回です。前半30分でこのレポートの中身 — 2週連続割れと検証ゾーンの深さ、FOMC 直前の論点、警報器の主役「信用」 — を講師が解説し、後半30分は質問会。<strong>11月からの新体制（卒業生プラン・AI 個別指導モニター）の続報もお話しする予定</strong>です。お気軽にご参加ください。
+    </div>
+  </section>
+
+  <footer>
+    <p><strong>データソース</strong>: FRED（fred.stlouisfed.org: DGS10, BAMLH0A0HYM2, DCOILWTICO, SP500）／Binance 公開 API（週足・50週線の実測計算）／CoinGecko／SEC EDGAR 原文／ETF フローは日次トラッカーの複数サイト照合（10/23 分は暫定値・一部ファンド未報告）／alternative.me（Fear &amp; Greed）／各プロジェクト公式発表・報道各社。数値は 2026-10-26（JST）時点の取得値で、週足終値は集計方式により $80,049〜80,485 の幅があります（いずれも判定ライン下）。原油の先週分時系列は統計元の改定を反映して一部修正しています。扉写真: Pexels（Tejvinder Singh / Ray Bilcliff / Jimmy Padilla）。</p>
+    <p class="disclaimer">本レポートは Web3Campus 受講生向けの教育目的の市場環境記録であり、投資助言ではありません。特定の暗号資産・金融商品の売買、保有をすすめるものではなく、文中の「注目」は情報整理上の観点を示すものです。投資判断はご自身の調査と責任で行ってください。</p>
+  </footer>
+</div>
+
+<div id="tooltip" role="tooltip"></div>
+
+
+<script>
+(function(){
+  "use strict";
+  var reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  var bar = document.getElementById("progress");
+  var ticking = false;
+  function onScroll(){
+    if(ticking) return; ticking = true;
+    requestAnimationFrame(function(){
+      var h = document.documentElement;
+      var max = h.scrollHeight - h.clientHeight;
+      bar.style.width = (max > 0 ? (h.scrollTop / max * 100) : 0) + "%";
+      ticking = false;
+    });
+  }
+  document.addEventListener("scroll", onScroll, {passive:true}); onScroll();
+
+  var revealed = function(el){
+    el.classList.add("in");
+    el.querySelectorAll(".scen-bar>i,.gauge .fill").forEach(function(b){
+      var w = b.getAttribute("data-w");
+      if(w){ if(reduce){ b.style.width = w; } else { requestAnimationFrame(function(){ b.style.width = w; }); } }
+    });
+  };
+  var els = document.querySelectorAll(".rv");
+  if("IntersectionObserver" in window && !reduce){
+    var io = new IntersectionObserver(function(entries){
+      entries.forEach(function(e){
+        if(e.isIntersecting || e.boundingClientRect.top < 0){ revealed(e.target); io.unobserve(e.target); }
+      });
+    }, {rootMargin:"0px 0px -8% 0px", threshold:[0, 0.05]});
+    els.forEach(function(el){ io.observe(el); });
+  } else {
+    els.forEach(revealed);
+  }
+
+  var links = Array.prototype.slice.call(document.querySelectorAll("nav.toc a"));
+  var secs = links.map(function(a){ return document.querySelector(a.getAttribute("href")); });
+  if("IntersectionObserver" in window){
+    var cur = -1;
+    var io2 = new IntersectionObserver(function(entries){
+      entries.forEach(function(e){
+        var i = secs.indexOf(e.target);
+        if(e.isIntersecting && i > -1){ cur = i;
+          links.forEach(function(a,j){ a.classList.toggle("on", j === cur); });
+        }
+      });
+    }, {rootMargin:"-40% 0px -55% 0px"});
+    secs.forEach(function(s){ if(s) io2.observe(s); });
+  }
+
+  var tip = document.getElementById("tooltip");
+  function showTip(e, el){
+    tip.innerHTML = "<strong>" + el.getAttribute("data-d") + "</strong><br>" + el.getAttribute("data-v");
+    tip.style.display = "block";
+    var x = (e.touches ? e.touches[0].clientX : e.clientX);
+    var y = (e.touches ? e.touches[0].clientY : e.clientY);
+    var w = tip.offsetWidth;
+    tip.style.left = Math.min(Math.max(8, x - w/2), window.innerWidth - w - 8) + "px";
+    tip.style.top = (y - tip.offsetHeight - 14) + "px";
+  }
+  function hideTip(){ tip.style.display = "none"; }
+  document.querySelectorAll(".pt").forEach(function(pt){
+    pt.style.cursor = "pointer";
+    pt.addEventListener("pointerenter", function(e){ pt.setAttribute("r","6"); showTip(e, pt); });
+    pt.addEventListener("pointermove", function(e){ showTip(e, pt); });
+    pt.addEventListener("pointerleave", function(){ pt.setAttribute("r","4"); hideTip(); });
+  });
+  document.addEventListener("scroll", hideTip, {passive:true});
+})();
+</script>
+</body>
+</html>
