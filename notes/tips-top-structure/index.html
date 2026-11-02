@@ -1,0 +1,418 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="noindex,nofollow,noarchive,nosnippet">
+<meta name="referrer" content="no-referrer">
+<title>TIPS解説｜「空売りの構造」を読む — 天井はどう作られるか</title>
+<style>
+  :root{
+    --paper:#faf9f6; --surface2:#f1efe9; --surface3:#e9e6dc;
+    --ink:#1c1f26; --ink2:#5a6072; --ink3:#8a8f9c;
+    --border:#e3e0d6; --border2:#d2cec0;
+    --accent:#1f4e9c; --gold:#a8720a; --gold-soft:#a8720a22;
+    --pos:#0b7fa8; --neg:#c8442c; --good:#2e7d43;
+    --pos-soft:#0b7fa81a; --neg-soft:#c8442c1a; --accent-soft:#1f4e9c14; --good-soft:#2e7d431a;
+    --warn-bg:#a8720a14; --warn-border:#a8720a55;
+    --tooltip-bg:#1c1f26; --tooltip-ink:#faf9f6;
+    --glass:rgba(250,249,246,0.82);
+    --strip-bg:#f4ecd8;
+  }
+  @media (prefers-color-scheme: dark){
+    :root:not([data-theme="light"]){
+      --paper:#14181f; --surface2:#1c222c; --surface3:#232a36;
+      --ink:#e8e7e2; --ink2:#9aa0ad; --ink3:#6d7382;
+      --border:#2a3140; --border2:#394153;
+      --accent:#638cd6; --gold:#b98a2e; --gold-soft:#b98a2e2e;
+      --pos:#2f9bb8; --neg:#d4603c; --good:#4caf6d;
+      --pos-soft:#2f9bb824; --neg-soft:#d4603c24; --accent-soft:#638cd61f; --good-soft:#4caf6d24;
+      --warn-bg:#b98a2e1f; --warn-border:#b98a2e66;
+      --tooltip-bg:#e8e7e2; --tooltip-ink:#14181f;
+      --glass:rgba(20,24,31,0.82);
+      --strip-bg:#241f14;
+    }
+  }
+  :root[data-theme="dark"]{
+    --paper:#14181f; --surface2:#1c222c; --surface3:#232a36;
+    --ink:#e8e7e2; --ink2:#9aa0ad; --ink3:#6d7382;
+    --border:#2a3140; --border2:#394153;
+    --accent:#638cd6; --gold:#b98a2e; --gold-soft:#b98a2e2e;
+    --pos:#2f9bb8; --neg:#d4603c; --good:#4caf6d;
+    --pos-soft:#2f9bb824; --neg-soft:#d4603c24; --accent-soft:#638cd61f; --good-soft:#4caf6d24;
+    --warn-bg:#b98a2e1f; --warn-border:#b98a2e66;
+    --tooltip-bg:#e8e7e2; --tooltip-ink:#14181f;
+    --glass:rgba(20,24,31,0.82);
+    --strip-bg:#241f14;
+  }
+  *{box-sizing:border-box; margin:0;}
+  html{scroll-behavior:smooth; background:var(--paper);}
+  body{
+    background:var(--paper); color:var(--ink);
+    font-family:"Hiragino Sans","Hiragino Kaku Gothic ProN","Yu Gothic UI","Yu Gothic",Meiryo,system-ui,sans-serif;
+    font-size:15px; line-height:1.85; -webkit-font-smoothing:antialiased;
+  }
+  .wrap{max-width:920px; margin:0 auto; padding:40px 24px 80px;}
+  .serif{font-family:"Yu Mincho","YuMincho","Hiragino Mincho ProN","Hiragino Mincho Pro","MS PMincho",Georgia,serif;}
+  .num{font-variant-numeric:tabular-nums; letter-spacing:-0.01em;}
+  #progress{position:fixed; top:0; left:0; height:3px; width:0; background:var(--gold); z-index:80;}
+  .edu-strip{position:sticky; top:0; z-index:60; background:var(--strip-bg); border-bottom:1px solid var(--warn-border);
+    font-size:12px; line-height:1.6; color:var(--ink2); padding:8px 16px; text-align:center;}
+  nav.toc{position:sticky; top:37px; z-index:55; background:var(--glass); backdrop-filter:blur(14px) saturate(160%);
+    border-bottom:1px solid var(--border); padding:8px 24px;
+    display:flex; gap:6px; overflow-x:auto; scrollbar-width:none;}
+  nav.toc::-webkit-scrollbar{display:none;}
+  nav.toc a{flex:none; font-size:12px; font-weight:600; color:var(--ink2); text-decoration:none;
+    padding:4px 12px; border-radius:999px; border:1px solid transparent; transition:background .15s ease, color .15s ease;}
+  nav.toc a:hover{background:var(--surface2); color:var(--ink);}
+  nav.toc a:active{transform:scale(0.97);}
+  nav.toc a.on{background:var(--accent-soft); color:var(--accent); border-color:var(--border);}
+  @media (prefers-reduced-transparency: reduce){
+    nav.toc{background:var(--paper); backdrop-filter:none;}
+    .edu-strip{backdrop-filter:none; background:var(--surface2);}
+  }
+  section{scroll-margin-top:96px;}
+  .masthead{border-bottom:3px double var(--border2); padding-bottom:28px; margin-bottom:8px; padding-top:34px;}
+  .eyebrow{font-size:11px; letter-spacing:0.22em; text-transform:uppercase; color:var(--gold); font-weight:600; margin-bottom:14px;}
+  h1{font-size:clamp(28px,5vw,44px); font-weight:600; letter-spacing:-0.015em; line-height:1.25; text-wrap:balance;}
+  .h1-date{font-size:0.62em; color:var(--ink2); margin-left:0.6em;}
+  @media (max-width:520px){ .h1-date{display:block; margin-left:0; font-size:15px; margin-top:4px;} }
+  .masthead .sub{display:flex; flex-wrap:wrap; gap:10px 22px; align-items:center; margin-top:16px; color:var(--ink2); font-size:13px;}
+  .verdict-chip{display:inline-flex; align-items:center; gap:8px; background:var(--warn-bg); border:1px solid var(--warn-border);
+    color:var(--ink); border-radius:999px; padding:5px 16px; font-weight:700; font-size:13.5px;}
+  .verdict-chip .dot{width:9px;height:9px;border-radius:50%;background:var(--neg);flex:none;}
+  .notice{border:1px solid var(--border2); border-left:4px solid var(--gold); background:var(--gold-soft);
+    border-radius:0 6px 6px 0; padding:14px 18px; margin:20px 0 4px; max-width:76ch; font-size:14px;}
+  .notice .co-t{font-weight:700; font-size:13px; letter-spacing:0.06em; margin-bottom:4px; color:var(--gold);}
+  .tiles{display:grid; grid-template-columns:repeat(auto-fit,minmax(176px,1fr)); gap:10px; margin:26px 0 8px;}
+  .tile{background:var(--surface2); border:1px solid var(--border); border-radius:6px; padding:13px 14px 11px;}
+  .tile .k{font-size:11px; letter-spacing:0.06em; color:var(--ink2); text-transform:uppercase; font-weight:600;}
+  .tile .v{font-size:21px; font-weight:700; margin-top:3px; line-height:1.2; letter-spacing:-0.01em;}
+  .tile .d{font-size:12px; margin-top:3px; color:var(--ink2);}
+  .up{color:var(--pos);} .down{color:var(--neg);} .gold-t{color:var(--gold);} .good-t{color:var(--good);}
+  .ic{width:18px;height:18px;flex:none;display:inline-block;}
+  .sec-ic{width:19px;height:19px;color:var(--gold);flex:none;align-self:center;}
+  .chip{width:31px;height:31px;border-radius:9px;flex:none;display:flex;align-items:center;justify-content:center;}
+  .chip .ic{width:17px;height:17px;}
+  .tile{display:flex;gap:11px;align-items:flex-start;}
+  .tile .tx{min-width:0;}
+  .what .ic{width:16px;height:16px;vertical-align:-3px;margin-right:6px;color:var(--gold);}
+  .g-name .ic{width:17px;height:17px;vertical-align:-3px;margin-right:6px;}
+  .coin{display:inline-flex;width:26px;height:26px;border-radius:50%;align-items:center;justify-content:center;margin-right:8px;vertical-align:-7px;overflow:hidden;background:var(--surface3);}
+  .coin img{width:100%;height:100%;object-fit:contain;display:block;}
+  .chip img{width:22px;height:22px;border-radius:50%;display:block;}
+  .ti{width:16px;height:16px;border-radius:50%;vertical-align:-3px;margin-right:4px;display:inline-block;}
+  section{margin-top:56px;}
+  .sec-head{display:flex; align-items:baseline; gap:14px; border-bottom:1px solid var(--border2); padding-bottom:10px; margin-bottom:22px;}
+  .sec-no{font-size:13px; color:var(--gold); letter-spacing:0.15em; font-weight:600; flex:none;}
+  h2{font-size:23px; font-weight:600; letter-spacing:0.01em; line-height:1.35; text-wrap:balance;}
+  h3{font-size:16.5px; font-weight:700; margin:30px 0 10px; letter-spacing:0.01em;}
+  p{margin:10px 0; max-width:72ch;}
+  .lead{font-size:16px; max-width:72ch;}
+  ul,ol{padding-left:1.4em; margin:10px 0; max-width:70ch;}
+  li{margin:5px 0;}
+  strong{font-weight:700;}
+  mark{background:var(--gold-soft); color:inherit; padding:0 3px; border-radius:2px;}
+  a{color:var(--accent); text-decoration-thickness:1px; text-underline-offset:3px;}
+  .sec-photo{position:relative; margin:2px 0 20px; border-radius:6px; overflow:hidden; border:1px solid var(--border);}
+  .sec-photo img{display:block; width:100%; aspect-ratio:21/7; object-fit:cover; filter:saturate(0.82);}
+  .sec-photo .cap{position:absolute; left:0; right:0; bottom:0; padding:22px 14px 8px; font-size:11px; color:#f2efe8;
+    background:linear-gradient(transparent, rgba(10,12,16,0.62)); letter-spacing:0.04em;}
+  @media (prefers-color-scheme: dark){ :root:not([data-theme="light"]) .sec-photo img{filter:saturate(0.8) brightness(0.88);} }
+  :root[data-theme="dark"] .sec-photo img{filter:saturate(0.8) brightness(0.88);}
+  @media (max-width:520px){ .sec-photo img{aspect-ratio:16/7;} }
+  .rv{opacity:0; transform:translateY(10px); transition:opacity .5s ease-out, transform .5s ease-out;}
+  .rv.in{opacity:1; transform:none;}
+  @media (prefers-reduced-motion: reduce){
+    html{scroll-behavior:auto;}
+    .rv{opacity:1; transform:none; transition:opacity .2s ease;}
+    .scen-bar>i,.gauge .fill{transition:none !important;}
+  }
+  .tbl-scroll{overflow-x:auto; border:1px solid var(--border); border-radius:6px; margin:14px 0;}
+  table{border-collapse:collapse; width:100%; font-size:13.5px; line-height:1.6;}
+  th{background:var(--surface2); text-align:left; font-weight:700; color:var(--ink2); font-size:12px; letter-spacing:0.05em; white-space:nowrap;}
+  th,td{padding:9px 13px; border-bottom:1px solid var(--border); vertical-align:top;}
+  tbody tr:last-child td{border-bottom:none;}
+  td.n,th.n{text-align:right; font-variant-numeric:tabular-nums; white-space:nowrap;}
+  .pill{display:inline-block; border-radius:999px; padding:1px 10px; font-size:11.5px; font-weight:700; white-space:nowrap;}
+  .pill.neg{background:var(--neg-soft); color:var(--neg);}
+  .pill.pos{background:var(--pos-soft); color:var(--pos);}
+  .pill.neu{background:var(--surface3); color:var(--ink2);}
+  .pill.gold{background:var(--gold-soft); color:var(--gold);}
+  .pill.good{background:var(--good-soft); color:var(--good);}
+  .fig{background:var(--surface2); border:1px solid var(--border); border-radius:6px; padding:18px 18px 12px; margin:18px 0;}
+  .fig .fig-title{font-size:13.5px; font-weight:700;}
+  .fig .fig-sub{font-size:12px; color:var(--ink2); margin-top:2px; margin-bottom:8px;}
+  .fig svg{display:block; width:100%; height:auto;}
+  .fig .fig-note{font-size:11.5px; color:var(--ink3); margin-top:6px;}
+  .legend{display:flex; gap:16px; flex-wrap:wrap; font-size:12px; color:var(--ink2); margin-top:6px;}
+  .legend .sw{display:inline-block; width:10px; height:10px; border-radius:2px; margin-right:5px; vertical-align:-1px;}
+  #tooltip{position:fixed; z-index:90; pointer-events:none; display:none; background:var(--tooltip-bg); color:var(--tooltip-ink);
+    font-size:12px; line-height:1.5; padding:6px 10px; border-radius:5px; font-variant-numeric:tabular-nums;
+    box-shadow:0 3px 12px rgba(0,0,0,0.25); max-width:260px;}
+  .gauge{margin:20px 0; max-width:680px;}
+  .gauge .g-head{display:flex; justify-content:space-between; align-items:baseline; gap:10px; flex-wrap:wrap;}
+  .gauge .g-name{font-weight:700; font-size:14px;}
+  .gauge .g-stat{font-size:12.5px; font-weight:700;}
+  .gauge .track{position:relative; height:14px; background:var(--surface3); border-radius:4px; margin:8px 0 4px; overflow:visible;}
+  .gauge .fill{position:absolute; left:0; top:0; bottom:0; width:0; border-radius:4px 0 0 4px; transition:width .7s ease-out;}
+  .gauge .tick{position:absolute; top:-5px; bottom:-5px; width:2px; background:var(--ink3);}
+  .gauge .tick.alert{background:var(--neg);}
+  .gauge .tick .t-lbl{position:absolute; top:-20px; left:50%; transform:translateX(-50%); font-size:10.5px; color:var(--ink3); white-space:nowrap;}
+  .gauge .prev{position:absolute; top:-3px; bottom:-3px; width:2px; background:var(--ink); opacity:.45;}
+  .gauge .g-scale{display:flex; justify-content:space-between; font-size:10.5px; color:var(--ink3);}
+  .gauge .g-note{font-size:12px; color:var(--ink2); margin-top:4px;}
+  .scen{display:flex; flex-direction:column; gap:12px; margin:16px 0; max-width:640px;}
+  .scen-row .scen-top{display:flex; justify-content:space-between; font-size:13.5px; margin-bottom:4px;}
+  .scen-row .name{font-weight:700;}
+  .scen-row .pct{font-weight:700; font-variant-numeric:tabular-nums;}
+  .scen-bar{height:12px; background:var(--surface3); border-radius:3px; overflow:hidden;}
+  .scen-bar>i{display:block; height:100%; border-radius:3px; width:0; transition:width .7s ease-out;}
+  .scen-note{font-size:12px; color:var(--ink2); margin-top:3px;}
+  .cards{display:grid; grid-template-columns:repeat(auto-fit,minmax(260px,1fr)); gap:14px; margin:18px 0;}
+  .card{background:var(--surface2); border:1px solid var(--border); border-radius:8px; padding:16px 18px;}
+  .card .c-head{display:flex; justify-content:space-between; align-items:baseline; gap:8px;}
+  .card .c-tkr{font-weight:700; font-size:16px;}
+  .card .c-chg{font-weight:700; font-variant-numeric:tabular-nums;}
+  .card .c-meta{font-size:11.5px; color:var(--ink3); margin-top:2px;}
+  .card p{font-size:13px; margin:8px 0 0; color:var(--ink2); max-width:none;}
+  .card p strong{color:var(--ink);}
+  .callout{border:1px solid var(--border2); border-left:4px solid var(--accent); background:var(--accent-soft);
+    border-radius:0 6px 6px 0; padding:14px 18px; margin:18px 0; max-width:76ch;}
+  .callout.gold{border-left-color:var(--gold); background:var(--gold-soft);}
+  .callout.red{border-left-color:var(--neg); background:var(--neg-soft);}
+  .callout .co-t{font-weight:700; font-size:13px; letter-spacing:0.06em; margin-bottom:4px;}
+  .kv{display:grid; grid-template-columns:auto 1fr; gap:6px 18px; font-size:13.5px; margin:12px 0; max-width:76ch;}
+  .kv dt{font-weight:700; white-space:nowrap; color:var(--ink2);}
+  .kv dd{margin:0;}
+  footer{margin-top:64px; border-top:3px double var(--border2); padding-top:20px; font-size:12.5px; color:var(--ink2);}
+  footer p{max-width:none;}
+  .disclaimer{font-style:italic; margin-top:12px; color:var(--ink3);}
+</style>
+</head>
+<body>
+<div id="progress" aria-hidden="true"></div>
+<svg width="0" height="0" style="position:absolute" aria-hidden="true"><defs>
+<symbol id="i-bank" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9.5 12 4l9 5.5"/><path d="M5 11v7M9.7 11v7M14.3 11v7M19 11v7"/><path d="M3.5 20.5h17"/></symbol>
+<symbol id="i-oil" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"><path d="M12 3.5s5.8 6.4 5.8 10.4a5.8 5.8 0 1 1-11.6 0C6.2 9.9 12 3.5 12 3.5z"/></symbol>
+<symbol id="i-percent" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M7 17 17 7"/><circle cx="8.2" cy="8.2" r="2"/><circle cx="15.8" cy="15.8" r="2"/></symbol>
+<symbol id="i-pie" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"><circle cx="12" cy="12" r="8.5"/><path d="M12 3.5V12l6 6"/></symbol>
+<symbol id="i-compass" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="m15.2 8.8-2 4.4-4.4 2 2-4.4z"/></symbol>
+<symbol id="i-cal" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="5.5" width="16" height="15" rx="2"/><path d="M4 10.5h16M8.5 3.5v4M15.5 3.5v4"/></symbol>
+<symbol id="i-check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="4.5" y="4.5" width="15" height="16" rx="2"/><path d="m8.5 12.8 2.4 2.4 4.6-5"/></symbol>
+<symbol id="i-shield" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"><path d="M12 3.2 19.5 6v6.2c0 4.6-3.2 7.4-7.5 8.6-4.3-1.2-7.5-4-7.5-8.6V6z"/></symbol>
+<symbol id="i-search" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><circle cx="11" cy="11" r="6.5"/><path d="m20.5 20.5-4.9-4.9"/></symbol>
+<symbol id="i-trend" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="m3.5 16.5 5.5-5.5 3.6 3.6 7-7.8"/><path d="M14.5 6.5h5.2v5.2"/></symbol>
+<symbol id="i-flag" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M6 21V4"/><path d="M6 5h11.5l-2.2 3.8L17.5 13H6"/></symbol>
+</defs></svg>
+<div class="edu-strip">⚠️ 本レポートは<strong>教育目的の相場環境記録</strong>です。特定の暗号資産・金融商品の売買をすすめるものではありません。AI による自動調査由来の情報を含むため、数値・引用には誤りが含まれる可能性があります。</div>
+
+<nav class="toc" aria-label="目次">
+  <a href="#what">図の正体</a><a href="#howto">読み方</a><a href="#weekly">週足＝完成事例</a><a href="#daily">日足＝進行中</a><a href="#conclusion">結論と心得</a>
+</nav>
+
+<div class="wrap">
+
+  <header class="masthead">
+    <div class="eyebrow">TIPS — テクニカル解説</div>
+    <h1 class="serif">「空売りの構造」を読む<span class="h1-date">天井はどう作られ、いまの BTC はどこにいるか</span></h1>
+    <div class="sub">
+      <span class="verdict-chip"><span class="dot"></span>週足では一度「完成」した図・日足では「成否待ち」</span>
+      <span>2026年11月2日 作成（週次レポート 11/2 号 別冊）</span>
+    </div>
+    <div class="notice">
+      <div class="co-t">このページについて</div>
+      週次レポート 11/2 号で取り上げた古典的なチャートパターン「空売りの構造」の解説ページです。<strong>空売りという取引手法をおすすめするものではありません</strong> — 「天井はどう作られるか」を知っておくことは、急落時に慌てて投げないため・退避の判断材料を持つための<strong>守りの教材</strong>です。<a href="/notes/weekly-market-2026-11-02/">今週の週次レポートはこちら</a>。
+    </div>
+  </header>
+
+  <section id="what" class="rv" style="margin-top:36px;">
+    <div class="sec-head"><svg class="sec-ic"><use href="#i-compass"/></svg><span class="sec-no">1</span><h2 class="serif">図の正体 — 米国株の古典が描いた「天井の設計図」</h2></div>
+    <p class="lead">下の図は、米国株投資の古典『オニールの空売り練習帖』に載っている有名な図版「ダイアグラム1」です。描かれているのは<strong>ヘッド・アンド・ショルダーズ・トップ（三尊天井）が完成していく全工程</strong> — つまり「上昇相場の天井は、一瞬ではなく<strong>手順を踏んで</strong>作られる」という観察です。</p>
+    <figure style="margin:18px 0; border:1px solid var(--border); border-radius:6px; overflow:hidden; max-width:560px;">
+      <img src="assets/diagram1.jpg" alt="空売りの構造の原典図版: A-B-Cのヘッド・アンド・ショルダーズ・トップ、大きな出来高を伴った天井からの急落、50日移動平均線を上抜ける3〜4回の反発、ネックライン、適切な空売りポイントが注釈された模式図" style="display:block; width:100%;" loading="lazy">
+      <figcaption style="font-size:11.5px; color:var(--ink3); padding:8px 12px; background:var(--surface2);">『オニールの空売り練習帖』（G・モラレス／W・J・オニール）ダイアグラム1 より引用（教育目的の解説のための引用です）</figcaption>
+    </figure>
+    <p>この図が有名なのは、形そのものより<strong>「順序の規律」</strong>を教えているからです。原典の核心は一行に要約できます — <mark>「天井(B)を売ろうとするな。最初の急落でも売るな。<strong>戻りの失敗を確認してから</strong>動け」</mark>。</p>
+  </section>
+
+  <section id="howto" class="rv">
+    <div class="sec-head"><svg class="sec-ic"><use href="#i-check"/></svg><span class="sec-no">2</span><h2 class="serif">部品の読み方 — 5つのステップ</h2></div>
+    <dl class="kv">
+      <dt>B（頭）</dt><dd>上昇トレンドの最後の高値。この時点では誰にも「ここが天井」とは分かりません — だから原典は「天井を売るな」と言います。</dd>
+      <dt>①→②（最初の合図）</dt><dd><strong>大きな出来高を伴った天井からの急落</strong>。下の出来高チャートで最大の棒が立つ場所です。意味は「大口（機関投資家）が売り抜けている痕跡」。価格の下げ幅より、<strong>大商いで直前の支持線と50日移動平均線を割った</strong>ことが一次証拠になります。</dd>
+      <dt>C（右肩＝罠の反発）</dt><dd>急落後、<strong>50日線を上抜ける反発が3〜4回</strong>起きます。これが最重要の観察ポイント。「安くなったから」と買う逆張り勢で戻るものの、<strong>50日線の上に定着できず</strong>、高値は切り下がっていきます。戻りの出来高が細いことも特徴です。</dd>
+      <dt>ネックライン</dt><dd>②の安値水準。右肩の間はここが最後の床として機能します。</dd>
+      <dt>③（完成）</dt><dd>3〜4回目の反発失敗のあと、<strong>再び出来高を伴ってネックラインを割れた瞬間</strong>がこの図の「完成」。原典ではここが唯一の仕掛け点とされ、それ以前の売りは「踏み上げられる」と戒められています。</dd>
+    </dl>
+    <div class="callout gold">
+      <div class="co-t">なぜ「戻りの失敗3〜4回」を待つのか</div>
+      最初の急落（①②）だけでは、それが天井形成なのか単なる調整なのか区別がつかないからです。<strong>50日線への戻りが繰り返し失敗する＝上値に売り手が居座っている証拠が積み上がる</strong>ことで、初めて「この下げは本物」と確認できる — 回数は、確証を買うためのコストです。この考え方は売り買いどちらの立場でも使えます。
+    </div>
+  </section>
+
+  <section id="weekly" class="rv">
+    <div class="sec-head"><svg class="sec-ic"><use href="#i-search"/></svg><span class="sec-no">3</span><h2 class="serif">週足に当てはめる — 皆さんが通ってきた相場で、一度「完成」していた</h2></div>
+    <p class="lead">この図を週足で使うときは、50日線を<strong>50週移動平均線</strong>に読み替えます（同じ構造が約5倍の時間スケールで動く「入れ子」の考え方です）。そして実データに重ねると — <strong>前回サイクルの天井から今年6月の安値までが、この図の教科書的な「完成事例」だった</strong>ことが分かります。</p>
+
+    <div class="fig">
+      <div class="fig-title">BTC 週足（2025年1月〜現在）× 50週移動平均線 — 「空売りの構造」が一度完成し、いまは鏡像を試している</div>
+      <div class="fig-sub">青線: 週足終値 ／ 金の点線: 50週移動平均線（自前計算・Binance 週足終値ベース）。ポイントにタッチ/カーソルで数値表示</div>
+      <svg viewBox="0 0 660 300" role="img" aria-label="BTC週足2025年から2026年。2025年の天井から2026年初に50週移動平均線を下抜けて崩落、50週線が蓋になる戻り失敗を経て6月安値まで下落。その後50週線を再上抜けし、現在は50週線の上で攻防中">
+        <g stroke="var(--border2)" stroke-width="1"><line x1="52" y1="20.0" x2="640" y2="20.0"/><line x1="52" y1="68.0" x2="640" y2="68.0"/><line x1="52" y1="116.0" x2="640" y2="116.0"/><line x1="52" y1="164.0" x2="640" y2="164.0"/><line x1="52" y1="212.0" x2="640" y2="212.0"/><line x1="52" y1="260.0" x2="640" y2="260.0"/></g>
+        <g fill="var(--ink3)" font-size="10.5" font-family="inherit"><text x="46" y="24.0" text-anchor="end">126k</text><text x="46" y="72.0" text-anchor="end">112k</text><text x="46" y="120.0" text-anchor="end">99k</text><text x="46" y="168.0" text-anchor="end">85k</text><text x="46" y="216.0" text-anchor="end">71k</text><text x="46" y="264.0" text-anchor="end">58k</text><text x="52.0" y="288" text-anchor="start">2025/1</text><text x="169.6" y="288" text-anchor="middle">2025/5</text><text x="287.2" y="288" text-anchor="middle">2025/9</text><text x="404.8" y="288" text-anchor="middle">2026/2</text><text x="522.4" y="288" text-anchor="middle">2026/6</text><text x="640.0" y="288" text-anchor="end">2026/11</text></g>
+        
+        <polyline fill="none" stroke="var(--gold)" stroke-width="1.6" stroke-dasharray="2 3" points="52.0,219.5 58.2,215.4 64.4,211.5 70.6,208.3 76.8,205.2 82.9,202.9 89.1,200.9 95.3,199.1 101.5,198.2 107.7,197.4 113.9,196.2 120.1,195.0 126.3,194.1 132.5,192.6 138.7,191.1 144.8,188.9 151.0,186.9 157.2,184.4 163.4,181.6 169.6,178.9 175.8,176.1 182.0,173.1 188.2,170.1 194.4,166.9 200.5,163.6 206.7,160.7 212.9,157.1 219.1,153.0 225.3,148.7 231.5,144.8 237.7,140.9 243.9,136.7 250.1,132.5 256.3,129.1 262.4,125.7 268.6,122.2 274.8,118.5 281.0,115.1 287.2,111.2 293.4,107.9 299.6,105.1 305.8,102.7 312.0,101.2 318.1,100.8 324.3,101.0 330.5,102.0 336.7,103.0 342.9,103.3 349.1,103.7 355.3,104.4 361.5,104.8 367.7,105.5 373.9,106.4 380.0,106.6 386.2,107.3 392.4,108.7 398.6,110.5 404.8,112.3 411.0,113.2 417.2,114.4 423.4,115.8 429.6,116.5 435.7,117.2 441.9,118.5 448.1,119.6 454.3,121.2 460.5,122.7 466.7,124.5 472.9,126.4 479.1,128.3 485.3,130.3 491.5,132.3 497.6,134.6 503.8,137.2 510.0,140.2 516.2,143.5 522.4,147.6 528.6,151.4 534.8,155.3 541.0,158.8 547.2,162.6 553.3,166.4 559.5,169.8 565.7,173.0 571.9,175.4 578.1,178.0 584.3,180.5 590.5,183.0 596.7,186.0 602.9,188.1 609.1,189.7 615.2,191.8 621.4,193.8 627.6,195.6 633.8,196.7 640.0,197.3"/>
+        <polyline fill="none" stroke="var(--accent)" stroke-width="1.8" stroke-linejoin="round" points="52.0,130.6 58.2,106.7 64.4,102.2 70.6,119.5 76.8,123.8 82.9,125.0 89.1,124.6 95.3,131.6 101.5,179.2 107.7,172.7 113.9,160.4 120.1,173.4 126.3,187.3 132.5,168.6 138.7,163.6 144.8,133.4 151.0,131.5 157.2,96.9 163.4,88.7 169.6,79.7 175.8,91.5 182.0,91.2 188.2,91.7 194.4,108.0 200.5,82.0 206.7,79.0 212.9,44.2 219.1,50.6 225.3,43.0 231.5,61.3 237.7,43.4 243.9,50.1 250.1,63.9 256.3,82.3 262.4,72.2 268.6,57.6 274.8,57.7 281.0,68.5 287.2,28.7 293.4,58.7 299.6,80.9 305.8,60.1 312.0,74.3 318.1,94.7 324.3,131.6 330.5,157.7 336.7,145.3 342.9,145.2 349.1,153.0 355.3,151.3 361.5,153.8 367.7,141.2 373.9,143.0 380.0,133.7 386.2,158.3 392.4,192.5 398.6,215.8 404.8,221.1 411.0,225.3 417.2,231.9 423.4,231.2 429.6,207.1 435.7,224.5 441.9,231.1 448.1,220.4 454.3,214.4 460.5,203.6 466.7,186.5 472.9,186.8 479.1,174.0 485.3,190.7 491.5,192.1 497.6,204.1 503.8,240.5 510.0,232.0 516.2,240.6 522.4,253.7 528.6,239.4 534.8,238.9 541.0,235.6 547.2,233.2 553.3,239.6 559.5,235.0 565.7,242.0 571.9,189.8 578.1,190.0 584.3,180.6 590.5,192.9 596.7,177.6 602.9,166.1 609.1,158.8 615.2,168.5 621.4,174.3 627.6,181.3 633.8,187.6 640.0,189.2"/>
+        <g fill="var(--accent)"><circle class="pt" cx="287.2" cy="28.7" r="5" data-d="前回サイクルの天井圏（週足終値ベースの最高値週）" data-v="$123,482"/><circle class="pt" cx="324.3" cy="131.6" r="5" data-d="大商いの崩落で 50週線を下抜け — 図の①②に相当" data-v="$94,261"/><circle class="pt" cx="380.0" cy="133.7" r="5" data-d="50週線が「蓋」になった戻り — 上抜け定着に失敗" data-v="$93,673"/><circle class="pt" cx="522.4" cy="253.7" r="5" data-d="下落トレンドの終着点（6月安値週）" data-v="$59,577"/><circle class="pt" cx="596.7" cy="177.6" r="5" data-d="50週線を再び上抜け — 鏡像（底打ちの構造）の開始点" data-v="$81,178"/></g>
+        <text x="287.2" y="16.7" text-anchor="middle" font-size="12" font-weight="700" fill="var(--gold)">B（頭）</text><text x="324.3" y="151.6" text-anchor="middle" font-size="12" font-weight="700" fill="var(--gold)">①②</text><text x="380.0" y="121.7" text-anchor="middle" font-size="12" font-weight="700" fill="var(--gold)">C（右肩）</text><text x="522.4" y="273.7" text-anchor="middle" font-size="12" font-weight="700" fill="var(--gold)">③の着地</text><text x="596.7" y="165.6" text-anchor="middle" font-size="12" font-weight="700" fill="var(--gold)">再上抜け</text>
+      </svg>
+      <div class="legend"><span><span class="sw" style="background:var(--accent);"></span>BTC 週足終値</span><span><span class="sw" style="background:var(--gold);"></span>50週移動平均線</span></div>
+      <div class="fig-note">週足終値ベースの最高値週は 2025年9月末（約$123,500）。50週線の下抜けは <strong>2025年11月10日の週</strong> — 配信で「2025年11月の状況を当てはめるのか」という問いがありましたが、<strong>実データでもまさに2025年11月が図の①②に当たります</strong>。</div>
+    </div>
+
+    <div class="tbl-scroll"><table>
+      <thead><tr><th>図の要素</th><th>実際（前回サイクル・実測）</th></tr></thead>
+      <tbody>
+        <tr><td>B（頭）</td><td>2025年9月末の天井圏（週足終値 約$123,500）</td></tr>
+        <tr><td>①→②</td><td><strong>2025年11月10日の週に50週線を終値で下抜け</strong> — 当時の講師の「バブル終了」判断と同じ時期です</td></tr>
+        <tr><td>C（右肩の戻り）</td><td>2026年1月中旬をピークとする戻り — 50週線が「蓋」になり定着に失敗</td></tr>
+        <tr><td>③→着地</td><td>ネックライン割れから 2026年6月の安値（週足終値 約$59,600・ザラ場 $57,725）まで</td></tr>
+        <tr><td>その後</td><td><strong>2026年9月に50週線を再上抜け</strong> — ここからは同じ図の鏡像（底打ちの構造）を作れるかの試行中</td></tr>
+      </tbody>
+    </table></div>
+    <p><strong>重要な結論</strong>: 直近の週足では、この図は<strong>発動していません</strong>。価格はまだ50週線の<strong>上</strong>（+3.4%）にいて、図の出発点である「基準線割れ（②）」の手前にすらいないからです。いまの週足の文脈はむしろ逆 — 前回高値を上回り、<strong>底打ちの構造（この図の鏡像）を作ろうとしている側</strong>です。</p>
+  </section>
+
+  <section id="daily" class="rv">
+    <div class="sec-head"><svg class="sec-ic"><use href="#i-trend"/></svg><span class="sec-no">4</span><h2 class="serif">日足に当てはめる — 「③に似た形」が出た。ただし成否はまだ決まっていない</h2></div>
+    <p class="lead">一方、日足スケールでは<strong>この図の縮小版に見える形が進行中</strong>です。9月高値のあと50日線を下抜け、戻りが2回失敗し、10/30 に大出来高の急落 — ここまでは図のとおり。しかし3つの点で教科書と違います。</p>
+
+    <div class="fig">
+      <div class="fig-title">BTC 日足（2026年8月〜現在）× 50日移動平均線 — 進行中の「縮小版」と、その成否を分ける2本のライン</div>
+      <div class="fig-sub">青線: 日足終値 ／ 金の点線: 50日移動平均線（自前計算）。赤破線: ネックライン候補 $76,326。ポイントにタッチ/カーソルで数値表示</div>
+      <svg viewBox="0 0 660 300" role="img" aria-label="BTC日足2026年8月から11月。9月高値から10月中旬に50日移動平均線を下抜け、10月21日と29日の2回の戻りが50日線で失敗、10月30日の大出来高の急落が76,326ドルの支持帯で停止。50日線奪回か76,326ドル割れかの分岐点にある">
+        <g stroke="var(--border2)" stroke-width="1"><line x1="52" y1="20.0" x2="640" y2="20.0"/><line x1="52" y1="68.0" x2="640" y2="68.0"/><line x1="52" y1="116.0" x2="640" y2="116.0"/><line x1="52" y1="164.0" x2="640" y2="164.0"/><line x1="52" y1="212.0" x2="640" y2="212.0"/><line x1="52" y1="260.0" x2="640" y2="260.0"/></g>
+        <g fill="var(--ink3)" font-size="10.5" font-family="inherit"><text x="46" y="24.0" text-anchor="end">88k</text><text x="46" y="72.0" text-anchor="end">85k</text><text x="46" y="120.0" text-anchor="end">82k</text><text x="46" y="168.0" text-anchor="end">80k</text><text x="46" y="216.0" text-anchor="end">77k</text><text x="46" y="264.0" text-anchor="end">74k</text><text x="52.0" y="288" text-anchor="start">2026/8</text><text x="172.1" y="288" text-anchor="middle">2026/8</text><text x="285.9" y="288" text-anchor="middle">2026/9</text><text x="406.1" y="288" text-anchor="middle">2026/9</text><text x="519.9" y="288" text-anchor="middle">2026/10</text><text x="640.0" y="288" text-anchor="end">2026/11</text></g>
+        <line x1="52" y1="219.9" x2="640" y2="219.9" stroke="var(--neg)" stroke-width="1.5" stroke-dasharray="4 4"/><text x="638" y="215.9" text-anchor="end" font-size="10.5" font-weight="700" fill="var(--neg)">ネックライン候補 $76,326（割れたら③本物）</text><line x1="52" y1="230.7" x2="640" y2="230.7" stroke="var(--gold)" stroke-width="1.5" stroke-dasharray="2 3"/><text x="638" y="243.7" text-anchor="end" font-size="10.5" font-weight="700" fill="var(--gold)">50週線帯 $75.7K</text>
+        <polyline fill="none" stroke="var(--gold)" stroke-width="1.6" stroke-dasharray="2 3" points="52.0,442.3 58.3,442.6 64.6,443.4 71.0,444.2 77.3,444.5 83.6,444.6 89.9,443.9 96.3,443.4 102.6,443.2 108.9,443.0 115.2,443.1 121.5,442.9 127.9,442.0 134.2,440.9 140.5,439.9 146.8,438.9 153.2,437.2 159.5,435.7 165.8,432.0 172.1,427.5 178.5,421.7 184.8,416.7 191.1,411.7 197.4,406.4 203.7,401.4 210.1,396.0 216.4,389.8 222.7,384.7 229.0,379.9 235.4,375.1 241.7,370.0 248.0,364.8 254.3,360.6 260.6,354.9 267.0,349.4 273.3,343.9 279.6,338.6 285.9,333.6 292.3,329.1 298.6,325.0 304.9,321.4 311.2,317.2 317.5,312.7 323.9,308.4 330.2,304.0 336.5,299.9 342.8,295.6 349.2,291.4 355.5,285.8 361.8,279.5 368.1,273.1 374.5,265.2 380.8,257.4 387.1,250.4 393.4,243.6 399.7,236.7 406.1,230.0 412.4,223.3 418.7,216.9 425.0,210.1 431.4,203.2 437.7,195.8 444.0,188.5 450.3,181.1 456.6,173.0 463.0,165.1 469.3,157.8 475.6,151.4 481.9,147.1 488.3,143.8 494.6,142.2 500.9,139.9 507.2,138.5 513.5,137.1 519.9,136.0 526.2,134.9 532.5,134.4 538.8,133.1 545.2,131.8 551.5,130.3 557.8,128.8 564.1,126.5 570.5,125.1 576.8,125.1 583.1,124.7 589.4,124.6 595.7,124.7 602.1,124.0 608.4,123.0 614.7,123.1 621.0,122.9 627.4,122.7 633.7,122.4 640.0,122.0"/>
+        <polyline fill="none" stroke="var(--accent)" stroke-width="1.8" stroke-linejoin="round" points="52.0,452.7 58.3,439.8 64.6,440.7 71.0,430.6 77.3,421.0 83.6,426.8 89.9,416.5 96.3,415.8 102.6,416.9 108.9,432.9 115.2,439.3 121.5,441.4 127.9,441.2 134.2,448.9 140.5,448.2 146.8,451.4 153.2,423.2 159.5,419.9 165.8,340.4 172.1,276.8 178.5,185.2 184.8,207.0 191.1,195.6 197.4,173.9 203.7,181.7 210.1,173.4 216.4,152.2 222.7,193.7 229.0,187.1 235.4,196.5 241.7,181.0 248.0,200.7 254.3,202.4 260.6,134.6 267.0,162.4 273.3,159.4 279.6,150.7 285.9,171.9 292.3,183.2 298.6,185.7 304.9,215.7 311.2,204.4 317.5,203.5 323.9,211.0 330.2,187.8 336.5,231.6 342.8,222.0 349.2,218.3 355.5,141.3 361.8,135.0 368.1,136.2 374.5,42.4 380.8,49.5 387.1,80.7 393.4,80.5 399.7,85.9 406.1,80.1 412.4,79.4 418.7,96.2 425.0,93.4 431.4,94.1 437.7,72.4 444.0,78.6 450.3,74.6 456.6,44.0 463.0,57.1 469.3,60.9 475.6,99.3 481.9,126.3 488.3,111.1 494.6,105.0 500.9,91.5 507.2,124.6 513.5,101.9 519.9,127.5 526.2,117.8 532.5,128.7 538.8,130.8 545.2,120.1 551.5,123.1 557.8,104.3 564.1,86.0 570.5,132.1 576.8,136.0 583.1,141.2 589.4,153.9 595.7,154.0 602.1,140.9 608.4,133.4 614.7,191.2 621.0,201.9 627.4,198.2 633.7,184.9 640.0,193.0"/>
+        <g fill="var(--accent)"><circle class="pt" cx="374.5" cy="42.4" r="5" data-d="9月高値圏 — 日足スケールの「頭」候補" data-v="$86,620"/><circle class="pt" cx="564.1" cy="86.0" r="5" data-d="10/21 $84,898 まで急伸し即反落 — 50日線上への定着に失敗" data-v="$84,093"/><circle class="pt" cx="608.4" cy="133.4" r="5" data-d="10/28-29 ほぼ50日線タッチちょうどで反落（直後にハック）" data-v="$81,344"/><circle class="pt" cx="621.0" cy="201.9" r="5" data-d="10/30 大出来高の急落・ザラ場安値 $76,326 — ただし支持帯で停止（成否は未確定）" data-v="$77,369"/></g>
+        <text x="374.5" y="30.4" text-anchor="middle" font-size="12" font-weight="700" fill="var(--gold)">B？</text><text x="564.1" y="74.0" text-anchor="middle" font-size="12" font-weight="700" fill="var(--gold)">戻り1</text><text x="608.4" y="121.4" text-anchor="middle" font-size="12" font-weight="700" fill="var(--gold)">戻り2</text><text x="621.0" y="221.9" text-anchor="middle" font-size="12" font-weight="700" fill="var(--gold)">③に似た下げ</text>
+      </svg>
+      <div class="legend"><span><span class="sw" style="background:var(--accent);"></span>BTC 日足終値</span><span><span class="sw" style="background:var(--gold);"></span>50日移動平均線</span><span><span class="sw" style="background:var(--neg);"></span>ネックライン候補</span></div>
+      <div class="fig-note">10/30 のザラ場安値 $76,326 は、50週線帯（$75.7K）と 6月安値→9月高値の 38.2% 押し（$76,090）が重なる支持帯のすぐ上で停止しました。</div>
+    </div>
+
+    <p><strong>教科書との差分3点（＝まだ「発動した」と言い切れない理由）</strong>:</p>
+    <ol>
+      <li><strong>戻りの回数が足りない</strong> — 原典は「3〜4回の失敗」を求めますが、現状は2回。原典の思想では、むしろ今は「まだ確証が足りない」段階です。</li>
+      <li><strong>引き金が外部イベント</strong> — 10/30 の急落は大口の計画的な売り抜けではなく、取引所ハックによるパニックの投げでした。出来高の「質」が教科書の想定と異なります（イベント起因の投げは戻りも速い傾向）。</li>
+      <li><strong>割れた直後に支持帯で止まった</strong> — 教科書の③はネックライン割れ後に下へ走る形ですが、実際は50週線帯＋38.2%押しで即反発。これは<strong>「③が発動したが失敗しつつある（売り方が焼かれるダマシ）」という逆の読みも同等に成立する</strong>状態です。</li>
+    </ol>
+  </section>
+
+  <section id="conclusion" class="rv">
+    <div class="sec-head"><svg class="sec-ic"><use href="#i-flag"/></svg><span class="sec-no">5</span><h2 class="serif">結論 — 流派が違っても、地図の折り目は同じ2本</h2></div>
+    <p class="lead">今週のレポートで扱ったエリオット波動（調整はどこで終わるかの地図）と、この「空売りの構造」（天井はどう作られるかの地図）は、立場の違う2枚の地図です。ところが<strong>見るべきラインは全く同じ場所</strong>を指しています。</p>
+    <div class="tbl-scroll"><table>
+      <thead><tr><th>ライン</th><th>水準</th><th>何が確定するか</th></tr></thead>
+      <tbody>
+        <tr><td><span class="pill good">上</span></td><td class="n"><strong>$81,800 帯（50日線）→ $84,898</strong></td><td>50日線の奪回・定着で「③はダマシ」確定。さらに $84,898 奪回でエリオットの調整完了説が優勢化</td></tr>
+        <tr><td><span class="pill neg">下</span></td><td class="n"><strong>$76,326（ネックライン候補）</strong></td><td>大出来高での終値再割れで「③は本物」化 — 50週線割れが現実になり、週足でもこの図の①②が始まる入り口に</td></tr>
+      </tbody>
+    </table></div>
+    <h3>受講生の皆さんへの「行動への翻訳」</h3>
+    <ul>
+      <li><strong>急落の一発目で慌てて投げない</strong> — この図自身が「最初の急落では動くな」と教えています。確認すべきは次の「戻りの質」です</li>
+      <li><strong>戻りを見る目を持つ</strong> — 戻りが50日線の上に定着できるか・出来高を伴うか。「上がった」ではなく「定着したか」が問いです</li>
+      <li><strong>退避の地図として使う</strong> — $76,326 の大出来高割れは、当教室の警報器とは別系統の「チャート側の退避シグナル」として覚えておけます</li>
+    </ul>
+    <div class="callout red">
+      <div class="co-t">注意書き</div>
+      本ページは値動きの構造を学ぶための教育資料であり、<strong>空売りを含む特定の取引の実行をすすめるものではありません</strong>。原典の統計は米国個別株に基づくもので、24時間取引の暗号資産では移動平均線や出来高の機能にズレがあり得ます。記載の価格・日付は作成時点の実測値です。
+    </div>
+  </section>
+
+  <footer>
+    <p><strong>データソース</strong>: チャートは Binance 公開 API の実データ（日足260本・週足170本）から自前計算で描画（移動平均は終値の単純平均）。原典図版は『オニールの空売り練習帖』ダイアグラム1 より教育目的で引用。数値は 2026-11-02（JST）時点。</p>
+    <p class="disclaimer">本ページは Web3Campus 受講生向けの教育資料であり、投資助言ではありません。特定の暗号資産・金融商品の売買、保有をすすめるものではありません。投資判断はご自身の調査と責任で行ってください。</p>
+  </footer>
+</div>
+
+<div id="tooltip" role="tooltip"></div>
+
+
+<script>
+(function(){
+  "use strict";
+  var reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  var bar = document.getElementById("progress");
+  var ticking = false;
+  function onScroll(){
+    if(ticking) return; ticking = true;
+    requestAnimationFrame(function(){
+      var h = document.documentElement;
+      var max = h.scrollHeight - h.clientHeight;
+      bar.style.width = (max > 0 ? (h.scrollTop / max * 100) : 0) + "%";
+      ticking = false;
+    });
+  }
+  document.addEventListener("scroll", onScroll, {passive:true}); onScroll();
+
+  var revealed = function(el){
+    el.classList.add("in");
+    el.querySelectorAll(".scen-bar>i,.gauge .fill").forEach(function(b){
+      var w = b.getAttribute("data-w");
+      if(w){ if(reduce){ b.style.width = w; } else { requestAnimationFrame(function(){ b.style.width = w; }); } }
+    });
+  };
+  var els = document.querySelectorAll(".rv");
+  if("IntersectionObserver" in window && !reduce){
+    var io = new IntersectionObserver(function(entries){
+      entries.forEach(function(e){
+        if(e.isIntersecting || e.boundingClientRect.top < 0){ revealed(e.target); io.unobserve(e.target); }
+      });
+    }, {rootMargin:"0px 0px -8% 0px", threshold:[0, 0.05]});
+    els.forEach(function(el){ io.observe(el); });
+  } else {
+    els.forEach(revealed);
+  }
+
+  var links = Array.prototype.slice.call(document.querySelectorAll("nav.toc a"));
+  var secs = links.map(function(a){ return document.querySelector(a.getAttribute("href")); });
+  if("IntersectionObserver" in window){
+    var cur = -1;
+    var io2 = new IntersectionObserver(function(entries){
+      entries.forEach(function(e){
+        var i = secs.indexOf(e.target);
+        if(e.isIntersecting && i > -1){ cur = i;
+          links.forEach(function(a,j){ a.classList.toggle("on", j === cur); });
+        }
+      });
+    }, {rootMargin:"-40% 0px -55% 0px"});
+    secs.forEach(function(s){ if(s) io2.observe(s); });
+  }
+
+  var tip = document.getElementById("tooltip");
+  function showTip(e, el){
+    tip.innerHTML = "<strong>" + el.getAttribute("data-d") + "</strong><br>" + el.getAttribute("data-v");
+    tip.style.display = "block";
+    var x = (e.touches ? e.touches[0].clientX : e.clientX);
+    var y = (e.touches ? e.touches[0].clientY : e.clientY);
+    var w = tip.offsetWidth;
+    tip.style.left = Math.min(Math.max(8, x - w/2), window.innerWidth - w - 8) + "px";
+    tip.style.top = (y - tip.offsetHeight - 14) + "px";
+  }
+  function hideTip(){ tip.style.display = "none"; }
+  document.querySelectorAll(".pt").forEach(function(pt){
+    pt.style.cursor = "pointer";
+    pt.addEventListener("pointerenter", function(e){ pt.setAttribute("r","6"); showTip(e, pt); });
+    pt.addEventListener("pointermove", function(e){ showTip(e, pt); });
+    pt.addEventListener("pointerleave", function(){ pt.setAttribute("r","4"); hideTip(); });
+  });
+  document.addEventListener("scroll", hideTip, {passive:true});
+})();
+</script>
+</body>
+</html>
